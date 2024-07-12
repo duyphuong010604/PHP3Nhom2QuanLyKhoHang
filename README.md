@@ -34,6 +34,9 @@ Cài Đặt
 5. Cấu hình file .env
    Mở file .env và cập nhật các thông tin cấu hình cơ sở dữ liệu và các thiết lập khác.
 
+Chú ý:
+DB_DATABASE=PHP3QuanLyKhoHang
+
 Ví dụ:
 
 plaintext
