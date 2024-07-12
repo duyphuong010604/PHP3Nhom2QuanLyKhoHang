@@ -12,23 +12,23 @@ Cài Đặt
 
 1. Clone repository
    bash
-   Sao chép mã
+   Sao chép mã:
    git clone https://github.com/your-username/your-repository.git
    cd your-repository
 
 2. Cài đặt các thư viện phụ thuộc bằng Composer
    bash
-   Sao chép mã
+   Sao chép mã:
    composer install
 
 3. Tạo bản sao của file .env.example và đổi tên thành .env
    bash
-   Sao chép mã
+   Sao chép mã:
    cp .env.example .env
 
 4. Tạo khóa ứng dụng
    bash
-   Sao chép mã
+   Sao chép mã:
    php artisan key:generate
 
 5. Cấu hình file .env
@@ -47,10 +47,10 @@ DB_PASSWORD=your_password
 
 6. Chạy các lệnh migration để tạo các bảng trong cơ sở dữ liệu
    bash
-   Sao chép mã
+   Sao chép mã:
    php artisan migrate 7. Chạy dự án
    bash
-   Sao chép mã
+   Sao chép mã:
    php artisan serve
    Truy cập vào địa chỉ http://localhost:8000 để xem ứng dụng Laravel của bạn.
 
