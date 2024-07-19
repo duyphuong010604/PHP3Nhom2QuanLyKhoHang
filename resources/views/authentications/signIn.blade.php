@@ -7,7 +7,9 @@
 				<!--begin::Aside-->
 				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
 					<!--begin::Wrapper-->
-                    <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
+					<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
+					<!--begin::Wrapper-->
+					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
@@ -16,11 +18,9 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Chào Mừng Đến Với Website</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Khám phá Metronic
-							<br />với các công cụ xây dựng tuyệt vời</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
@@ -28,6 +28,8 @@
 						<div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px" style="background-image: url(assets/media/illustrations/sketchy-1/13.png"></div>
 						<!--end::Illustration-->
 					</div>
+					<!--end::Wrapper-->
+				</div>
 					<!--end::Wrapper-->
 				</div>
 				<!--end::Aside-->
@@ -87,7 +89,7 @@
 									</button>
 									<!--end::Submit button-->
 									<!--begin::Separator-->
-									<div class="text-center text-muted text-uppercase fw-bolder mb-5">or</div>
+									<div class="text-center text-muted text-uppercase fw-bolder mb-5">Hoặc</div>
 									<!--end::Separator-->
 									<!--begin::Google link-->
 									<a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
@@ -102,15 +104,6 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-						<!--begin::Links-->
-						<div class="d-flex flex-center fw-bold fs-6">
-							<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-							<a href="https://keenthemes.com/support" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-							<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
-						</div>
-						<!--end::Links-->
-					</div>
 					<!--end::Footer-->
 				</div>
 				<!--end::Body-->

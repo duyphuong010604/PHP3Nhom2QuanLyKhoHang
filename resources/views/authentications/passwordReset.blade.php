@@ -2,12 +2,15 @@
 
 @section('contents')
 <div class="d-flex flex-column flex-root">
-			<!--begin::Authentication - Password reset -->
-			<div class="d-flex flex-column flex-lg-row flex-column-fluid">
-				<!--begin::Aside-->
-				<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
+	<!--begin::Authentication - Password reset -->
+	<div class="d-flex flex-column flex-lg-row flex-column-fluid">
+		<!--begin::Aside-->
+		<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative"
+			style="background-color: #F2C98A">
+			<!--begin::Wrapper-->
+			<div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
 					<!--begin::Wrapper-->
-                    <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
+					<div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
 						<!--begin::Content-->
 						<div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
 							<!--begin::Logo-->
@@ -16,11 +19,9 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Chào Mừng Đến Với Website</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Khám phá Metronic
-							<br />với các công cụ xây dựng tuyệt vời</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
@@ -30,61 +31,59 @@
 					</div>
 					<!--end::Wrapper-->
 				</div>
-				<!--end::Aside-->
-				<!--begin::Body-->
-				<div class="d-flex flex-column flex-lg-row-fluid py-10">
-					<!--begin::Content-->
-					<div class="d-flex flex-center flex-column flex-column-fluid">
-						<!--begin::Wrapper-->
-						<div class="w-lg-500px p-10 p-lg-15 mx-auto">
-							<!--begin::Form-->
-							<form class="form w-100" novalidate="novalidate" id="kt_password_reset_form">
-								<!--begin::Heading-->
-								<div class="text-center mb-10">
-									<!--begin::Title-->
-									<h1 class="text-dark mb-3">Quên mật khẩu ?</h1>
-									<!--end::Title-->
-									<!--begin::Link-->
-									<div class="text-gray-400 fw-bold fs-4">Nhập email của bạn để thiết lập lại mật khẩu của bạn.</div>
-									<!--end::Link-->
-								</div>
-								<!--begin::Heading-->
-								<!--begin::Input group-->
-								<div class="fv-row mb-10">
-									<label class="form-label fw-bolder text-gray-900 fs-6">Email</label>
-									<input class="form-control form-control-solid" type="email" placeholder="" name="email" autocomplete="off" />
-								</div>
-								<!--end::Input group-->
-								<!--begin::Actions-->
-								<div class="d-flex flex-wrap justify-content-center pb-lg-0">
-									<button type="button" id="kt_password_reset_submit" class="btn btn-lg btn-primary fw-bolder me-4">
-										<span class="indicator-label">Xác Nhận</span>
-										<span class="indicator-progress">Vui Lòng Chờ
-										<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-									</button>
-									<a href="../../demo1/dist/authentication/flows/aside/sign-up.html" class="btn btn-lg btn-light-primary fw-bolder">Huỷ Bỏ</a>
-								</div>
-								<!--end::Actions-->
-							</form>
-							<!--end::Form-->
-						</div>
-						<!--end::Wrapper-->
-					</div>
-					<!--end::Content-->
-					<!--begin::Footer-->
-					<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-						<!--begin::Links-->
-						<div class="d-flex flex-center fw-bold fs-6">
-							<a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-							<a href="https://keenthemes.com/support" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-							<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
-						</div>
-						<!--end::Links-->
-					</div>
-					<!--end::Footer-->
-				</div>
-				<!--end::Body-->
-			</div>
-			<!--end::Authentication - Password reset-->
+			<!--end::Wrapper-->
 		</div>
+		<!--end::Aside-->
+		<!--begin::Body-->
+		<div class="d-flex flex-column flex-lg-row-fluid py-10">
+			<!--begin::Content-->
+			<div class="d-flex flex-center flex-column flex-column-fluid">
+				<!--begin::Wrapper-->
+				<div class="w-lg-500px p-10 p-lg-15 mx-auto">
+					<!--begin::Form-->
+					<form class="form w-100" novalidate="novalidate" id="kt_password_reset_form">
+						<!--begin::Heading-->
+						<div class="text-center mb-10">
+							<!--begin::Title-->
+							<h1 class="text-dark mb-3">Quên mật khẩu ?</h1>
+							<!--end::Title-->
+							<!--begin::Link-->
+							<div class="text-gray-400 fw-bold fs-4">Nhập email của bạn để thiết lập lại mật khẩu của
+								bạn.</div>
+							<!--end::Link-->
+						</div>
+						<!--begin::Heading-->
+						<!--begin::Input group-->
+						<div class="fv-row mb-10">
+							<label class="form-label fw-bolder text-gray-900 fs-6">Email</label>
+							<input class="form-control form-control-solid" type="email" placeholder="" name="email"
+								autocomplete="off" />
+						</div>
+						<!--end::Input group-->
+						<!--begin::Actions-->
+						<div class="d-flex flex-wrap justify-content-center pb-lg-0">
+							<button type="button" id="kt_password_reset_submit"
+								class="btn btn-lg btn-primary fw-bolder me-4">
+								<span class="indicator-label">Xác Nhận</span>
+								<span class="indicator-progress">Vui Lòng Chờ
+									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+							</button>
+							<a href="../../demo1/dist/authentication/flows/aside/sign-up.html"
+								class="btn btn-lg btn-light-primary fw-bolder">Huỷ Bỏ</a>
+						</div>
+						<!--end::Actions-->
+					</form>
+					<!--end::Form-->
+				</div>
+				<!--end::Wrapper-->
+			</div>
+			<!--end::Content-->
+			<!--begin::Footer-->
+
+			<!--end::Footer-->
+		</div>
+		<!--end::Body-->
+	</div>
+	<!--end::Authentication - Password reset-->
+</div>
 @endsection

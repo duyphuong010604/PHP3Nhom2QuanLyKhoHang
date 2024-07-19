@@ -16,11 +16,9 @@
 							</a>
 							<!--end::Logo-->
 							<!--begin::Title-->
-							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Chào Mừng Đến Với Website</h1>
+							<h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
 							<!--end::Title-->
 							<!--begin::Description-->
-							<p class="fw-bold fs-2" style="color: #986923;">Khám phá Metronic
-							<br />với các công cụ xây dựng tuyệt vời</p>
 							<!--end::Description-->
 						</div>
 						<!--end::Content-->
@@ -146,15 +144,6 @@
 					</div>
 					<!--end::Content-->
 					<!--begin::Footer-->
-					<div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
-						<!--begin::Links-->
-						<div class="d-flex flex-center fw-bold fs-6">
-                        <a href="https://keenthemes.com" class="text-muted text-hover-primary px-2" target="_blank">About</a>
-							<a href="https://keenthemes.com/support" class="text-muted text-hover-primary px-2" target="_blank">Support</a>
-							<a href="https://1.envato.market/EA4JP" class="text-muted text-hover-primary px-2" target="_blank">Purchase</a>
-						</div>
-						<!--end::Links-->
-					</div>
 					<!--end::Footer-->
 				</div>
 				<!--end::Body-->
