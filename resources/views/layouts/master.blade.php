@@ -85,6 +85,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="{{ asset('assets/js/custom/modals/new-address.js') }}"></script>
     <script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
     <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
     <script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
