@@ -9,3 +9,11 @@ Route::get('/', function () {
 Route::get('edit_stock', function () {
     return view('stocks.edit');
 });
+
+Route::get('profile', function () {
+    return view('profiles.index');
+});
+
+Route::get('edit_profile', function() {
+    return view('profiles.edit');
+}); 
