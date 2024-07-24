@@ -11,7 +11,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.index');
+        return view('profiles.index');
 
     }
 
@@ -36,8 +36,7 @@ class UserController extends Controller
      */
     public function show(string $id)
     {
-        return view('users.show');
-
+        //
     }
 
     /**
@@ -45,7 +44,7 @@ class UserController extends Controller
      */
     public function edit(string $id)
     {
-        return view('users.edit');
+        return view('profiles.edit');
     }
 
     /**
