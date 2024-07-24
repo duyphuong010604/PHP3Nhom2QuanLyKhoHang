@@ -5,8 +5,8 @@
     <!--begin::Brand-->
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
-        <a href="../../demo1/dist/index.html">
-            <img alt="Logo" src="assets/media/logos/logo-1.svg" class="h-25px logo">
+        <a href="{{ route('trang-chu.index') }}">
+            <img alt="Logo" src="" class="h-25px logo">
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -46,7 +46,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link active" href="../../demo1/dist/dashboards/light-aside.html">
+                    <a class="menu-link active" href="{{ route('trang-chu.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -83,23 +83,23 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('nhap-hang.index') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Danh sách nhập hàng</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('nhap-hang.create') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Thêm mới nhập hàng</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
 
                         </div>
 
@@ -122,23 +122,23 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('xuat-hang.index') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Danh sách xuất hàng</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('xuat-hang.create') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Thêm mới xuất hàng</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
 
                         </div>
 
@@ -166,23 +166,23 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('san-pham.index') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Danh sách sản phẩm</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('san-pham.create') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Thêm mới sản phẩm</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -208,23 +208,22 @@
                         <span class="menu-arrow"></span>
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('doi-tac.index') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Danh sách đối tác</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+                            </a>
                         </div>
-                        <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
-                            <span class="menu-link">
+                        <div class="menu-item menu-accordion">
+                            <a href="{{ route('doi-tac.create') }}" class="menu-link">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
                                 <span class="menu-title">Thêm mới đối tác</span>
-                                <span class="menu-arrow"></span>
-                            </span>
+
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -234,7 +233,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="../../demo1/dist/dashboards/no-toolbar.html">
+                    <a class="menu-link" href="{{ route('ton-kho.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
                             <span class="svg-icon svg-icon-2">

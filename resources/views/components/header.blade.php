@@ -225,14 +225,13 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="../../demo1/dist/account/overview.html" class="menu-link px-5">Thông tin tài
+                                <a href="{{ route('tai-khoan.index') }}" class="menu-link px-5">Thông tin tài
                                     khoản</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="../../demo1/dist/authentication/flows/basic/sign-in.html"
-                                    class="menu-link px-5">Sign Out</a>
+                                <a href="#" class="menu-link px-5">Sign Out</a>
                             </div>
                             <!--end::Menu item-->
                         </div>

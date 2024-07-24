@@ -4,14 +4,14 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProductController extends Controller
+class InboundShipmentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        return view('products.index');
+        return view('inboundShipments.index');
     }
 
     /**
@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('products.create');
+        return view('inboundShipments.create');
     }
 
     /**
@@ -35,7 +35,7 @@ class ProductController extends Controller
      */
     public function show(string $id)
     {
-        return view('products.show');
+        return view('inboundShipments.show');
     }
 
     /**
@@ -43,7 +43,7 @@ class ProductController extends Controller
      */
     public function edit(string $id)
     {
-        return view('products.edit');
+        return view('inboundShipments.edit');
     }
 
     /**
