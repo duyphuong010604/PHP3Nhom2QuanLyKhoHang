@@ -1,13 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
 
-Route::get('/inbound', function () {
-    return view('inboundShipments.index');
+
+Route::get('/', function () {
+    return view('authentications.signIn');
 });
-Route::get('/inbound/create', function () {
-    return view('inboundShipments.create');
-});
-Route::get('/inbound/update/{id}', function () {
-    return view('inboundShipments.edit');
-});
+
+require __DIR__ . "/dashboard.php";
+require __DIR__ . "/product.php";
+require __DIR__ . "/customer.php";
+require __DIR__ . "/inboundShipment.php";
+require __DIR__ . "/outboundShipment.php";
+require __DIR__ . "/stock.php";
+require __DIR__ . "/user.php";
