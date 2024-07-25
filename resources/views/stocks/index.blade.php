@@ -20,25 +20,7 @@
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Subscriptions</li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-dark">Subscription List</li>
+                        <li class="breadcrumb-item text-dark">Danh sách tồn kho</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -220,7 +202,7 @@
                                         <div class="mb-10">
                                             <label class="form-label fs-6 fw-bold">Tháng:</label>
                                             <select class="form-select form-select-solid fw-bolder" data-kt-select2="true"
-                                                data-placeholder="Select option" data-allow-clear="true"
+                                                data-placeholder="Chọn thời gian" data-allow-clear="true"
                                                 data-kt-subscription-table-filter="month" data-hide-search="true">
                                                 <option></option>
                                                 <option value="jan">Tháng 1</option>
@@ -265,7 +247,7 @@
                                 </div>
                                 <!--end::Menu 1-->
                                 <!--end::Filter-->
-                                <!--begin::Export-->
+                                {{-- <!--begin::Export-->
                                 <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal"
                                     data-bs-target="#kt_subscriptions_export_modal">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
@@ -283,9 +265,9 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->Export</button>
-                                <!--end::Export-->
+                                <!--end::Export--> --}}
                                 <!--begin::Add subscription-->
-                                <a href="/create_stock" class="btn btn-primary">
+                                <a href="{{ route('ton-kho.create') }}" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -330,10 +312,9 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Tên sản phẩm</th>
+                                    <th class="min-w-125px">Kệ hàng hóa</th>
                                     <th class="min-w-125px">Trạng thái</th>
                                     <th class="min-w-125px">Phân khu</th>
-                                    <th class="min-w-125px">Loại sản phẩm</th>
                                     <th class="min-w-125px">Số lượng</th>
                                     <th class="min-w-125px">Ngày nhập kho</th>
                                     <th class="text-end min-w-70px">Thao tác</th>
@@ -353,8 +334,7 @@
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Iphone 15
-                                            ProMax</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Kệ hàng A</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
@@ -367,7 +347,6 @@
                                         <div class="badge badge-light">Phân khu A</div>
                                     </td>
                                     <!--end::Phân khu=-->
-                                    <td>Iphone</td>
                                     <!--begin::Số lượng=-->
                                     <td>100</td>
                                     <!--end::Số lượng=-->
@@ -393,12 +372,12 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/view_stock" class="menu-link px-3">Xem</a>
+                                                <a href="{{ route('ton-kho.show',1) }}" class="menu-link px-3">Xem</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/edit_stock" class="menu-link px-3">Sửa</a>
+                                                <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -422,7 +401,7 @@
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Samsung 5s</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Kệ hàng B</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
@@ -435,7 +414,6 @@
                                         <div class="badge badge-light">Phân khu B</div>
                                     </td>
                                     <!--end::Phân khu=-->
-                                    <td>Samsung</td>
                                     <!--begin::Số lượng=-->
                                     <td>100</td>
                                     <!--end::Số lượng=-->
@@ -461,7 +439,7 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Xem</a>
+                                                <a href="{{ route('ton-kho.show',1) }}" class="menu-link px-3">Xem</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
