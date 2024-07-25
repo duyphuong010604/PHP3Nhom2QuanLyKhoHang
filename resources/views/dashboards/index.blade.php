@@ -23,6 +23,7 @@
                         <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary"></a>
                     </li>
                     <!--end::Item-->
+<<<<<<< HEAD
                     <!--begin::Item-->
                     <li class="breadcrumb-item">
                         <span class="bullet bg-gray-200 w-5px h-2px"></span>
@@ -31,6 +32,8 @@
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-dark"></li>
                     <!--end::Item-->
+=======
+>>>>>>> 4957382039e86a549af482cfe7f79e0b87ce836c
                 </ul>
                 <!--end::Breadcrumb-->
             </div>
