@@ -1,5 +1,5 @@
 @extends('layouts.master')
-
+@section('title', 'Thêm sản phẩm')
 @section('contents')
     {{-- Tootbar --}}
     <div class="toolbar" id="kt_toolbar">
@@ -18,7 +18,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Danh sách sản
+                        <a href="{{ route('san-pham.index') }}" class="text-muted text-hover-primary">Danh sách sản
                             phẩm</a>
                     </li>
                     <!--end::Item-->
@@ -41,11 +41,11 @@
     <div class="row gy-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card card-xl-stretch mb-xl-8">
-                <form class="form" action="#" id="kt_modal_new_address_form">
+                <form class="form" action="#">
                     <!--begin::Modal header-->
-                    <div class="modal-header" id="kt_modal_new_address_header">
+                    <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2>Thêm tên sản phẩm</h2>
+                        <h2>Thêm mới sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
                     <!--end::Modal header-->
@@ -57,6 +57,52 @@
                             data-kt-scroll-dependencies="#kt_modal_new_address_header"
                             data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
                             <!--begin::Input group-->
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-5 col-form-label fw-bold fs-5">Ảnh sản phẩm:</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-7">
+                                    <!--begin::Image input-->
+                                    <div class="image-input image-input-outline" data-kt-image-input="true"
+                                        style="background-image: url(assets/media/avatars/blank.png)">
+                                        <!--begin::Preview existing avatar-->
+                                        <div class="image-input-wrapper w-125px h-125px"
+                                            style="background-image: url(assets/media/avatars/150-26.jpg)"></div>
+                                        <!--end::Preview existing avatar-->
+                                        <!--begin::Label-->
+                                        <label
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Thêm ảnh">
+                                            <i class="bi bi-pencil-fill fs-7"></i>
+                                            <!--begin::Inputs-->
+                                            <input type="file" name="imageUrl" accept=".png, .jpg, .jpeg" />
+                                            <input type="hidden" name="avatar_remove" />
+                                            <!--end::Inputs-->
+                                        </label>
+                                        <!--end::Label-->
+                                        <!--begin::Cancel-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Xóa ảnh">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Cancel-->
+                                        <!--begin::Remove-->
+                                        <span
+                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Xóa ảnh">
+                                            <i class="bi bi-x fs-2"></i>
+                                        </span>
+                                        <!--end::Remove-->
+                                    </div>
+                                    <!--end::Image input-->
+                                    <!--begin::Hint-->
+                                    <div class="form-text">Loại tệp tin: png, jpg, jpeg.</div>
+                                    <!--end::Hint-->
+                                </div>
+                                <!--end::Col-->
+                            </div>
                             <div class="row mb-5">
                                 <!--begin::Col-->
                                 <div class="col-md-12 fv-row">
@@ -64,8 +110,8 @@
                                     <label class="required fs-5 fw-bold mb-2">Tên sản phẩm</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder=""
-                                        name="Tên sản phẩm" />
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Tên sản phẩm..." name="name" />
                                     <!--end::Input-->
                                 </div>
 
@@ -73,11 +119,11 @@
                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
                                         <span class="required">Loại sản phẩm</span>
                                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Your payment statements may very based on selected country"></i>
+                                            title=""></i>
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Select-->
-                                    <select name="country" data-control="select2" data-dropdown-parent=""
+                                    <select name="categoryId" data-control="select2" data-dropdown-parent=""
                                         data-placeholder="Chọn loại sản phẩm..." class="form-select form-select-solid">
                                         <option value="">Chọn loại sản phẩm...</option>
                                         <option value="AF">Iphone</option>
@@ -90,34 +136,18 @@
                                 <!--begin::Col-->
                                 <div class="col-md-6 fv-row">
                                     <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                        <span class="required">Phân khu</span>
+                                        <span class="required">Kệ sản phẩm</span>
                                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Your payment statements may very based on selected country"></i>
+                                            title=""></i>
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Select-->
-                                    <select name="zone" data-control="select2" data-dropdown-parent=""
-                                        data-placeholder="Chọn phân khu..." class="form-select form-select-solid">
-                                        <option value="">Chọn phân khu...</option>
+                                    <select name="warehouseId" data-control="select2" data-dropdown-parent=""
+                                        data-placeholder="Chọn kệ hàng hóa..." class="form-select form-select-solid">
+                                        <option value="">Chọn kệ hàng hóa...</option>
                                         <option value="AF">Phân khu A</option>
                                         <option value="AX">Phân khu B</option>
                                         <option value="AL">Phân khu C</option>
-                                    </select>
-                                </div>
-
-                                <div class="col-md-6 fv-row">
-                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                        <span class="required">Trạng thái</span>
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                            title="Your payment statements may very based on selected country"></i>
-                                    </label>
-                                    <!--end::Label-->
-                                    <!--begin::Select-->
-                                    <select name="zone" data-control="select2" data-dropdown-parent=""
-                                        data-placeholder="Chọn trạng thái..." class="form-select form-select-solid">
-                                        <option value="">Chọn trạng thái...</option>
-                                        <option value="AF">Còn sử dụng</option>
-                                        <option value="AX">Không sử dụng</option>
                                     </select>
                                 </div>
                                 <!--end::Col-->
@@ -127,8 +157,56 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid"
-                                        placeholder="Giá nhập..." name="Tên sản phẩm" />
+                                        placeholder="Giá nhập..." name="cosT" />
                                     <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Giá bán</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Giá bán..." name="price" />
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Kích thước </label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Kích thước dài x rộng..." name="dimensions" />
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Trọng lượng</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Trọng lượng..." name="weight" />
+                                    <!--end::Input-->
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Mô tả</label>
+                                    <!--end::Label-->
+                                    <textarea name="" class="form-control form-control-solid" id="" cols="30" rows="5"></textarea>
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                        <span class="required">Trạng thái</span>
+                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
+                                            title=""></i>
+                                    </label>
+                                    <!--end::Label-->
+                                    <!--begin::Select-->
+                                    <select name="status" data-control="select2" data-dropdown-parent=""
+                                        data-placeholder="Chọn trạng thái..." class="form-select form-select-solid">
+                                        <option value="">Chọn trạng thái...</option>
+                                        <option value="AF">Còn sử dụng</option>
+                                        <option value="AX">Không sử dụng</option>
+                                    </select>
                                 </div>
                             </div>
                             <!--end::Input group-->

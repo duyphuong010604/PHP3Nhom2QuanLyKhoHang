@@ -17,7 +17,7 @@
                 <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                     <!--begin::Item-->
                     <li class="breadcrumb-item text-muted">
-                        <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Danh sách sản
+                        <a href="{{ route('san-pham.index') }}" class="text-muted text-hover-primary">Danh sách sản
                             phẩm</a>
                     </li>
                     <!--end::Item-->
@@ -48,7 +48,7 @@
             <!--begin::Card title-->
             <!--begin::Card toolbar-->
             <div class="card-toolbar">
-                <a href="../../demo1/dist/apps/subscriptions/add.html" class="btn btn-light-primary">Chỉnh sửa thông
+                <a href="{{ route('san-pham.edit', 1) }}" class="btn btn-light-primary">Chỉnh sửa thông
                     tin</a>
             </div>
             <!--end::Card toolbar-->
@@ -63,6 +63,24 @@
                 <!--end::Title-->
                 <!--begin::Details-->
                 <div class="d-flex flex-wrap py-5">
+                    <div class="flex-equal me-5">
+                        <!--begin::Details-->
+                        <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
+                            <!--begin::Row-->
+                            <tbody>
+                                <tr>
+                                    <td class="text-gray-400 min-w-175px w-175px">Hình ảnh sản phẩm:</td>
+                                    <td class="text-gray-800 min-w-200px">
+                                        <img src="{{ asset('assets/media/avatars/150-1.jpg') }}" alt=""
+                                            class="img-fluid rounded" srcset=""
+                                            style="background-size: auto; object-fit: cover" width="120px">
+                                    </td>
+                                </tr>
+                                <!--end::Row-->
+                            </tbody>
+                        </table>
+                        <!--end::Details-->
+                    </div>
                     <!--begin::Row-->
                     <div class="flex-equal me-5">
                         <!--begin::Details-->
@@ -72,8 +90,7 @@
                                 <tr>
                                     <td class="text-gray-400 min-w-175px w-175px">Tên sản phẩm:</td>
                                     <td class="text-gray-800 min-w-200px">
-                                        <a href="../../demo1/dist/pages/apps/customers/view.html"
-                                            class="text-gray-800 text-hover-primary">Dầu gội đầu</a>
+                                        <span class="text-gray-800 ">Dầu gội đầu</span>
                                     </td>
                                 </tr>
                                 <!--end::Row-->
@@ -108,9 +125,9 @@
                             <!--begin::Row-->
                             <tbody>
                                 <tr>
-                                    <td class="text-gray-400 min-w-175px w-175px">Kệ hàng:</td>
+                                    <td class="text-gray-400 min-w-175px w-175px">Mã hàng:</td>
                                     <td class="text-gray-800 min-w-200px">
-                                        <a href="#" class="text-gray-800 text-hover-primary">Kệ ADC</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary">ADC</a>
                                     </td>
                                 </tr>
                                 <!--end::Row-->
@@ -155,8 +172,8 @@
                             <!--begin::Table row-->
                             <tr
                                 class="border-bottom border-gray-200 text-start text-gray-400 fw-bolder fs-7 text-uppercase gs-0">
-                                <th class="min-w-150px">Kho hàng</th>
-                                <th class="min-w-125px">Mã kho hàng</th>
+                                <th class="min-w-150px">Kệ hàng</th>
+                                <th class="min-w-125px">Mã kệ hàng</th>
                                 <th class="min-w-125px">Số lượng</th>
                                 <th class="min-w-125px">Tổng</th>
                                 <th class="text-end min-w-70px">Tùy chọn</th>
@@ -166,59 +183,6 @@
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-800">
-                            <tr>
-                                <td>
-                                    <label class="w-150px">Basic Bundle</label>
-                                    <div class="fw-normal text-gray-600">Basic yearly bundle</div>
-                                </td>
-                                <td>
-                                    <span class="badge badge-light-danger">sub_4567_8765</span>
-                                </td>
-                                <td>1</td>
-                                <td>$149.99 / Year</td>
-                                <td class="text-end">
-                                    <!--begin::Action-->
-                                    <a href="#" class="btn btn-icon btn-active-light-primary w-30px h-30px"
-                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
-                                        <span class="svg-icon svg-icon-3">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <path
-                                                    d="M17.5 11H6.5C4 11 2 9 2 6.5C2 4 4 2 6.5 2H17.5C20 2 22 4 22 6.5C22 9 20 11 17.5 11ZM15 6.5C15 7.9 16.1 9 17.5 9C18.9 9 20 7.9 20 6.5C20 5.1 18.9 4 17.5 4C16.1 4 15 5.1 15 6.5Z"
-                                                    fill="black"></path>
-                                                <path opacity="0.3"
-                                                    d="M17.5 22H6.5C4 22 2 20 2 17.5C2 15 4 13 6.5 13H17.5C20 13 22 15 22 17.5C22 20 20 22 17.5 22ZM4 17.5C4 18.9 5.1 20 6.5 20C7.9 20 9 18.9 9 17.5C9 16.1 7.9 15 6.5 15C5.1 15 4 16.1 4 17.5Z"
-                                                    fill="black"></path>
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </a>
-                                    <!--begin::Menu-->
-                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-6 w-200px py-4"
-                                        data-kt-menu="true">
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Pause Subscription</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3"
-                                                data-kt-subscriptions-view-action="delete">Edit Subscription</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                        <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
-                                            <a href="#" class="menu-link text-danger px-3"
-                                                data-kt-subscriptions-view-action="edit">Cancel Subscription</a>
-                                        </div>
-                                        <!--end::Menu item-->
-                                    </div>
-                                    <!--end::Menu-->
-                                    <!--end::Action-->
-                                </td>
-                            </tr>
                             <tr>
                                 <td>
                                     <label class="w-150px">Pro Bundle</label>
@@ -252,20 +216,20 @@
                                         data-kt-menu="true">
                                         <!--begin::Menu item-->
                                         <div class="menu-item px-3">
-                                            <a href="#" class="menu-link px-3">Pause Subscription</a>
+                                            <a href="#" class="menu-link px-3">Chi tiết kệ hàng</a>
                                         </div>
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
+                                        {{-- <div class="menu-item px-3">
                                             <a href="#" class="menu-link px-3"
                                                 data-kt-subscriptions-view-action="delete">Edit Subscription</a>
-                                        </div>
+                                        </div> --}}
                                         <!--end::Menu item-->
                                         <!--begin::Menu item-->
-                                        <div class="menu-item px-3">
+                                        {{-- <div class="menu-item px-3">
                                             <a href="#" class="menu-link text-danger px-3"
                                                 data-kt-subscriptions-view-action="edit">Cancel Subscription</a>
-                                        </div>
+                                        </div> --}}
                                         <!--end::Menu item-->
                                     </div>
                                     <!--end::Menu-->
