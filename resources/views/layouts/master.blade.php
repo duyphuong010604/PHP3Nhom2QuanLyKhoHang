@@ -40,6 +40,7 @@ License: For each use you must have a valid license purchased only from above li
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
+    @livewireStyles
     <!--end::Global Stylesheets Bundle-->
 </head>
 <!--end::Head-->
@@ -64,6 +65,7 @@ License: For each use you must have a valid license purchased only from above li
                         <div class="container-xxl" id="kt_content_container">
                             {{-- Yield DÔ ĐÂY --}}
                             @yield('contents')
+                            @livewireScripts
                         </div>
                     </div>
                     {{-- End Main --}}

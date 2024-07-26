@@ -17,7 +17,7 @@ class Shelf extends Model
 
     public function inboundShipments(): HasMany
     {
-        return $this->hasMany(InboundShipment::class);
+        return $this->hasMany(InboundShipments::class);
     }
 
     public function outboundShipments(): HasMany

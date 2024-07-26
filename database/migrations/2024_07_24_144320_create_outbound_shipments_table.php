@@ -42,8 +42,13 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void
-    {
+    {    Schema::disableForeignKeyConstraints();
         Schema::dropIfExists('outbound_shipments');
+        // Drop the tables in the correct order
         Schema::dropIfExists('outbound_shipmentDetails');
+        
+    
+        // Enable foreign key checks
+     
     }
 };

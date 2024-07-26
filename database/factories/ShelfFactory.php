@@ -18,6 +18,9 @@ class ShelfFactory extends Factory
     {
         return [
             //
+            'name' => $this->faker->word,
+            'section' => $this->faker->word,
+          
         ];
     }
 }

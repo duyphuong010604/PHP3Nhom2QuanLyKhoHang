@@ -12,7 +12,7 @@ class InboundShipmentDetails extends Model
 
     public function inboundShipment(): BelongsTo
     {
-        return $this->belongsTo(InboundShipment::class);
+        return $this->belongsTo(InboundShipments::class);
     }
 
     public function product(): BelongsTo
