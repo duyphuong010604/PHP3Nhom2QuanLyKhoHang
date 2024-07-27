@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\InboundShipment;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +19,7 @@ class OutboundShipmentDetailsFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+
         ];
     }
 }

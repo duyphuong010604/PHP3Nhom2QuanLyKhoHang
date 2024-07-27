@@ -28,13 +28,14 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('outbound_shipmentDetails', function (Blueprint $table) {
+        Schema::create('outbound_shipment_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(OutboundShipment::class)->nullable()->constrained()->nullOnDelete();
             $table->integer('quantity');
             $table->double('unitPrice');
             $table->double('totalPrice');
+            $table->timestamps();
         });
     }
 
@@ -42,13 +43,9 @@ return new class extends Migration {
      * Reverse the migrations.
      */
     public function down(): void
-    {    Schema::disableForeignKeyConstraints();
+    {
+        Schema::dropIfExists('outbound_shipment_details');
         Schema::dropIfExists('outbound_shipments');
-        // Drop the tables in the correct order
-        Schema::dropIfExists('outbound_shipmentDetails');
-        
-    
-        // Enable foreign key checks
-     
+
     }
 };

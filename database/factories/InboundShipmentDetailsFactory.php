@@ -2,9 +2,8 @@
 
 namespace Database\Factories;
 
-use App\Models\InboundShipmentDetails;
+use App\Models\InboundShipment;
 use App\Models\Product;
-use App\Models\InboundShipments;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class InboundShipmentDetailsFactory extends Factory
@@ -13,15 +12,14 @@ class InboundShipmentDetailsFactory extends Factory
 
     public function definition()
     {
+        $product = Product::pluck('id')->toArray();
+        $inboundShipment = InboundShipment::pluck('id')->toArray();
         return [
-            'product_id' => Product::factory(),
-            'inbound_shipments_id' => InboundShipments::factory(),
-            'quantity' => $this->faker->numberBetween(1, 100),
+            'product_id' => $this->faker->randomElement($product),
+            'inbound_shipment_id' => $this->faker->randomElement($inboundShipment),
+            'quantity' => $this->faker->numberBetween(1, 10),
             'unitPrice' => $this->faker->randomFloat(2, 10, 100),
-            'totalPrice' => function (array $attributes) {
-                return $attributes['quantity'] * $attributes['unitPrice'];
-            },
-            
+            'totalPrice' => $this->faker->randomFloat(2, 10, 100),
         ];
     }
 }

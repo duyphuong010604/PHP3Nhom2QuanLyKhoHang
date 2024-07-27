@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundShipments extends Model
 {
     use HasFactory;
+    protected $fillablde = [
+        'user_id',
+        'supplier_id',
+        'shelf_id',
+        'totalAmount',
+        'remarks',
+        'status',
+    ];
 
     public function user(): BelongsTo
     {

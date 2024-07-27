@@ -61,8 +61,10 @@
                                 </svg>
                             </span>
                             <!--end::Svg Icon-->
-                            <input type="text" data-kt-subscription-table-filter="search"
-                                class="form-control form-control-solid w-250px ps-14" placeholder="Tìm kiếm sản phẩm">
+                            <input type="text" class="form-control form-control-solid w-250px ps-14"
+                                placeholder="Tìm kiếm sản phẩm">
+
+
                         </div>
                         <!--end::Search-->
                     </div>
@@ -194,7 +196,7 @@
                             </button>
                             <!--end::Export-->
                             <!--begin::Add subscription-->
-                            <a href="../../demo1/dist/apps/subscriptions/add.html" class="btn btn-primary">
+                            <a href="{{ route('san-pham.create') }}" class="btn btn-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                 <span class="svg-icon svg-icon-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -239,15 +241,15 @@
                                         <th class="min-w-125px sorting" tabindex="0"
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Status: activate to sort column ascending"
-                                            style="width: 166.484px;">Trạng thái</th>
+                                            style="width: 166.484px;">Giá nhập</th>
                                         <th class="min-w-125px sorting" tabindex="0"
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Billing: activate to sort column ascending"
-                                            style="width: 166.484px;">Khu vực kệ</th>
+                                            style="width: 166.484px;">Giá bán</th>
                                         <th class="min-w-125px sorting" tabindex="0"
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Product: activate to sort column ascending"
-                                            style="width: 166.484px;">Danh mục</th>
+                                            style="width: 166.484px;">Danh mục </th>
                                         <th class="min-w-125px sorting" tabindex="0"
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Created Date: activate to sort column ascending"
@@ -260,84 +262,93 @@
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
                                 <tbody class="text-gray-600 fw-bold">
-                                    <tr class="odd">
-                                        <!--begin::Checkbox-->
-                                        <td>
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="checkbox" value="1">
-                                            </div>
-                                        </td>
-                                        <!--end::Checkbox-->
-                                        <!--begin::Customer=-->
-                                        <td>
-                                            <a href="../../demo1/dist/apps/customers/view.html"
-                                                class="text-gray-800 text-hover-primary mb-1">Max Smith</a>
-                                        </td>
-                                        <!--end::Customer=-->
-                                        <!--begin::Status=-->
-                                        <td>
-                                            <div class="badge badge-light-success">Active</div>
-                                        </td>
-                                        <!--end::Status=-->
-                                        <!--begin::Billing=-->
-                                        <td>
-                                            <div class="badge badge-light">Manual - Cash</div>
-                                        </td>
-                                        <!--end::Billing=-->
-                                        <!--begin::Product=-->
-                                        <td>Teams Bundle</td>
-                                        <!--end::Product=-->
-                                        <!--begin::Date=-->
-                                        <td data-order="2021-01-19T00:00:00+07:00">Aug 19, 2021</td>
-                                        <!--end::Date=-->
-                                        <!--begin::Action=-->
-                                        <td class="text-end">
-                                            <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Actions
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-5 m-0">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black"></path>
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon--></a>
-                                            <!--begin::Menu-->
-                                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                data-kt-menu="true">
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('san-pham.show', 1) }}" class="menu-link px-3">Xem
-                                                        chi
-                                                        tiết</a>
+                                    @foreach ($products as $item)
+                                        <tr class="odd">
+                                            <!--begin::Checkbox-->
+                                            <td>
+                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                    <input class="form-check-input" type="checkbox" value="1">
                                                 </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('san-pham.edit', 1) }}"
-                                                        class="menu-link px-3">Sửa</a>
+                                            </td>
+                                            <!--end::Checkbox-->
+                                            <!--begin::Customer=-->
+                                            <td>
+                                                <div class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}
                                                 </div>
-                                                <!--end::Menu item-->
-                                                <!--begin::Menu item-->
-                                                <div class="menu-item px-3">
-                                                    <a href="{{ route('san-pham.destroy', 1) }}"
-                                                        data-kt-subscriptions-table-filter="delete_row"
-                                                        class="menu-link px-3">Xóa</a>
+                                            </td>
+                                            <!--end::Customer=-->
+                                            <!--begin::Status=-->
+                                            <td>
+                                                <div class="badge badge-light-success">{{ $item->cost }} vnđ</div>
+                                            </td>
+                                            <!--end::Status=-->
+                                            <!--begin::Billing=-->
+                                            <td>
+                                                <div class="badge badge-light-primary">{{ $item->price }} vnđ</div>
+                                            </td>
+                                            <!--end::Billing=-->
+                                            <!--begin::Product=-->
+                                            <td>{{ $item->category->name }}</td>
+                                            <!--end::Product=-->
+                                            <!--begin::Date=-->
+                                            <td data-order="2021-01-19T00:00:00+07:00">{{ $item->stock }}
+                                            </td>
+                                            <!--end::Date=-->
+                                            <!--begin::Action=-->
+                                            <td class="text-end">
+                                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Tùy
+                                                    chọn
+                                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                                    <span class="svg-icon svg-icon-5 m-0">
+                                                        <svg xmlns="http://www.w3.org/2000/svg" width="24"
+                                                            height="24" viewBox="0 0 24 24" fill="none">
+                                                            <path
+                                                                d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                                fill="black"></path>
+                                                        </svg>
+                                                    </span>
+                                                    <!--end::Svg Icon--></a>
+                                                <!--begin::Menu-->
+                                                <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                                    data-kt-menu="true">
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('san-pham.show', 1) }}"
+                                                            class="menu-link px-3">Xem
+                                                            chi
+                                                            tiết</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('san-pham.edit', 1) }}"
+                                                            class="menu-link px-3">Sửa</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
+                                                    <!--begin::Menu item-->
+                                                    <div class="menu-item px-3">
+                                                        <a href="{{ route('san-pham.destroy', 1) }}"
+                                                            data-kt-subscriptions-table-filter="delete_row"
+                                                            class="menu-link px-3">Xóa</a>
+                                                    </div>
+                                                    <!--end::Menu item-->
                                                 </div>
-                                                <!--end::Menu item-->
-                                            </div>
-                                            <!--end::Menu-->
-                                        </td>
-                                        <!--end::Action=-->
-                                    </tr>
+                                                <!--end::Menu-->
+                                            </td>
+                                            <!--end::Action=-->
+                                        </tr>
+                                    @endforeach
+
 
                                 </tbody>
+
                                 <!--end::Table body-->
                             </table>
                         </div>
-                        <div class="row">
+
+                        {{-- {{ $products->links() }} --}}
+                        {{-- <div class="row">
                             <div
                                 class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
                             </div>
@@ -362,7 +373,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     <!--end::Table-->
                 </div>
@@ -513,4 +524,5 @@
         </div>
         <!--end::Container-->
     </div>
+
 @endsection

@@ -10,6 +10,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Stock extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'shelf_id',
+        'quantity',
+        'status',
+    ];
 
     public function products(): BelongsTo
     {
