@@ -12,3 +12,4 @@ Route::prefix('doi-tac')->name('doi-tac.')->group(function () {
     Route::put('/{id}', [CustomerController::class, 'update'])->name('update');
     Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('destroy');
 });
+
