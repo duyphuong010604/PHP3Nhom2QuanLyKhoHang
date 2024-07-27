@@ -28,7 +28,7 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('outbound_shipmentDetails', function (Blueprint $table) {
+        Schema::create('outbound_shipment_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(OutboundShipment::class)->nullable()->constrained()->nullOnDelete();
@@ -43,7 +43,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
+        Schema::dropIfExists('outbound_shipment_details');
         Schema::dropIfExists('outbound_shipments');
-        Schema::dropIfExists('outbound_shipmentDetails');
+
     }
 };

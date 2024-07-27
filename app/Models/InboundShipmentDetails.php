@@ -9,6 +9,13 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundShipmentDetails extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'product_id',
+        'inbound_shipment_id',
+        'quantity',
+        'unitPrice',
+        'totalPrice',
+    ];
 
     public function inboundShipment(): BelongsTo
     {
