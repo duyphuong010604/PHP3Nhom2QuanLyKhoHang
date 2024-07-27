@@ -8,7 +8,7 @@
                 data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                 class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Thêm mới sản phẩm
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Sửa thông tin sản phẩm
                 </h1>
                 <!--end::Title-->
                 <!--begin::Separator-->
@@ -26,7 +26,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Thêm mới sản phẩm</li>
+                    <li class="breadcrumb-item text-dark">Sửa thông tin sản phẩm</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Separator-->
@@ -39,11 +39,11 @@
     <div class="row gy-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card card-xl-stretch mb-xl-8">
-                <form class="form" wire:submit.prevent='create'>
+                <form class="form" wire:submit.prevent='update'>
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2>Thêm mới sản phẩm</h2>
+                        <h2>Chỉnh sửa thông tin sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
 
@@ -64,12 +64,15 @@
                                 <div class="col-lg-7">
                                     <!--begin::Image input-->
                                     <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url(assets/media/avatars/blank.png)">
+                                        style="background-image: url({{ asset('storage/' . $product->imageUrl) }})">
                                         <!--begin::Preview existing avatar-->
                                         <div class="image-input-wrapper w-125px h-125px">
-                                            @if ($imageUrl)
+                                            @if ($imageUrl !== null)
                                                 <img src="{{ $imageUrl->temporaryUrl() }}" alt="" width="125px"
                                                     height="125px" style="object-fit: cover;">
+                                            @else
+                                                <img src="{{ asset('storage/' . $product->imageUrl) }}" alt=""
+                                                    width="125px" height="125px" style="object-fit: cover;">
                                             @endif
                                         </div>
                                         <!--end::Preview existing avatar-->
@@ -215,7 +218,7 @@
                         <!--end::Button-->
                         <!--begin::Button-->
                         <button type="submit" class="btn btn-primary">
-                            <span class="indicator-label">Thêm mới</span>
+                            <span class="indicator-label">Cập nhật</span>
                             <span class="indicator-progress">Vui lòng chờ...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>

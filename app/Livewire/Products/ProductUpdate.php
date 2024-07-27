@@ -2,17 +2,14 @@
 
 namespace App\Livewire\Products;
 
-use App\Http\Requests\Products\Create;
-use Livewire\Attributes\Layout;
 use App\Models\Category;
 use App\Models\Product;
-use Illuminate\Contracts\View\View;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 
-class ProductCreate extends Component
+class ProductUpdate extends Component
 {
     use LivewireAlert;
     use WithFileUploads;
@@ -39,25 +36,33 @@ class ProductCreate extends Component
     #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng.')]
     public $weight = '';
-
-    public $imageUrl;
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
     public $category_id = '';
-
-
-
-
-    public function render(): View
+    public $imageUrl;
+    #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
+    public $product, $categories, $imageOld;
+    public function mount($id)
     {
-        $categories = Category::all();
-        return view('livewire.products.product-create', ['categories' => $categories]);
-
+        $this->product = Product::findOrFail($id);
+        $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
+        $this->name = $this->product->name;
+        $this->price = $this->product->price;
+        $this->cost = $this->product->cost;
+        $this->weight = $this->product->weight;
+        $this->dimensions = $this->product->dimensions;
+        $this->imageOld = $this->product->imageUrl;
+        $this->category_id = $this->product->category_id;
+        $this->description = $this->product->description;
+    }
+    public function render()
+    {
+        return view('livewire.products.product-update');
     }
 
     public function rules()
     {
         return [
-            'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1048',
+            'imageUrl' => 'nullable|max:1048',
             'name' => 'required|min:3|',
             'price' => 'required|min:100|numeric|gt:cost',
             'cost' => 'required|min:100|numeric|lt:price',
@@ -68,18 +73,17 @@ class ProductCreate extends Component
         ];
     }
 
-
-    public function create()
+    public function update()
     {
         $validated = $this->validate();
         // dd($validated);
-        if ($this->imageUrl !== null) {
-            $path = $this->imageUrl->store('images/products', 'public');
+        if ($this->imageUrl == null) {
+            $path = $this->imageOld;
         } else {
-            $path = null;
+            $path = $this->imageUrl->store('images/products', 'public');
         }
 
-        $products = Product::create([
+        $this->product->update([
             "imageUrl" => $path,
             "name" => $this->name,
             "price" => $this->price,
@@ -90,23 +94,12 @@ class ProductCreate extends Component
             "description" => $this->description
         ]);
 
-        if ($products) {
-            $this->alert('success', 'Thêm sản phẩm mới thành công!', [
-                'position' => 'top-end',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
-            ]);
-            $this->reset([
-                "imageUrl",
-                "name",
-                "price",
-                "cost",
-                "dimensions",
-                "weight",
-                "category_id",
-                "description",
-            ]);
-        }
+        $this->alert('success', 'Cập nhật thông tin thành công.', [
+            'position' => 'top-end',
+            'timer' => 3000,
+            'toast' => true,
+            'timerProgressBar' => true,
+        ]);
+
     }
 }
