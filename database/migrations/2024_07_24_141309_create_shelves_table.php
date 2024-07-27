@@ -14,8 +14,8 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('section');
-            $table->integer('capacity')->default(10)->change(); 
-            $table->boolean('status')->default(true);
+            $table->string('capacity');
+            $table->boolean('status');
             $table->timestamps();
         });
     }
@@ -25,12 +25,6 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('inbound_shipment_details'); // Ví dụ nếu có bảng liên quan
-
-        // Sau đó xóa bảng chính
-        Schema::dropIfExists('inbound_shipments');
-    
-        // Xóa bảng con liên quan khác
         Schema::dropIfExists('shelves');
     }
 };

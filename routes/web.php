@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\ProductController;
+
 
 
 Route::get('/', function () {
@@ -15,5 +15,3 @@ require __DIR__ . "/inboundShipment.php";
 require __DIR__ . "/outboundShipment.php";
 require __DIR__ . "/stock.php";
 require __DIR__ . "/user.php";
-
-require __DIR__.'/auth.php';

@@ -1,7 +1,6 @@
 <?php
 
-
-use App\Models\InboundShipments;
+use App\Models\InboundShipment;
 use App\Models\Product;
 use App\Models\Shelf;
 use App\Models\Supplier;
@@ -28,10 +27,10 @@ return new class extends Migration {
             $table->timestamps();
         });
 
-        Schema::create('inbound_shipment_Details', function (Blueprint $table) {
+        Schema::create('inbound_shipment_details', function (Blueprint $table) {
             $table->id();
             $table->foreignIdFor(Product::class)->nullable()->constrained()->nullOnDelete();
-            $table->foreignIdFor(InboundShipments::class)->nullable()->constrained()->nullOnDelete();
+            $table->foreignIdFor(InboundShipment::class)->nullable()->constrained()->nullOnDelete();
             $table->integer('quantity');
             $table->double('unitPrice');
             $table->double('totalPrice');
@@ -44,8 +43,8 @@ return new class extends Migration {
      */
     public function down(): void
     {
-        Schema::dropIfExists('inbound_shipmentDetails');
+        Schema::dropIfExists('inbound_shipment_details');
         Schema::dropIfExists('inbound_shipments');
-       
+
     }
 };

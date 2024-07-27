@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Shelf extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'section',
+        'capacity',
+        'status',
+    ];
 
     public function stock(): HasMany
     {
@@ -17,7 +23,7 @@ class Shelf extends Model
 
     public function inboundShipments(): HasMany
     {
-        return $this->hasMany(InboundShipments::class);
+        return $this->hasMany(InboundShipment::class);
     }
 
     public function outboundShipments(): HasMany

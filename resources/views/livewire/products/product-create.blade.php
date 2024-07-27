@@ -1,6 +1,5 @@
-@extends('layouts.master')
-@section('title', 'Thêm sản phẩm')
-@section('contents')
+<section>
+    {{-- Tootbar --}}
     <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -47,6 +46,7 @@
                         <h2>Thêm mới sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
+
                     <!--end::Modal header-->
                     <!--begin::Modal body-->
                     <div class="modal-body py-10 px-lg-17">
@@ -72,7 +72,8 @@
                                         <!--begin::Label-->
                                         <label
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Thêm ảnh">
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            title="Thêm ảnh">
                                             <i class="bi bi-pencil-fill fs-7"></i>
                                             <!--begin::Inputs-->
                                             <input type="file" name="imageUrl" accept=".png, .jpg, .jpeg" />
@@ -83,14 +84,16 @@
                                         <!--begin::Cancel-->
                                         <span
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Xóa ảnh">
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            title="Xóa ảnh">
                                             <i class="bi bi-x fs-2"></i>
                                         </span>
                                         <!--end::Cancel-->
                                         <!--begin::Remove-->
                                         <span
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Xóa ảnh">
+                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
+                                            title="Xóa ảnh">
                                             <i class="bi bi-x fs-2"></i>
                                         </span>
                                         <!--end::Remove-->
@@ -155,8 +158,8 @@
                                     <label class="required fs-5 fw-bold mb-2">Giá bán</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="Giá bán..."
-                                        name="price" wire:model='price' />
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Giá bán..." name="price" wire:model='price' />
                                     <!--end::Input-->
                                 </div>
                                 <div class="col-md-6 fv-row">
@@ -203,7 +206,8 @@
                     <!--begin::Modal footer-->
                     <div class="modal-footer flex-center">
                         <!--begin::Button-->
-                        <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-light me-3">Reset</button>
+                        <button type="reset" id="kt_modal_new_address_cancel"
+                            class="btn btn-light me-3">Reset</button>
                         <!--end::Button-->
                         <!--begin::Button-->
                         <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
@@ -219,4 +223,4 @@
 
         </div>
     </div>
-@endsection
+</section>
