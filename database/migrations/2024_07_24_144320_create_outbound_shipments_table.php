@@ -35,6 +35,7 @@ return new class extends Migration {
             $table->integer('quantity');
             $table->double('unitPrice');
             $table->double('totalPrice');
+            $table->timestamps();
         });
     }
 
