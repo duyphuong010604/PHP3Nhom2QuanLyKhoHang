@@ -10,6 +10,13 @@ class Shelf extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'section',
+        'capacity',
+        'status'
+    ];
+
     public function stock(): HasMany
     {
         return $this->hasMany(Stock::class);
