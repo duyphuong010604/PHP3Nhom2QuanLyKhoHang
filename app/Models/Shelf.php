@@ -16,12 +16,6 @@ class Shelf extends Model
         'status',
     ];
 
-    protected $fillable = [
-        'name',
-        'section',
-        'capacity',
-        'status'
-    ];
 
     public function stock(): HasMany
     {
