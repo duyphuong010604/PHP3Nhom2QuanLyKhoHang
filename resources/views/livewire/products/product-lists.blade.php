@@ -1,6 +1,4 @@
-@extends('layouts.master')
-@section('title', 'Danh mục sản phẩm')
-@section('contents')
+<section class='mb-6 pb-6'>
     {{-- Tootbar --}}
     <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
@@ -51,8 +49,8 @@
                         <div class="d-flex align-items-center position-relative my-1">
                             <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
                             <span class="svg-icon svg-icon-1 position-absolute ms-6">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
                                     <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
                                         rx="1" transform="rotate(45 17.0365 15.1223)" fill="black"></rect>
                                     <path
@@ -62,8 +60,10 @@
                             </span>
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
-                                placeholder="Tìm kiếm sản phẩm">
-
+                                placeholder="Tìm kiếm sản phẩm" wire:model.live='q'>
+                            @if ($products->count() == 0)
+                                <span class="text-danger">Không có sản phẩm cần tiềm</span>
+                            @endif
 
                         </div>
                         <!--end::Search-->
@@ -102,19 +102,17 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-bold mb-3">Tháng:</label>
+                                        <label class="form-label fs-5 fw-bold mb-3">Danh mục sản phẩm:</label>
                                         <!--end::Label-->
                                         <!--begin::Input-->
-                                        <select class="form-select form-select-solid fw-bolder select2-hidden-accessible"
-                                            data-kt-select2="true" data-placeholder="Tháng" data-allow-clear="true"
-                                            data-kt-customer-table-filter="month" data-dropdown-parent="#kt-toolbar-filter"
-                                            data-select2-id="select2-data-1-8ogq" tabindex="-1" aria-hidden="true">
-                                            <option data-select2-id="select2-data-3-z0a9"></option>
-                                            <option value="aug">Tháng 8</option>
-                                            <option value="sep">Tháng 9</option>
-                                            <option value="oct">Tháng 10</option>
-                                            <option value="nov">Tháng 11</option>
-                                            <option value="dec">Tháng 12</option>
+                                        <select wire:model.defer='category_id'
+                                            class="form-select form-select-solid fw-bolder "
+                                            data-placeholder="Danh mục sản phẩm">
+                                            <option value="all">Tất cả</option>
+                                            @foreach ($categories as $item)
+                                                <option value={{ $item->id }}>
+                                                    {{ $item->name }}</option>
+                                            @endforeach
                                         </select>
 
                                         <!--end::Input-->
@@ -123,52 +121,44 @@
                                     <!--begin::Input group-->
                                     <div class="mb-10">
                                         <!--begin::Label-->
-                                        <label class="form-label fs-5 fw-bold mb-3">Trạng thái:</label>
+                                        <label class="form-label fs-5 fw-bold mb-3">Sắp xếp:</label>
                                         <!--end::Label-->
                                         <!--begin::Options-->
-                                        <div class="d-flex flex-column flex-wrap fw-bold"
-                                            data-kt-customer-table-filter="payment_type">
+                                        <div class="d-flex flex-column flex-wrap fw-bold">
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="payment_type"
-                                                    value="all" checked="checked">
-                                                <span class="form-check-label text-gray-600">Tất cả</span>
+                                                <input class="form-check-input" type="radio" name="type"
+                                                    value="name" wire:model='orderBy'>
+                                                <span class="form-check-label text-gray-600">Tên</span>
                                             </label>
                                             <!--end::Option-->
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                                <input class="form-check-input" type="radio" name="payment_type"
-                                                    value="visa">
-                                                <span class="form-check-label text-gray-600">Đã xử lý</span>
+                                                <input class="form-check-input" type="radio" name="type"
+                                                    value="price" wire:model='orderBy'>
+                                                <span class="form-check-label text-gray-600">Giá
+                                                    cao đến thấp</span>
                                             </label>
                                             <!--end::Option-->
                                             <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" name="payment_type"
-                                                    value="mastercard">
-                                                <span class="form-check-label text-gray-600">Chờ xử lý</span>
+                                            <label
+                                                class="form-check form-check-sm form-check-custom form-check-solid mb-3">
+                                                <input class="form-check-input" type="radio" wire:model='sortBy'
+                                                    value="asc" name="type">
+                                                <span class="form-check-label text-gray-600">Giá
+                                                    thấp đến cao</span>
                                             </label>
-                                            <!--end::Option-->
-                                            <!--begin::Option-->
-                                            <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                                <input class="form-check-input" type="radio" name="payment_type"
-                                                    value="american_express">
-                                                <span class="form-check-label text-gray-600">Đang xử lý</span>
-                                            </label>
-                                            <!--end::Option-->
                                         </div>
                                         <!--end::Options-->
                                     </div>
                                     <!--end::Input group-->
                                     <!--begin::Actions-->
                                     <div class="d-flex justify-content-end">
-                                        <button type="reset" class="btn btn-light btn-active-light-primary me-2"
-                                            data-kt-menu-dismiss="true" data-kt-customer-table-filter="reset">Đặt
-                                            lại</button>
                                         <button type="submit" class="btn btn-primary" data-kt-menu-dismiss="true"
-                                            data-kt-customer-table-filter="filter">Áp dụng</button>
+                                            wire:click='applyFilter'>Áp
+                                            dụng</button>
                                     </div>
                                     <!--end::Actions-->
                                 </div>
@@ -202,7 +192,8 @@
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
                                         <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
-                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="black"></rect>
+                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="black">
+                                        </rect>
                                         <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
                                             fill="black"></rect>
                                     </svg>
@@ -228,7 +219,8 @@
                                     <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
                                         <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1"
                                             aria-label="" style="width: 29.25px;">
-                                            <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                            <div
+                                                class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
                                                     data-kt-check-target="#kt_subscriptions_table .form-check-input"
                                                     value="1">
@@ -254,8 +246,9 @@
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Created Date: activate to sort column ascending"
                                             style="width: 166.484px;">Số lượng</th>
-                                        <th class="text-end min-w-70px sorting_disabled" rowspan="1" colspan="1"
-                                            aria-label="Actions" style="width: 124.828px;">Tùy chọn</th>
+                                        <th class="text-end min-w-70px sorting_disabled" rowspan="1"
+                                            colspan="1" aria-label="Actions" style="width: 124.828px;">Tùy chọn
+                                        </th>
                                     </tr>
                                     <!--end::Table row-->
                                 </thead>
@@ -266,7 +259,8 @@
                                         <tr class="odd">
                                             <!--begin::Checkbox-->
                                             <td>
-                                                <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                                <div
+                                                    class="form-check form-check-sm form-check-custom form-check-solid">
                                                     <input class="form-check-input" type="checkbox" value="1">
                                                 </div>
                                             </td>
@@ -279,25 +273,39 @@
                                             <!--end::Customer=-->
                                             <!--begin::Status=-->
                                             <td>
-                                                <div class="badge badge-light-success">{{ $item->cost }} vnđ</div>
+                                                <div class="badge badge-light-success">
+                                                    {{ number_format($item->cost) }} vnđ</div>
                                             </td>
                                             <!--end::Status=-->
                                             <!--begin::Billing=-->
                                             <td>
-                                                <div class="badge badge-light-primary">{{ $item->price }} vnđ</div>
+                                                <div class="badge badge-light-primary">
+                                                    {{ number_format($item->price) }} vnđ</div>
                                             </td>
                                             <!--end::Billing=-->
                                             <!--begin::Product=-->
                                             <td>{{ $item->category->name }}</td>
                                             <!--end::Product=-->
                                             <!--begin::Date=-->
-                                            <td data-order="2021-01-19T00:00:00+07:00">{{ $item->stock }}
+                                            <td>
+                                                @if ($item->stocks)
+                                                    @foreach ($item->stocks as $stockProduct)
+                                                        <p class="inline-block">
+                                                            {{ $stockProduct->quantity }}sp-
+                                                            <small class="badge badge-secondary ">
+                                                                Kệ {{ $stockProduct->shelf->name }} </small>
+                                                        </p>
+                                                    @endforeach
+                                                @endif
+
                                             </td>
                                             <!--end::Date=-->
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Tùy
+                                                <a href="#"
+                                                    class="btn btn-light btn-active-light-primary btn-sm"
+                                                    data-kt-menu-trigger="click"
+                                                    data-kt-menu-placement="bottom-end">Tùy
                                                     chọn
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
@@ -314,7 +322,7 @@
                                                     data-kt-menu="true">
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('san-pham.show', 1) }}"
+                                                        <a href="{{ route('san-pham.show', $item->id) }}"
                                                             class="menu-link px-3">Xem
                                                             chi
                                                             tiết</a>
@@ -322,14 +330,13 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('san-pham.edit', 1) }}"
+                                                        <a href="{{ route('san-pham.edit', $item->id) }}"
                                                             class="menu-link px-3">Sửa</a>
                                                     </div>
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a href="{{ route('san-pham.destroy', 1) }}"
-                                                            data-kt-subscriptions-table-filter="delete_row"
+                                                        <a wire:click="confirmProjectDeletion({{ $item->id }})"data-kt-subscriptions-table-filter="delete_row"
                                                             class="menu-link px-3">Xóa</a>
                                                     </div>
                                                     <!--end::Menu item-->
@@ -340,9 +347,30 @@
                                         </tr>
                                     @endforeach
 
-
                                 </tbody>
-
+                                <!-- Modal -->
+                                <div wire:ignore.self class="modal fade" id="confirmDeleteModal" tabindex="-1"
+                                    aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                    aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                Bạn có chắc chắn muốn xoá dự án này không?
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary"
+                                                    data-bs-dismiss="modal">Hủy</button>
+                                                <button type="button" class="btn btn-danger"
+                                                    wire:click="deleteProject" data-bs-dismiss="modal">Xác
+                                                    nhận</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 <!--end::Table body-->
                             </table>
                         </div>
@@ -394,7 +422,8 @@
                             <h2 class="fw-bolder">Export Subscriptions</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
-                            <div id="kt_subscriptions_export_close" class="btn btn-icon btn-sm btn-active-icon-primary">
+                            <div id="kt_subscriptions_export_close"
+                                class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
                                 <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -444,15 +473,16 @@
                                         <option value="cvs">CVS</option>
                                         <option value="zip">ZIP</option>
                                     </select><span class="select2 select2-container select2-container--bootstrap5"
-                                        dir="ltr" data-select2-id="select2-data-23-6pjm" style="width: 100%;"><span
-                                            class="selection"><span
+                                        dir="ltr" data-select2-id="select2-data-23-6pjm"
+                                        style="width: 100%;"><span class="selection"><span
                                                 class="select2-selection select2-selection--single form-select form-select-solid"
                                                 role="combobox" aria-haspopup="true" aria-expanded="false"
                                                 tabindex="0" aria-disabled="false"
                                                 aria-labelledby="select2-format-0h-container"
                                                 aria-controls="select2-format-0h-container"><span
-                                                    class="select2-selection__rendered" id="select2-format-0h-container"
-                                                    role="textbox" aria-readonly="true" title="Excel">Excel</span><span
+                                                    class="select2-selection__rendered"
+                                                    id="select2-format-0h-container" role="textbox"
+                                                    aria-readonly="true" title="Excel">Excel</span><span
                                                     class="select2-selection__arrow" role="presentation"><b
                                                         role="presentation"></b></span></span></span><span
                                             class="dropdown-wrapper" aria-hidden="true"></span></span>
@@ -467,21 +497,24 @@
                                     <!--begin::Radio group-->
                                     <div class="d-flex flex-column">
                                         <!--begin::Radio button-->
-                                        <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
                                             <input class="form-check-input" type="checkbox" value="1"
                                                 checked="checked" name="payment_type">
                                             <span class="form-check-label text-gray-600 fw-bold">All</span>
                                         </label>
                                         <!--end::Radio button-->
                                         <!--begin::Radio button-->
-                                        <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
                                             <input class="form-check-input" type="checkbox" value="2"
                                                 checked="checked" name="payment_type">
                                             <span class="form-check-label text-gray-600 fw-bold">Visa</span>
                                         </label>
                                         <!--end::Radio button-->
                                         <!--begin::Radio button-->
-                                        <label class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
                                             <input class="form-check-input" type="checkbox" value="3"
                                                 name="payment_type">
                                             <span class="form-check-label text-gray-600 fw-bold">Mastercard</span>
@@ -491,7 +524,8 @@
                                         <label class="form-check form-check-custom form-check-sm form-check-solid">
                                             <input class="form-check-input" type="checkbox" value="4"
                                                 name="payment_type">
-                                            <span class="form-check-label text-gray-600 fw-bold">American Express</span>
+                                            <span class="form-check-label text-gray-600 fw-bold">American
+                                                Express</span>
                                         </label>
                                         <!--end::Radio button-->
                                     </div>
@@ -502,10 +536,12 @@
                                 <div class="text-center">
                                     <button type="reset" id="kt_subscriptions_export_cancel"
                                         class="btn btn-light me-3">Discard</button>
-                                    <button type="submit" id="kt_subscriptions_export_submit" class="btn btn-primary">
+                                    <button type="submit" id="kt_subscriptions_export_submit"
+                                        class="btn btn-primary">
                                         <span class="indicator-label">Submit</span>
                                         <span class="indicator-progress">Please wait...
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
                                 </div>
                                 <!--end::Actions-->
@@ -524,5 +560,4 @@
         </div>
         <!--end::Container-->
     </div>
-
-@endsection
+</section>

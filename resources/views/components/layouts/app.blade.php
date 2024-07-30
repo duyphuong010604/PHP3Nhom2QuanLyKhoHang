@@ -67,8 +67,7 @@ License: For each use you must have a valid license purchased only from above li
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div class="container-xxl" id="kt_content_container">
                             {{-- Yield DÔ ĐÂY --}}
-                            @yield('contents')
-
+                            {{ $slot }}
                         </div>
                     </div>
                     {{-- End Main --}}
@@ -101,6 +100,10 @@ License: For each use you must have a valid license purchased only from above li
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     @livewireScripts
+
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <x-livewire-alert::scripts />
 </body>
 <!--end::Body-->
 

@@ -1,6 +1,5 @@
-@extends('layouts.master')
-@section('title', 'Thêm sản phẩm')
-@section('contents')
+<section>
+    {{-- Tootbar --}}
     <div class="toolbar" id="kt_toolbar">
         <!--begin::Container-->
         <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
@@ -9,7 +8,7 @@
                 data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                 class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                 <!--begin::Title-->
-                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Thêm mới sản phẩm
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Sửa thông tin sản phẩm
                 </h1>
                 <!--end::Title-->
                 <!--begin::Separator-->
@@ -27,7 +26,7 @@
                     </li>
                     <!--end::Item-->
                     <!--begin::Item-->
-                    <li class="breadcrumb-item text-dark">Thêm mới sản phẩm</li>
+                    <li class="breadcrumb-item text-dark">Sửa thông tin sản phẩm</li>
                     <!--end::Item-->
                 </ul>
                 <!--end::Separator-->
@@ -40,13 +39,14 @@
     <div class="row gy-5 g-xl-8">
         <div class="col-xl-12">
             <div class="card card-xl-stretch mb-xl-8">
-                <form class="form" wire:submit.prevent='create'>
+                <form class="form" wire:submit.prevent='update'>
                     <!--begin::Modal header-->
                     <div class="modal-header">
                         <!--begin::Modal title-->
-                        <h2>Thêm mới sản phẩm</h2>
+                        <h2>Chỉnh sửa thông tin sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
+
                     <!--end::Modal header-->
                     <!--begin::Modal body-->
                     <div class="modal-body py-10 px-lg-17">
@@ -64,40 +64,45 @@
                                 <div class="col-lg-7">
                                     <!--begin::Image input-->
                                     <div class="image-input image-input-outline" data-kt-image-input="true"
-                                        style="background-image: url(assets/media/avatars/blank.png)">
+                                        style="background-image: url({{ asset('storage/' . $product->imageUrl) }})">
                                         <!--begin::Preview existing avatar-->
-                                        <div class="image-input-wrapper w-125px h-125px"
-                                            style="background-image: url(assets/media/avatars/150-26.jpg)"></div>
+                                        <div class="image-input-wrapper w-125px h-125px">
+                                            @if ($imageUrl !== null)
+                                                <img src="{{ $imageUrl->temporaryUrl() }}" alt="" width="125px"
+                                                    height="125px" style="object-fit: cover;">
+                                            @else
+                                                <img src="{{ asset('storage/' . $product->imageUrl) }}" alt=""
+                                                    width="125px" height="125px" style="object-fit: cover;">
+                                            @endif
+                                        </div>
                                         <!--end::Preview existing avatar-->
                                         <!--begin::Label-->
                                         <label
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="change" data-bs-toggle="tooltip" title="Thêm ảnh">
+                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
+                                            title="Thêm ảnh">
                                             <i class="bi bi-pencil-fill fs-7"></i>
                                             <!--begin::Inputs-->
-                                            <input type="file" name="imageUrl" accept=".png, .jpg, .jpeg" />
-                                            <input type="hidden" name="avatar_remove" />
+                                            <input type="file" name="imageUrl" wire:model='imageUrl'
+                                                accept=".png, .jpg, .jpeg" />
                                             <!--end::Inputs-->
                                         </label>
                                         <!--end::Label-->
                                         <!--begin::Cancel-->
                                         <span
                                             class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip" title="Xóa ảnh">
+                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
+                                            title="Xóa ảnh">
                                             <i class="bi bi-x fs-2"></i>
                                         </span>
                                         <!--end::Cancel-->
-                                        <!--begin::Remove-->
-                                        <span
-                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip" title="Xóa ảnh">
-                                            <i class="bi bi-x fs-2"></i>
-                                        </span>
-                                        <!--end::Remove-->
                                     </div>
                                     <!--end::Image input-->
                                     <!--begin::Hint-->
                                     <div class="form-text">Loại tệp tin: png, jpg, jpeg.</div>
+                                    @error('imageUrl')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <!--end::Hint-->
                                 </div>
                                 <!--end::Col-->
@@ -112,7 +117,6 @@
                                     <input type="text" class="form-control form-control-solid"
                                         placeholder="Tên sản phẩm..." name="name" wire:model='name' />
                                     <!--end::Input-->
-
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -123,18 +127,21 @@
                                         <span class="required">Loại sản phẩm</span>
                                         <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
                                             title=""></i>
+
                                     </label>
                                     <!--end::Label-->
                                     <!--begin::Select-->
-                                    <select name="categoryId" data-control="select2" data-dropdown-parent=""
-                                        data-placeholder="Chọn loại sản phẩm..." wire:model='category_id'
-                                        class="form-select form-select-solid">
+                                    <select name="categoryId" data-placeholder="Chọn loại sản phẩm..."
+                                        wire:model='category_id' class="form-select form-select-solid">
                                         <option value="">Chọn loại sản phẩm...</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
                                         @endforeach
 
                                     </select>
+                                    @error('category_id')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
 
                                 <!--end::Col-->
@@ -148,6 +155,9 @@
                                     <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid"
                                         placeholder="Giá nhập..." name="cost" wire:model='cost' />
+                                    @error('cost')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <!--end::Input-->
                                 </div>
                                 <div class="col-md-6 fv-row">
@@ -155,8 +165,11 @@
                                     <label class="required fs-5 fw-bold mb-2">Giá bán</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <input type="text" class="form-control form-control-solid" placeholder="Giá bán..."
-                                        name="price" wire:model='price' />
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Giá bán..." name="price" wire:model='price' />
+                                    @error('price')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                     <!--end::Input-->
                                 </div>
                                 <div class="col-md-6 fv-row">
@@ -168,6 +181,9 @@
                                         placeholder="Kích thước dài x rộng..." wire:model='dimensions'
                                         name="dimensions" />
                                     <!--end::Input-->
+                                    @error('dimensions')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 fv-row">
                                     <!--begin::Label-->
@@ -177,6 +193,9 @@
                                     <input type="text" class="form-control form-control-solid"
                                         placeholder="Trọng lượng..." name="weight" wire:model='weight' />
                                     <!--end::Input-->
+                                    @error('weight')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
                                 </div>
                                 <div class="col-md-6 fv-row">
                                     <!--begin::Label-->
@@ -185,15 +204,6 @@
                                     <textarea name="" wire:model='description' class="form-control form-control-solid" id=""
                                         cols="30" rows="5"></textarea>
                                 </div>
-                                {{-- <div class="col-md-6 fv-row">
-                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                    <span class="required">Trạng thái</span>
-                                    <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="tooltip"
-                                        title=""></i>
-                                </label>
-                                <!--end::Label-->
-
-                            </div> --}}
                             </div>
                             <!--end::Input group-->
                         </div>
@@ -203,11 +213,12 @@
                     <!--begin::Modal footer-->
                     <div class="modal-footer flex-center">
                         <!--begin::Button-->
-                        <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-light me-3">Reset</button>
+                        <button type="reset" id="kt_modal_new_address_cancel"
+                            class="btn btn-light me-3">Reset</button>
                         <!--end::Button-->
                         <!--begin::Button-->
-                        <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
-                            <span class="indicator-label">Thêm mới</span>
+                        <button type="submit" class="btn btn-primary">
+                            <span class="indicator-label">Cập nhật</span>
                             <span class="indicator-progress">Vui lòng chờ...
                                 <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                         </button>
@@ -219,4 +230,4 @@
 
         </div>
     </div>
-@endsection
+</section>
