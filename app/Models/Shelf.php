@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Shelf extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'name',
+        'section',
+        'capacity',
+        'status',
+    ];
 
     protected $fillable = [
         'name',
