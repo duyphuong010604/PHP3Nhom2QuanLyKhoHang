@@ -46,7 +46,6 @@
                         <h2>Thêm mới sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
-
                     <!--end::Modal header-->
                     <!--begin::Modal body-->
                     <div class="modal-body py-10 px-lg-17">
@@ -188,7 +187,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid"
-                                        placeholder="Trọng lượng..." name="weight" wire:model='weight' />
+                                        placeholder="Trọng lượng (Kg)..." name="weight" wire:model='weight' />
                                     <!--end::Input-->
                                     @error('weight')
                                         <span class="text-danger">{{ $message }}</span>
@@ -199,7 +198,7 @@
                                     <label class="required fs-5 fw-bold mb-2">Mô tả</label>
                                     <!--end::Label-->
                                     <textarea name="" wire:model='description' class="form-control form-control-solid" id=""
-                                        cols="30" rows="5"></textarea>
+                                        cols="30" rows="1"></textarea>
                                 </div>
                             </div>
                             <!--end::Input group-->

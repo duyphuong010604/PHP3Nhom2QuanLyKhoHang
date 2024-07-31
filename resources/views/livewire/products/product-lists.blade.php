@@ -61,8 +61,8 @@
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
                                 placeholder="Tìm kiếm sản phẩm" wire:model.live='q'>
-                            @if ($products->count() == 0)
-                                <span class="text-danger">Không có sản phẩm cần tiềm</span>
+                            @if (count($products) <= 0)
+                                <span class="text-danger ms-3">Không có sản phẩm cần tiềm</span>
                             @endif
 
                         </div>
@@ -145,8 +145,7 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" wire:model='sortBy'
-                                                    value="asc" name="type">
+                                                <input class="form-check-input" type="radio" name="type">
                                                 <span class="form-check-label text-gray-600">Giá
                                                     thấp đến cao</span>
                                             </label>
@@ -214,16 +213,16 @@
                             <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
                                 id="kt_subscriptions_table">
                                 <!--begin::Table head-->
-                                <thead>
+                                <thead class="">
                                     <!--begin::Table row-->
-                                    <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                    <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0 ">
                                         <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1"
                                             aria-label="" style="width: 29.25px;">
                                             <div
                                                 class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                    data-kt-check-target="#kt_subscriptions_table .form-check-input"
-                                                    value="1">
+                                                    wire:model='selectAll' wire:click='checkAll'
+                                                    data-kt-check-target="#kt_subscriptions_table .form-check-input">
                                             </div>
                                         </th>
                                         <th class="min-w-125px sorting" tabindex="0"
@@ -254,20 +253,25 @@
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
-                                <tbody class="text-gray-600 fw-bold">
+                                <tbody class="text-gray-600 fw-bold ">
+
                                     @foreach ($products as $item)
                                         <tr class="odd">
                                             <!--begin::Checkbox-->
                                             <td>
                                                 <div
                                                     class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        wire:click='updateDeleteButton' wire:model='productId'
+                                                        value="{{ $item->id }}">
                                                 </div>
+
                                             </td>
                                             <!--end::Checkbox-->
                                             <!--begin::Customer=-->
                                             <td>
-                                                <div class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}
+                                                <div class="text-gray-800 text-hover-primary mb-1">
+                                                    {{ $item->name }}
                                                 </div>
                                             </td>
                                             <!--end::Customer=-->
@@ -287,14 +291,11 @@
                                             <td>{{ $item->category->name }}</td>
                                             <!--end::Product=-->
                                             <!--begin::Date=-->
-                                            <td>
+                                            <td class="">
                                                 @if ($item->stocks)
                                                     @foreach ($item->stocks as $stockProduct)
-                                                        <p class="inline-block">
-                                                            {{ $stockProduct->quantity }}sp-
-                                                            <small class="badge badge-secondary ">
-                                                                Kệ {{ $stockProduct->shelf->name }} </small>
-                                                        </p>
+                                                        <small class="badge badge-secondary ">
+                                                            Kệ {{ $stockProduct->shelf->name }} </small>
                                                     @endforeach
                                                 @endif
 
@@ -336,8 +337,11 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a wire:click="confirmProjectDeletion({{ $item->id }})"data-kt-subscriptions-table-filter="delete_row"
-                                                            class="menu-link px-3">Xóa</a>
+                                                        <span wire:click="confirmProjectDeletion({{ $item->id }})"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal1"
+                                                            class="menu-link
+                                                        px-3">Xóa</span>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -347,35 +351,26 @@
                                         </tr>
                                     @endforeach
 
+
                                 </tbody>
-                                <!-- Modal -->
-                                <div wire:ignore.self class="modal fade" id="confirmDeleteModal" tabindex="-1"
-                                    aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có chắc chắn muốn xoá dự án này không?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Hủy</button>
-                                                <button type="button" class="btn btn-danger"
-                                                    wire:click="deleteProject" data-bs-dismiss="modal">Xác
-                                                    nhận</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                <tfoot>
+                                    {{-- {{ $products->links() }} --}}
+                                </tfoot>
+
                                 <!--end::Table body-->
                             </table>
+                            <div>
+                                @if ($showDeleteButton)
+                                    <div>
+                                        <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModalAll">
+                                            Xóa tất cả
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
 
-                        {{-- {{ $products->links() }} --}}
                         {{-- <div class="row">
                             <div
                                 class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
@@ -406,6 +401,50 @@
                     <!--end::Table-->
                 </div>
                 <!--end::Card body-->
+            </div>
+            <!-- Modal -->
+            <div wire:ignore.self class="modal fade" id="confirmDeleteModal1" tabindex="-1"
+                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xoá sản phẩm này không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" wire:click="deleteProject"
+                                data-bs-dismiss="modal">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div wire:ignore.self class="modal fade" id="confirmDeleteModalAll" tabindex="-1"
+                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá các sản phẩm đã
+                                chọn.</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xoá sản phẩm các sản phẩm này không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" wire:click='deleteSelected'
+                                data-bs-dismiss="modal">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
             </div>
             <!--end::Card-->
             <!--begin::Modals-->
@@ -560,4 +599,5 @@
         </div>
         <!--end::Container-->
     </div>
+
 </section>

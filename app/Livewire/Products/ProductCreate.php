@@ -36,7 +36,6 @@ class ProductCreate extends Component
     #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     public $dimensions = '';
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng.')]
     public $weight = '';
 
