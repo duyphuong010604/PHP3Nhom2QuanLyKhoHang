@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Customer;
 use App\Models\InboundShipment;
 use App\Models\InboundShipmentDetails;
 use App\Models\Product;
@@ -20,7 +21,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(10)->create();
+        // User::factory(10)->create();
 
         // User::factory()->create([
         //     'name' => 'Test User',
@@ -33,7 +34,8 @@ class DatabaseSeeder extends Seeder
         // Shelf::factory(10)->create();
         // InboundShipment::factory(10)->create();
         // InboundShipmentDetails::factory(10)->create();
-        Stock::factory(10)->create();
+        // Stock::factory(10)->create();
+        Customer::factory(10)->create();
         // $this->call([
         //     CategorySeeder::class,
         //     ProductSeeder::class

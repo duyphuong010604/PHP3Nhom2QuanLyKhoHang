@@ -17,7 +17,6 @@ class CustomerSeeder extends Seeder
             'name' => 'nhan',
             'email' => 'nhan@gmail.com',
             'phone' => '0342078433',
-
             'address' => 'Can tho',
             'object' => 'Khach hang',
             'status' => true

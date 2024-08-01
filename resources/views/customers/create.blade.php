@@ -24,57 +24,114 @@
         <div class="row gy-5 g-xl-8">
             <div class="col-xl-12">
                 <div class="card card-xl-stretch mb-xl-8">
-                    <form class="form" action="#" id="kt_modal_new_address_form">
-                        <div class="modal-header" id="kt_modal_new_address_header">
-                            <h2>Thêm khách hàng</h2>
-                        </div>
-                        <div class="modal-body py-10 px-lg-17">
-                            <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true"
-                                data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
-                                data-kt-scroll-dependencies="#kt_modal_new_address_header"
-                                data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
-                                <div class="row mb-5">
-                                    <div class="col-md-6 fv-row">
-                                        <label class="required fs-5 fw-bold mb-2">Tên khách hàng</label>
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="Tên sản phẩm" />
-                                    </div>
-                                    <div class="col-md-6 fv-row">
-                                        <label class="required fs-5 fw-bold mb-2">Email</label>
+                <form class="form" wire:submit='create'>
+    <!--begin::Modal header-->
+    <div class="modal-header">
+        <!--begin::Modal title-->
+        <h2>Thêm mới khách hàng</h2>
+        <!--end::Modal title-->
+    </div>
+    <!--end::Modal header-->
+    <!--begin::Modal body-->
+    <div class="modal-body py-10 px-lg-17">
+        <!--begin::Scroll-->
+        <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll" data-kt-scroll="true"
+            data-kt-scroll-activate="{default: false, lg: true}" data-kt-scroll-max-height="auto"
+            data-kt-scroll-dependencies="#kt_modal_new_address_header"
+            data-kt-scroll-wrappers="#kt_modal_new_address_scroll" data-kt-scroll-offset="300px">
+            <!--begin::Input group-->
+            <div class="row mb-6">
+                <div class="col-md-12 fv-row">
+                    <!--begin::Label-->
+                    <label class="required fs-5 fw-bold mb-2">Tên khách hàng</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" class="form-control form-control-solid" placeholder="Tên khách hàng..."
+                           name="name" wire:model='name' id="name"/>
+                    <!--end::Input-->
 
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="Email" />
-                                    </div>
-                                    <div class="col-md-6 fv-row">
-                                        <label class="required fs-5 fw-bold mb-2">SĐT</label>
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="SĐT" />
-                                    </div>
-                                    <div class="col-md-6 fv-row">
-                                        <label class="required fs-5 fw-bold mb-2">Địa chỉ</label>
+                    @error('name')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
 
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="Địa chỉ" />
-                                    </div>
-                                    <div class="col-md-6 fv-row">
-                                        <label class="required fs-5 fw-bold mb-2">Đối tác</label>
+                <div class="col-md-6 fv-row">
+                    <!--begin::Label-->
+                    <label class="required fs-5 fw-bold mb-2">Email</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="email" class="form-control form-control-solid" placeholder="Email..."
+                           name="email" wire:model='email' />
+                    <!--end::Input-->
 
-                                        <input type="text" class="form-control form-control-solid" placeholder=""
-                                            name="Địa chỉ" />
-                                    </div>
-                                </div>
-                                <div class="d-flex flex-column mb-5 fv-row">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer flex-center">
-                            <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
-                                <span class="indicator-label">Thêm</span>
-                                <span class="indicator-progress">Please wait...
-                                    <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                            </button>
-                        </div>
-                    </form>
+                    @error('email')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-6 fv-row">
+                    <!--begin::Label-->
+                    <label class="required fs-5 fw-bold mb-2">Số điện thoại</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" class="form-control form-control-solid" placeholder="Số điện thoại..."
+                           name="phone" wire:model='phone' />
+                    <!--end::Input-->
+
+                    @error('phone')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 fv-row">
+                    <!--begin::Label-->
+                    <label class="required fs-5 fw-bold mb-2">Địa chỉ</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" class="form-control form-control-solid" placeholder="Địa chỉ..."
+                           name="address" wire:model='address' />
+                    <!--end::Input-->
+
+                    @error('address')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+
+                <div class="col-md-12 fv-row">
+                    <!--begin::Label-->
+                    <label class="required fs-5 fw-bold mb-2">Đối tượng</label>
+                    <!--end::Label-->
+                    <!--begin::Input-->
+                    <input type="text" class="form-control form-control-solid" placeholder="Đối tượng..."
+                           name="object" wire:model='object' />
+                    <!--end::Input-->
+
+                    @error('object')
+                        <span class="text-danger">{{ $message }}</span>
+                    @enderror
+                </div>
+            </div>
+            <!--end::Input group-->
+        </div>
+        <!--end::Scroll-->
+    </div>
+    <!--end::Modal body-->
+    <!--begin::Modal footer-->
+    <div class="modal-footer flex-center">
+        <!--begin::Button-->
+        <button type="reset" id="kt_modal_new_address_cancel" class="btn btn-light me-3">Reset</button>
+        <!--end::Button-->
+        <!--begin::Button-->
+        <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+            <span class="indicator-label">Thêm mới</span>
+            <span class="indicator-progress">Vui lòng chờ...
+                <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+        </button>
+        <!--end::Button-->
+    </div>
+    <!--end::Modal footer-->
+</form>
+
                 </div>
             </div>
         </div>
