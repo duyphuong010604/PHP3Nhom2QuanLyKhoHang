@@ -11,7 +11,9 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Title;
 
+#[Title('Thêm mới sản phẩm')]
 class ProductCreate extends Component
 {
     use LivewireAlert;
