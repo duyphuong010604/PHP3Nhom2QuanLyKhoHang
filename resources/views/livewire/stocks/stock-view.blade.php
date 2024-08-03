@@ -1,7 +1,5 @@
-@extends('layouts.master')
 
-@section('title', 'Tồn kho')
-@section('contents')
+<section>
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
         <div class="toolbar" id="kt_toolbar">
@@ -12,7 +10,7 @@
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Danh sách tồn kho</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Danh sách {{ $stocks['shelf']->name }}</h1>
                     <!--end::Title-->
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -312,7 +310,7 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Kệ hàng hóa</th>
+                                    <th class="min-w-125px">Loại sản phẩm</th>
                                     <th class="min-w-125px">Trạng thái</th>
                                     <th class="min-w-125px">Phân khu</th>
                                     <th class="min-w-125px">Số lượng</th>
@@ -324,83 +322,78 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
-                               
-                                <tr>
-                                    <!--begin::Checkbox-->
-                                    <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" />
-                                        </div>
-                                    </td>
-                                    <!--end::Checkbox-->
-                                    <!--begin::Customer=-->
-                                    <td>
-                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Kệ hàng A</a>
-                                    </td>
-                                    <!--end::Customer=-->
-                                    <!--begin::Status=-->
-                                    <td>
-                                        <div class="badge badge-light-success">
-                                            @if ($item->status = 1)
-                                                Còn sử dụng
-                                            @else
-                                                Không còn sử dụng
-                                            @endif</div>
-                                    </td>
-                                    <!--end::Status=-->
-                                    <!--begin::Phân khu=-->
-                                    <td>
-                                        <div class="badge badge-light">Phân khu A</div>
-                                    </td>
-                                    <!--end::Phân khu=-->
-                                    <!--begin::Số lượng=-->
-                                    <td>100</td>
-                                    <!--end::Số lượng=-->
-                                    <!--begin::Date=-->
-                                    <td>17-03-2022</td>
-                                    <!--end::Date=-->
-                                    <!--begin::Action=-->
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Thao tác
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon--></a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('ton-kho.show',1) }}" class="menu-link px-3">Xem</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row"
-                                                    class="menu-link px-3">Xóa</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                                @endforeach
-                              
-
-
+                          @foreach ($stocks['products'] as $item) 
+                          <tr>
+                              <!--begin::Checkbox-->
+                              <td>
+                                  <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                      <input class="form-check-input" type="checkbox" value="1" />
+                                  </div>
+                              </td>
+                              <!--end::Checkbox-->
+                              <!--begin::Customer=-->
+                              <td>
+                                  <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}</a>
+                              </td>
+                              <!--end::Customer=-->
+                              <!--begin::Status=-->
+                              <td>
+                                @if ($item->status == '1')
+                                <div class="badge badge-light-success">
+                                    Có sử dụng
+                                </div>
+                                @else
+                                <div class="badge badge-light-danger">
+                                    Không sử dụng
+                                </div>
+                                @endif
+                              </td>
+                              <!--end::Status=-->
+                              <!--begin::Phân khu=-->
+                              <td>
+                                <div class="badge badge-light">{{$stocks['shelf']->section  }}</div>                             
+                              </td>
+                              <!--end::Phân khu=-->
+                              <!--begin::Số lượng=-->
+                              <td>100</td>
+                              <!--end::Số lượng=-->
+                              <!--begin::Date=-->
+                              <td>17-03-2022</td>
+                              <!--end::Date=-->
+                              <!--begin::Action=-->
+                              <td class="text-end">
+                                  <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                      data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Thao tác
+                                      <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                      <span class="svg-icon svg-icon-5 m-0">
+                                          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                              viewBox="0 0 24 24" fill="none">
+                                              <path
+                                                  d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                  fill="black" />
+                                          </svg>
+                                      </span>
+                                      <!--end::Svg Icon--></a>
+                                  <!--begin::Menu-->
+                                  <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                      data-kt-menu="true">
+                                      <!--begin::Menu item-->
+                                      <div class="menu-item px-3">
+                                          <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
+                                      </div>
+                                      <!--end::Menu item-->
+                                      <!--begin::Menu item-->
+                                      <div class="menu-item px-3">
+                                          <a href="#" data-kt-subscriptions-table-filter="delete_row"
+                                              class="menu-link px-3">Xóa</a>
+                                      </div>
+                                      <!--end::Menu item-->
+                                  </div>
+                                  <!--end::Menu-->
+                              </td>
+                              <!--end::Action=-->
+                          </tr>
+                          @endforeach                                                   
                             </tbody>
                             <!--end::Table body-->
                         </table>
@@ -541,6 +534,229 @@
             <!--end::Container-->
         </div>
         <!--end::Post-->
+        
     </div>
-
-@endsection
+    <div id="kt_toolbar_container" class="container-fluid ">
+        <div class="row gy-5 g-xl-8">
+            <!--begin::Col-->
+            <div class="col-xl-6">
+                <!--begin::List Widget 6-->
+                <div class="card card-xl-stretch mb-xl-8">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title fw-bolder text-dark">Nhập kệ hàng hóa</h3>
+                        <div class="card-toolbar">
+                            <!--begin::Menu-->
+                            <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                        viewBox="0 0 24 24">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000">
+                                            </rect>
+                                            <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                            <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                            <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </button>
+                            <!--begin::Menu 3-->
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
+                                data-kt-menu="true" style="">
+                                <!--begin::Heading-->
+                                <div class="menu-item px-3">
+                                    <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                        Xuất hàng hóa</div>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3">Danh sách xuất</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link flex-stack px-3">Thêm mới
+                                    </a>
+                                </div>
+                                <!--end::Menu item-->
+                            </div>
+                            <!--end::Menu 3-->
+                            <!--end::Menu-->
+                        </div>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-success me-5">
+                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path opacity="0.3"
+                                            d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                            fill="black"></path>
+                                        <path
+                                            d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                            fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <!--end::Icon-->
+                            <!--begin::Title-->
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
+                                    #654</a>
+                                <span class="text-muted fw-bold d-block">24/06/2004</span>
+                            </div>
+                            <!--end::Title-->
+                            <!--begin::Lable-->
+                            <span class="fw-bolder text-success py-1">50 sản phẩm</span>
+                            <!--end::Lable-->
+                        </div>
+                        <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-success me-5">
+                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path opacity="0.3"
+                                            d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                            fill="black"></path>
+                                        <path
+                                            d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                            fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <!--end::Icon-->
+                            <!--begin::Title-->
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
+                                    #654</a>
+                                <span class="text-muted fw-bold d-block">24/06/2004</span>
+                            </div>
+                            <!--end::Title-->
+                            <!--begin::Lable-->
+                            <span class="fw-bolder text-success py-1">50 sản phẩm</span>
+                            <!--end::Lable-->
+                        </div>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::List Widget 6-->
+            </div>
+            <!--end::Col-->
+            <!--begin::Col-->
+            <div class="col-xl-6">
+                <!--begin::List Widget 6-->
+                <div class="card card-xl-stretch mb-xl-8">
+                    <!--begin::Header-->
+                    <div class="card-header border-0">
+                        <h3 class="card-title fw-bolder text-dark">Xuất kệ hàng hóa</h3>
+                        <div class="card-toolbar">
+                            <!--begin::Menu-->
+                            <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                                data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                        viewBox="0 0 24 24">
+                                        <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                            <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000">
+                                            </rect>
+                                            <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                            <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                            <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000"
+                                                opacity="0.3"></rect>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </button>
+                            <!--begin::Menu 3-->
+                            <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
+                                data-kt-menu="true" style="">
+                                <!--begin::Heading-->
+                                <div class="menu-item px-3">
+                                    <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                        Xuất hàng hóa</div>
+                                </div>
+                                <!--end::Heading-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link px-3">Danh sách xuất</a>
+                                </div>
+                                <!--end::Menu item-->
+                                <!--begin::Menu item-->
+                                <div class="menu-item px-3">
+                                    <a href="#" class="menu-link flex-stack px-3">Thêm mới
+                                    </a>
+                                </div>
+                                <!--end::Menu item-->
+                            </div>
+                            <!--end::Menu 3-->
+                            <!--end::Menu-->
+                        </div>
+                    </div>
+                    <!--end::Header-->
+                    <!--begin::Body-->
+                    <div class="card-body pt-0">
+                        <!--begin::Item-->
+                        <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
+                            <!--begin::Icon-->
+                            <span class="svg-icon svg-icon-danger me-5">
+                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path opacity="0.3"
+                                            d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                            fill="black"></path>
+                                        <path
+                                            d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                            fill="black"></path>
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </span>
+                            <!--end::Icon-->
+                            <!--begin::Title-->
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa
+                                    #654</a>
+                                <span class="text-muted fw-bold d-block">24/06/2004</span>
+                            </div>
+                            <!--end::Title-->
+                            <!--begin::Lable-->
+                            <span class="fw-bolder text-danger py-1">100 sản phẩm</span>
+                            <!--end::Lable-->
+                        </div>
+                        <!--end::Item-->
+                    </div>
+                    <!--end::Body-->
+                </div>
+                <!--end::List Widget 6-->
+            </div>
+            <!--end::Col-->
+        </div>
+    
+    </div>
+    
+</section>

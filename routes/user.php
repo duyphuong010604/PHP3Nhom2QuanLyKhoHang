@@ -2,9 +2,10 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Livewire\Profiles\ViewProfile;
 
 Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('index');
+    Route::get('/', ViewProfile::class)->name('index');
     Route::get('/tao-moi', [UserController::class, 'create'])->name('create');
     Route::post('/', [UserController::class, 'store'])->name('store');
     Route::get('/{id}', [UserController::class, 'show'])->name('show');

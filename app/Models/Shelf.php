@@ -17,7 +17,7 @@ class Shelf extends Model
     ];
 
 
-    public function stock(): HasMany
+    public function stocks(): HasMany
     {
         return $this->hasMany(Stock::class);
     }

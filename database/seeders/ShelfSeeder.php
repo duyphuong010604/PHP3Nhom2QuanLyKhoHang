@@ -28,5 +28,19 @@ class ShelfSeeder extends Seeder
             'capacity' => '150kg',
             'status' => true,
         ]);
+
+        Shelf::create([
+            'name' => 'Shelf C',
+            'section' => 'Section 3',
+            'capacity' => '150kg',
+            'status' => true,
+        ]);
+
+        Shelf::create([
+            'name' => 'Shelf D',
+            'section' => 'Section 4',
+            'capacity' => '150kg',
+            'status' => true,
+        ]);
     }
 }

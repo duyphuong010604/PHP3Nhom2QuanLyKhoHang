@@ -3,24 +3,30 @@
 namespace App\Livewire\Stocks;
 
 use Livewire\Component;
-use App\Repositories\Stocks\StockRepository;
+use App\Repositories\Stocks\StocksRepository;
 
 class StockList extends Component
 {
 
+    public $stocks;
+
+    public $totalQuantity;
+
+    public $productId;
+
+
     protected $stocksRepository;
 
-    public function __construct(StockRepository $stockRepository)
+    public function mount(StocksRepository $stocksRepository)
     {
-        $this->stocksRepository = $stockRepository;
+        $this->stocksRepository = $stocksRepository;
+        $this->stocks = $this->stocksRepository->getAll();
+        // dd($this->stocks);
+        
     }
 
     public function render()
     {
-        $stocks = $this->stocksRepository->getAll();
-
-        return view('stocks.index', [
-            'stocks' => $stocks,
-        ]);
+        return view('livewire.stocks.stock-list');
     }
 }
