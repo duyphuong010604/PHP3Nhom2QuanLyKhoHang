@@ -222,7 +222,13 @@
 
                                 <td>{{ $customer->address }}</td>
 
-                                <td>{{ $customer->object }}</td>
+                                <td>
+                                @if($customer->object === 'customer')
+                                         Khách hàng
+                                @elseif($customer->object === 'enterprise')
+                                         Doanh nghiệp
+                                @endif
+                                </td>
                                 <td class="text-end">
                                                 <a href="#"
                                                     class="btn btn-light btn-active-light-primary btn-sm"
@@ -252,7 +258,7 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a
+                                                        <a href="{{ route('doi-tac.edit', $customer->id) }}"
                                                             class="menu-link px-3">Sửa</a>
                                                     </div>
                                                     <!--end::Menu item-->

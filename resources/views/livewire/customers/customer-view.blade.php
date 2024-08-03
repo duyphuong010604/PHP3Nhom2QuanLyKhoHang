@@ -39,7 +39,7 @@
                                 </div>
                                 <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{{ $customer->name }}</a>
                                 <div class="fs-5 fw-bold text-muted mb-6">{{ $customer->object }}
-                                    
+
                                 </div>
                                 <div class="d-flex flex-wrap flex-center">
 
@@ -191,21 +191,7 @@
                                     <div class="card-title">
                                         <h2>Hóa đơn</h2>
                                     </div>
-                                    <div class="card-toolbar m-0">
-                                        <ul class="nav nav-stretch fs-5 fw-bold nav-line-tabs nav-line-tabs-2x border-transparent"
-                                            role="tablist">
-                                            <li class="nav-item" role="presentation">
-                                                <a id="kt_referrals_year_tab"
-                                                    class="nav-link text-active-primary active" data-bs-toggle="tab"
-                                                    role="tab" href="#kt_customer_details_invoices_1">Hiện tại</a>
-                                            </li>
-                                            <li class="nav-item" role="presentation">
-                                                <a id="kt_referrals_2019_tab" class="nav-link text-active-primary ms-3"
-                                                    data-bs-toggle="tab" role="tab"
-                                                    href="#kt_customer_details_invoices_2">2020</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                                 
                                 </div>
                                 <div class="card-body pt-0">
                                     <div id="kt_referred_users_tab_content" class="tab-content">
