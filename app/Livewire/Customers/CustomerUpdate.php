@@ -29,6 +29,8 @@ class CustomerUpdate extends Component
     #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     public $address = '';
 
+    public $object = '';
+
     public $customer;
 
     public function mount($id)
@@ -38,6 +40,7 @@ class CustomerUpdate extends Component
         $this->email = $this->customer->email;
         $this->phone = $this->customer->phone;
         $this->address = $this->customer->address;
+        $this->object = $this->customer->object;
     }
 
     public function render()
@@ -63,7 +66,8 @@ class CustomerUpdate extends Component
             "name" => $this->name,
             "email" => $this->email,
             "phone" => $this->phone,
-            "address" => $this->address
+            "address" => $this->address,
+            "object" => $this->object
         ]);
 
         $this->alert('success', 'Cập nhật thông tin khách hàng thành công.', [

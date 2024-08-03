@@ -60,10 +60,7 @@
                                         </span>
                                     </span>
                                 </div>
-                                <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit customer details">
-                                    <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal"
-                                        data-bs-target="#kt_modal_update_customer">Sửa</a>
-                                </span>
+                              
                             </div>
                             <div class="separator separator-dashed my-3"></div>
                             <div id="kt_customer_view_details" class="collapse show">
@@ -115,7 +112,7 @@
                                         <tbody class="fs-6 fw-bold text-gray-600">
                                             <tr>
                                                 <td>
-                                                    <a href="#" class="text-gray-600 text-hover-primary mb-1">D01</a>
+                                                    <a href="#" class="text-gray-600 text-hover-primary mb-1">{{ $customer->id }}</a>
                                                 </td>
                                                 <td>
                                                     <span class="badge badge-light-success">Thành công</span>
@@ -147,40 +144,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td>
-                                                    <a href="#" class="text-gray-600 text-hover-primary mb-1">D02</a>
-                                                </td>
-                                                <td>
-                                                    <span class="badge badge-light-success">Thành công</span>
-                                                </td>
-                                                <td>129.000</td>
-                                                <td>19/07/2024</td>
-                                                <td class="pe-0 text-end">
-                                                    <a href="#" class="btn btn-sm btn-light btn-active-light-primary"
-                                                        data-kt-menu-trigger="click"
-                                                        data-kt-menu-placement="bottom-end">Chọn
-                                                        <span class="svg-icon svg-icon-5 m-0">
-                                                            <svg xmlns="http://www.w3.org/2000/svg" width="24"
-                                                                height="24" viewBox="0 0 24 24" fill="none">
-                                                                <path
-                                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                                    fill="black" />
-                                                            </svg>
-                                                        </span></a>
-                                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                                        data-kt-menu="true">
-                                                        <div class="menu-item px-3">
-                                                            <a href="../../demo1/dist/apps/customers/view.html"
-                                                                class="menu-link px-3">Xem</a>
-                                                        </div>
-                                                        <div class="menu-item px-3">
-                                                            <a href="#" class="menu-link px-3"
-                                                                data-kt-customer-table-filter="delete_row">Xóa</a>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                            </tr>
+
                                         </tbody>
                                     </table>
                                 </div>
@@ -191,7 +155,7 @@
                                     <div class="card-title">
                                         <h2>Hóa đơn</h2>
                                     </div>
-                                 
+
                                 </div>
                                 <div class="card-body pt-0">
                                     <div id="kt_referred_users_tab_content" class="tab-content">
