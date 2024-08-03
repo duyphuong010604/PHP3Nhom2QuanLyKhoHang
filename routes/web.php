@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/', function () {
-    return view('authentications.signIn');
+    return view('authentications.signUp');
 });
 
 require __DIR__ . "/dashboard.php";

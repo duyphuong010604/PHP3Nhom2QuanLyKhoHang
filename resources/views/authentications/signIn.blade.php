@@ -42,7 +42,7 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#">
+                        <form class="form w-100" action="">
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
@@ -50,7 +50,7 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="../../demo1/dist/authentication/flows/aside/sign-up.html"
+                                    <a href="{{route ('tai-khoan')}}"
                                         class="link-primary fw-bolder">Tạo Tài Khoản</a>
                                 </div>
                                 <!--end::Link-->
@@ -62,8 +62,8 @@
                                 <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="text" name="email"
-                                    autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="email" name="email"
+                                 autocomplete="off" />
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -72,17 +72,13 @@
                                 <!--begin::Wrapper-->
                                 <div class="d-flex flex-stack mb-2">
                                     <!--begin::Label-->
-                                    <label class="form-label fw-bolder text-dark fs-6 mb-0">Mât Khẩu</label>
-                                    <!--end::Label-->
-                                    <!--begin::Link-->
-                                    <a href="../../demo1/dist/authentication/flows/aside/password-reset.html"
-                                        class="link-primary fs-6 fw-bolder">Nhập Lại Mật Khẩu ?</a>
-                                    <!--end::Link-->
+                                    <label class="form-label fs-6 fw-bolder text-dark">Mât Khẩu</label>
+                                    <input class="form-control form-control-lg form-control-solid" type="password"
+                                    name="password" autocomplete="off" />
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="password"
-                                    name="password" autocomplete="off" />
+                                
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
