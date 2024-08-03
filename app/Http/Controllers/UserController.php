@@ -5,11 +5,11 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use Illuminate\Auth\Events\Registered;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Validation\ValidationException;
 
 class UserController extends Controller
 {
@@ -29,7 +29,7 @@ class UserController extends Controller
     {
         return view('authentications.signIn');
     }
-
+   
     /**
      * Show the form for creating a new resource.
      */
@@ -37,6 +37,24 @@ class UserController extends Controller
     {
         return view('authentications.signUp');
     }
+    public function login(Request $request)
+    {
+        // Validate the login form data
+        $request->validate([
+            'email' => ['required', 'string', 'email', 'max:255'],
+            'password' => ['required', 'string', 'max:255'],
+        ]);
+
+        // Attempt to log the user in
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed, redirect to the homepage
+            return redirect()->intended(route('trang-chu.index'));
+        }
+
+        // Authentication failed, return error
+        return redirect(route('trang-chu.index', absolute: false));
+    }
+
 
     /**
      * Store a newly created resource in storage.

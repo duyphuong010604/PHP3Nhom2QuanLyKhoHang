@@ -42,7 +42,8 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form class="form w-100" action="">
+                        <form action="{{ route ('tai-khoan.login.submit')}}" method="POST"  class="form w-100">
+                        @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
@@ -50,8 +51,9 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="{{route ('tai-khoan')}}"
-                                        class="link-primary fw-bolder">Tạo Tài Khoản</a>
+                                    <a href=""
+                                    class="link-primary fw-bolder">Tạo Tài Khoản</a>
+                                    @csrf
                                 </div>
                                 <!--end::Link-->
                             </div>
@@ -63,7 +65,7 @@
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                                 autocomplete="off" />
+                                 autocomplete="off" :value="__('email')"/>
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -74,7 +76,7 @@
                                     <!--begin::Label-->
                                     <label class="form-label fs-6 fw-bolder text-dark">Mât Khẩu</label>
                                     <input class="form-control form-control-lg form-control-solid" type="password"
-                                    name="password" autocomplete="off" />
+                                    name="password" autocomplete="off" :value="__('password')" />
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Input-->
@@ -87,8 +89,6 @@
                                 <!--begin::Submit button-->
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
                                     <span class="indicator-label">Đăng Nhập</span>
-                                    <span class="indicator-progress">Vui Lòng Chờ
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->

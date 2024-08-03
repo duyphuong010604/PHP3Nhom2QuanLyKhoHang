@@ -90,7 +90,7 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="{{ route('tai-khoan.index') }}" class="menu-link px-5">Thông tin tài
+                                <a href="" class="menu-link px-5">Thông tin tài
                                     khoản</a>
                             </div>
                             <!--end::Menu item-->
