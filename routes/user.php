@@ -1,11 +1,13 @@
 <?php
 
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 
+
 Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
-    Route::get('/', [UserController::class, 'index'])->name('index');
-    Route::get('/tao-moi', [UserController::class, 'create'])->name('create');
+    Route::get('/',[UserController::class, 'index'])->name('index');
+    Route::get('/', [UserController::class, 'create'])->name('create');
     Route::post('/', [UserController::class, 'store'])->name('store');
     Route::get('/{id}', [UserController::class, 'show'])->name('show');
     Route::get('/{id}/chinh-sua', [UserController::class, 'edit'])->name('edit');
