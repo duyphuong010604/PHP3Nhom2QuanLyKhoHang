@@ -10,7 +10,7 @@ Dribbble: www.dribbble.com/keenthemes
 Like: www.facebook.com/keenthemes
 License: For each use you must have a valid license purchased only from above link in order to legally use the theme for your project.
 -->
-<html lang="en">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <!--begin::Head-->
 
 <head>
@@ -87,7 +87,7 @@ License: For each use you must have a valid license purchased only from above li
         </div>
     </div>
 
-
+    @livewireScripts
     <script>
         var hostUrl = "./assets/";
     </script>
@@ -111,7 +111,7 @@ License: For each use you must have a valid license purchased only from above li
     </script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
-    @livewireScripts
+
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 

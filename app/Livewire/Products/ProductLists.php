@@ -18,41 +18,70 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
+use Livewire\Attributes\Url;
+use Livewire\Attributes\Computed;
+use Illuminate\Pagination\LengthAwarePaginator;
+use Illuminate\Support\Facades\Log;
 
 #[Title('Danh sách sản phẩm')]
 class ProductLists extends Component
 {
-    use WithPagination, WithoutUrlPagination;
+    use WithPagination;
     use LivewireAlert;
 
-
     public $q = null;
-    public $categories = [];
-    public $products = [];
+    public $categories = '';
+
+    protected $products;
+
     public $category_id = 'all';
     public $orderBy = 'id';
-    public $sortBy;
+    public $sortBy = 'desc';
     public $confirmingProjectDeletion = false;
     public $projectIdToDelete = false;
 
+
+    public function render()
+    {
+        $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
+        return view(
+            'livewire.products.product-lists',
+        );
+    }
     public function updatedQ()
     {
         $this->q = trim($this->q);
+        // $this->resetPage();
+        log::info($this->q);
     }
+
+    public function updatedOrderBy()
+    {
+        $this->resetPage();
+    }
+    public function updatedSortBy()
+    {
+        $this->resetPage();
+    }
+    public function updatedCategory_id()
+    {
+        $this->resetPage();
+    }
+
 
     public function loadProducts()
     {
         $query = Product::with('stocks.shelf');
         if ($this->q === null) {
             $query
-                ->orderBy($this->orderBy, 'desc');
+                ->orderBy('id', 'desc');
         } else {
             $query
                 ->where('name', 'like', "%" . $this->q . "%")
-                ->orderBy($this->orderBy, 'desc');
+                ->orderBy('id', 'desc');
         }
-        $this->products = $query->get();
-        return $this->products;
+        return $query->paginate(5);
+
     }
 
     public function applyFilter()
@@ -64,15 +93,15 @@ class ProductLists extends Component
         if ($this->orderBy === 'price') {
             $sortOrder = 'desc';
             $query->orderBy('price', $sortOrder);
-        } elseif ($this->sortBy === 'asc') {
-            $sortOrder = 'asc';
-            $query->orderBy('price', $sortOrder);
-        } else {
+        } elseif ($this->orderBy === 'name') {
             $sortOrder = 'asc';
             $query->orderBy('name', $sortOrder);
+        } else {
+            $sortOrder = 'asc';
+            $query->orderBy('price', $sortOrder);
         }
-        $this->products = $query->get();
-        return $this->products;
+
+        return $this->products = $query->paginate(5);
     }
 
     public function boot()
@@ -80,13 +109,7 @@ class ProductLists extends Component
         $this->products = $this->loadProducts();
     }
 
-    public function render()
-    {
-        $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
-        return view(
-            'livewire.products.product-lists'
-        );
-    }
+
     public function confirmProjectDeletion($projectId)
     {
         $this->confirmingProjectDeletion = true;
@@ -101,7 +124,7 @@ class ProductLists extends Component
         } else {
             $this->showAlert('success', 'Xóa sản phẩm thành công!');
             Product::find($this->projectIdToDelete)->delete();
-            $this->products = Product::all(); // Cập nhật danh sách dự án
+            $this->products = $this->loadProducts(); // Cập nhật danh sách dự án
             $this->confirmingProjectDeletion = false;
             $this->projectIdToDelete = null;
         }
@@ -109,6 +132,13 @@ class ProductLists extends Component
     public $productId = [];
     public $selectAll = false;
     public $showDeleteButton = false;
+
+
+
+    public function updatedProductId()
+    {
+        log::info($this->productId);
+    }
     public function checkAll()
     {
         if ($this->selectAll) {
@@ -123,8 +153,19 @@ class ProductLists extends Component
         $this->showDeleteButton = count($this->productId) > 0;
     }
     public $productStock = true;
+
+    public function updatingPage($page)
+    {
+        Log::info('cac o da check' . $page);
+    }
+
+    public function updatedPage($page)
+    {
+        Log::info('dang o trang so' . $page);
+    }
     public function deleteSelected()
     {
+
         $this->productStock = Stock::select('product_id')->pluck('product_id')->toArray();
         // láy chung
         $commonElements = array_intersect($this->productStock, $this->productId);
@@ -135,7 +176,7 @@ class ProductLists extends Component
         } else {
             foreach ($productIdDelete as $item) {
                 Product::find($item)->delete();
-                $this->products = Product::all(); // Cập nhật danh sách dự án
+                $this->products = $this->loadProducts(); // Cập nhật danh sách dự án
             }
             $this->showAlert('success', 'Xóa sản phẩm thành công!');
             $this->selectAll = false;
@@ -156,9 +197,10 @@ class ProductLists extends Component
     public $typeExport = 'excell';
     public function export()
     {
-        if ($this->typeExport !== 'excell') {
+
+        if ($this->typeExport === 'pdf') {
             $data = [
-                'products' => $this->products
+                'products' => Product::all()
             ];
 
             $options = new Options();
@@ -167,13 +209,13 @@ class ProductLists extends Component
             $dompdf->loadHtml(view('exports.products-pdf', $data)->render());
             $dompdf->setPaper('A4', 'landscape');
             $dompdf->render();
-
+            $this->resetPage();
             return response()->streamDownload(function () use ($dompdf) {
                 echo $dompdf->output();
             }, 'products.pdf');
-        } else {
+        } elseif ($this->typeExport === 'excell') {
             $spreadsheet = new Spreadsheet();
-            $products = $this->products;
+            $products = Product::all();
             $spreadsheet = new Spreadsheet();
             $sheet = $spreadsheet->getActiveSheet();
             // Thiết lập tiêu đề
@@ -232,11 +274,25 @@ class ProductLists extends Component
             $fileName = 'products.xlsx';
             $filePath = storage_path('app/public/' . $fileName);
             $writer->save($filePath);
-
+            $this->resetPage();
             // Trả về file để người dùng tải về và xóa file sau khi tải xong
             return response()->download($filePath)->deleteFileAfterSend(true);
-        }
+        } else {
+            $data = [
+                'products' => Product::all()
+            ];
 
+            $options = new Options();
+            $options->set('defaultFont', 'DejaVuSans');
+            $dompdf = new Dompdf($options);
+            $dompdf->loadHtml(view('exports.products-code-pdf', $data)->render());
+            $dompdf->setPaper('A4', 'landscape');
+            $dompdf->render();
+            $this->resetPage();
+            return response()->streamDownload(function () use ($dompdf) {
+                echo $dompdf->output();
+            }, 'products-code.pdf');
+        }
     }
 
 }

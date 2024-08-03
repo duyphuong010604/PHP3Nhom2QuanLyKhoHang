@@ -128,7 +128,7 @@
                                     <!--end::Label-->
                                     <!--begin::Select-->
                                     <select name="categoryId" data-placeholder="Chọn loại sản phẩm..."
-                                        wire:model='category_id' class="form-select form-select-solid">
+                                        wire:model.change='category_id' class="form-select form-select-solid">
                                         <option value="">Chọn loại sản phẩm...</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>

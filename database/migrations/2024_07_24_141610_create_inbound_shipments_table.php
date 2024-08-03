@@ -22,6 +22,7 @@ return new class extends Migration {
             $table->foreignIdFor(Supplier::class)->nullable()->constrained()->nullOnDelete();
             $table->foreignIdFor(Shelf::class)->nullable()->constrained()->nullOnDelete();
             $table->double('totalAmount');
+            // sua sua null able
             $table->text('remarks');
             $table->enum('status', ['active', 'draft'])->default('draft');
             $table->timestamps();

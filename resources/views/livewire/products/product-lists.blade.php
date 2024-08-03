@@ -61,7 +61,7 @@
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
                                 placeholder="Tìm kiếm sản phẩm" wire:model.live='q'>
-                            @if (count($products) <= 0)
+                            @if ($this->products->count() <= 0)
                                 <span class="text-danger ms-3">Không có sản phẩm cần tiềm</span>
                             @endif
 
@@ -146,7 +146,7 @@
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3">
                                                 <input class="form-check-input" type="radio" name="type"
-                                                    value="asc" wire:model='sortBy'>
+                                                    value="asc" wire:model='orderBy'>
                                                 <span class="form-check-label text-gray-600">Giá
                                                     thấp đến cao</span>
                                             </label>
@@ -222,8 +222,7 @@
                                             <div
                                                 class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                    wire:model='selectAll' wire:click='checkAll'
-                                                    data-kt-check-target="#kt_subscriptions_table .form-check-input">
+                                                    wire:model='selectAll' wire:click='checkAll'>
                                             </div>
                                         </th>
                                         <th class="min-w-125px sorting" tabindex="0"
@@ -246,6 +245,10 @@
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Created Date: activate to sort column ascending"
                                             style="width: 166.484px;">Số lượng</th>
+                                        <th class="min-w-125px sorting" tabindex="0"
+                                            aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
+                                            aria-label="Created Date: activate to sort column ascending"
+                                            style="width: 166.484px;">Code</th>
                                         <th class="text-end min-w-70px sorting_disabled" rowspan="1"
                                             colspan="1" aria-label="Actions" style="width: 124.828px;">Tùy chọn
                                         </th>
@@ -256,7 +259,7 @@
                                 <!--begin::Table body-->
 
                                 <tbody class="text-gray-600 fw-bold ">
-                                    @foreach ($products as $item)
+                                    @foreach ($this->products as $item)
                                         <tr class="odd">
                                             <!--begin::Checkbox-->
                                             <td>
@@ -301,6 +304,9 @@
                                                     @endforeach
                                                 @endif
 
+                                            </td>
+                                            <td>
+                                                {{ $item->sku }}
                                             </td>
                                             <!--end::Date=-->
                                             <!--begin::Action=-->
@@ -352,9 +358,10 @@
                                             <!--end::Action=-->
                                         </tr>
                                     @endforeach
+                                    {{ $this->products->links() }}
                                 </tbody>
                                 <tfoot>
-                                    {{-- {{ $products->links() }} --}}
+
                                 </tfoot>
                                 <!--end::Table body-->
                             </table>
@@ -464,6 +471,7 @@
                                     <select wire:model='typeExport' class="form-select form-select-solid ">
                                         <option value="excell">Excel</option>
                                         <option value="pdf">PDF</option>
+                                        <option value="code">PDF CODE</option>
                                     </select>
                                     <!--end::Input-->
                                 </div>

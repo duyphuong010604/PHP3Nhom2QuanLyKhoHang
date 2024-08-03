@@ -40,8 +40,10 @@ class ProductUpdate extends Component
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
     public $category_id = '';
     public $imageUrl;
-    #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    public $product, $categories, $imageOld;
+    #[Validate('required', message: 'Vui lòng nhập chọn danh mục sản phẩm.')]
+    public $categories;
+    public $product;
+    public $imageOld;
     public function mount($id)
     {
         $this->product = Product::findOrFail($id);
@@ -63,7 +65,7 @@ class ProductUpdate extends Component
     public function rules()
     {
         return [
-            'imageUrl' => 'nullable|max:1048',
+            'imageUrl' => 'max:1048',
             'name' => 'required|min:3|',
             'price' => 'required|min:100|numeric|gt:cost',
             'cost' => 'required|min:100|numeric|lt:price',
@@ -76,8 +78,9 @@ class ProductUpdate extends Component
 
     public function update()
     {
+
         $validated = $this->validate();
-        // dd($validated);
+
         if ($this->imageUrl == null) {
             $path = $this->imageOld;
         } else {

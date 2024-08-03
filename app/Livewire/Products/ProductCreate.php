@@ -7,11 +7,13 @@ use Livewire\Attributes\Layout;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
+use Milon\Barcode\DNS2D;
 
 #[Title('Thêm mới sản phẩm')]
 class ProductCreate extends Component
@@ -43,9 +45,12 @@ class ProductCreate extends Component
 
     public $imageUrl;
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    public $category_id = '';
+    public $category_id;
 
-
+    public function updatingCategory_id()
+    {
+        Log::info('Updated category');
+    }
 
 
     public function render(): View
@@ -73,7 +78,11 @@ class ProductCreate extends Component
     public function create()
     {
         $validated = $this->validate();
-        // dd($validated);
+        $sku = mt_rand(1000000000, 9999999999);
+        if ($this->productCodeExists($sku)) {
+            $sku = mt_rand(1000000000, 9999999999);
+        }
+
         if ($this->imageUrl !== null) {
             $path = $this->imageUrl->store('images/products', 'public');
         } else {
@@ -88,7 +97,8 @@ class ProductCreate extends Component
             "dimensions" => $this->dimensions,
             "weight" => $this->weight,
             "category_id" => $this->category_id,
-            "description" => $this->description
+            "description" => $this->description,
+            'sku' => $sku
         ]);
 
         if ($products) {
@@ -109,5 +119,10 @@ class ProductCreate extends Component
                 "description",
             ]);
         }
+    }
+
+    public function productCodeExists($sku)
+    {
+        return Product::whereSku($sku)->exists();
     }
 }
