@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Đăng hý tài khoản')
 @section('contents')
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-up -->
@@ -12,7 +12,7 @@
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
                         <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                            <img alt="Logo" src="" class="h-60px" />
+                            <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
