@@ -43,8 +43,8 @@ class ProductCreate extends Component
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng.')]
     public $weight = '';
     #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
-    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
+    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
     #[Validate('unique:products,sku', message: 'Mã sãn phẩm đã có.')]
     public $sku = '';
     public $imageUrl;
@@ -75,7 +75,7 @@ class ProductCreate extends Component
             'weight' => 'required|min:3|numeric',
             'category_id' => 'required',
             'description' => 'nullable',
-            'sku' => 'required|min:1000000000|unique:products,sku'
+            'sku' => 'required|numeric|min:1000000000|unique:products,sku|'
         ];
     }
 

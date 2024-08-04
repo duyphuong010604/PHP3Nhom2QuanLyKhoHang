@@ -315,10 +315,9 @@
                                             <!--end::Date=-->
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#"
-                                                    class="btn btn-light btn-active-light-primary btn-sm"
-                                                    data-kt-menu-trigger="click"
-                                                    data-kt-menu-placement="bottom-end">Tùy
+                                                <div class="btn btn-light btn-active-light-primary btn-sm"
+                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                    Tùy
                                                     chọn
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
@@ -329,7 +328,8 @@
                                                                 fill="black"></path>
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon--></a>
+                                                    <!--end::Svg Icon-->
+                                                </div>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
