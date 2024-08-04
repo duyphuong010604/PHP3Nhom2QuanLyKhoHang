@@ -63,6 +63,10 @@
                                 placeholder="Tìm kiếm sản phẩm" wire:model.live='q'>
                             @if ($this->products->count() <= 0)
                                 <span class="text-danger ms-3">Không có sản phẩm cần tiềm</span>
+                                <button class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#newProductModal">
+                                    Thêm sản phẩm mới
+                                </button>
                             @endif
 
                         </div>
@@ -428,8 +432,8 @@
             <!--end::Card-->
             <!--begin::Modals-->
             <!--begin::Modal - Adjust Balance-->
-            <div class="modal fade" id="kt_subscriptions_export_modal" tabindex="-1" style="display: none;"
-                aria-hidden="true">
+            <div wire:ignore.self class="modal fade" id="kt_subscriptions_export_modal" tabindex="-1"
+                style="display: none;" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-650px">
                     <!--begin::Modal content-->
@@ -499,6 +503,123 @@
             </div>
             <!--end::Modal - New Card-->
             <!--end::Modals-->
+
+            {{-- Modal newProduct --}}
+            <div wire:ignore.self class="modal fade" id="newProductModal" data-bs-backdrop="static"
+                data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="staticBackdropLabel">Thêm sản phẩm mới</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form class="form">
+                                <!--begin::Modal body-->
+                                <div class="modal-body py-10 px-lg-17">
+                                    <!--begin::Scroll-->
+                                    <div class="scroll-y me-n7 pe-7" id="kt_modal_new_address_scroll"
+                                        data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
+                                        data-kt-scroll-max-height="auto"
+                                        data-kt-scroll-dependencies="#kt_modal_new_address_header"
+                                        data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
+                                        data-kt-scroll-offset="300px">
+                                        <!--begin::Input group-->
+                                        <div class="row mb-5">
+                                            <!--begin::Col-->
+                                            <div class="col-md-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required fs-5 fw-bold mb-2">Tên sản phẩm</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    placeholder="Tên sản phẩm..." name="name"
+                                                    wire:model='nameN' />
+                                                <!--end::Input-->
+                                                @error('nameN')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="col-md-6 fv-row">
+                                                <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                    <span class="required">Loại sản phẩm</span>
+                                                    <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                        data-bs-toggle="tooltip" title=""></i>
+
+                                                </label>
+                                                <!--end::Label-->
+                                                <!--begin::Select-->
+                                                <select name="categoryIdN" data-placeholder="Chọn loại sản phẩm..."
+                                                    wire:model.change='categoryIdN'
+                                                    class="form-select form-select-solid">
+                                                    <option value="">Chọn loại sản phẩm...</option>
+                                                    @foreach ($categories as $item)
+                                                        <option value="{{ $item->id }}">{{ $item->name }}
+                                                        </option>
+                                                    @endforeach
+
+                                                </select>
+                                                @error('categoryIdN')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-12 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required fs-5 fw-bold mb-2">Mã sản phẩm</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    placeholder="Mã sản phẩm..." name="skuN"
+                                                    wire:model='skuN' />
+                                                <!--end::Input-->
+                                                @error('skuN')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                            </div>
+                                            <div class="col-md-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required fs-5 fw-bold mb-2">Giá nhập</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    placeholder="Giá nhập..." name="cost" wire:model='costN' />
+                                                @error('costN')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+                                            <div class="col-md-6 fv-row">
+                                                <!--begin::Label-->
+                                                <label class="required fs-5 fw-bold mb-2">Giá bán</label>
+                                                <!--end::Label-->
+                                                <!--begin::Input-->
+                                                <input type="text" class="form-control form-control-solid"
+                                                    placeholder="Giá bán..." name="price" wire:model='priceN' />
+                                                @error('priceN')
+                                                    <span class="text-danger">{{ $message }}</span>
+                                                @enderror
+                                                <!--end::Input-->
+                                            </div>
+                                        </div>
+                                        <!--end::Input group-->
+                                    </div>
+                                    <!--end::Scroll-->
+                                </div>
+                                <!--end::Modal body-->
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Hủy</button>
+                                    <button type="button" class="btn btn-primary" wire:click='newProduct'>Thêm
+                                        mới</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <!--end::Container-->
     </div>

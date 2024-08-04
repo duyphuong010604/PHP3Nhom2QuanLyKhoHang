@@ -42,7 +42,11 @@ class ProductCreate extends Component
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng.')]
     public $weight = '';
-
+    #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
+    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
+    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
+    #[Validate('unique:products,sku', message: 'Mã sãn phẩm đã có.')]
+    public $sku = '';
     public $imageUrl;
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
     public $category_id;
@@ -70,7 +74,8 @@ class ProductCreate extends Component
             'dimensions' => 'required|min:3|regex:/^\d+x\d+$/',
             'weight' => 'required|min:3|numeric',
             'category_id' => 'required',
-            'description' => 'nullable'
+            'description' => 'nullable',
+            'sku' => 'required|min:1000000000|unique:products,sku'
         ];
     }
 
@@ -78,10 +83,7 @@ class ProductCreate extends Component
     public function create()
     {
         $validated = $this->validate();
-        $sku = mt_rand(1000000000, 9999999999);
-        if ($this->productCodeExists($sku)) {
-            $sku = mt_rand(1000000000, 9999999999);
-        }
+
 
         if ($this->imageUrl !== null) {
             $path = $this->imageUrl->store('images/products', 'public');
@@ -98,7 +100,7 @@ class ProductCreate extends Component
             "weight" => $this->weight,
             "category_id" => $this->category_id,
             "description" => $this->description,
-            'sku' => $sku
+            'sku' => $this->sku
         ]);
 
         if ($products) {
@@ -117,6 +119,7 @@ class ProductCreate extends Component
                 "weight",
                 "category_id",
                 "description",
+                'sku'
             ]);
         }
     }

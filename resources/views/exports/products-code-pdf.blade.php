@@ -15,26 +15,20 @@
     <meta property="og:site_name" content="YourWebsite" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-    <link rel="canonical" href="https://preview.keenthemes.com/metronic8" />
-    <link rel="shortcut icon" href="{{ asset('assets/media/logos/favicon.ico') }}" />
     <!--begin::Fonts-->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" />
     <!--end::Fonts-->
     <!--begin::Page Vendor Stylesheets(used by this page)-->
-    <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
-        type="text/css" />
-    <!--end::Page Vendor Stylesheets-->
-    <!--begin::Global Stylesheets Bundle(used by all pages)-->
-    <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 
 </head>
 
 <style>
     body {
-        font-family: 'Roboto', sans-serif !important;
+        font-family: 'DejaVu Sans', sans-serif;
     }
+
 
     .container {
         width: 100%;
@@ -109,7 +103,7 @@
                         <th scope="col">Giá Bán</th>
                         <th scope="col">Danh Mục</th>
                         <th scope="col">Mã Code</th>
-                        <th>Mã QR</th>
+
                     </tr>
                 </thead>
                 <tbody>
@@ -142,11 +136,14 @@
                             </td>
                             <td>{{ $item->category->name }}</td>
                             <td>
-                                {!! DNS1D::getBarcodeSVG("$item->sku", 'C39') !!}
+                                <p class="mb-6">
+                                    {!! DNS1D::getBarcodeHTML("$item->sku", 'C39+') !!}
+                                </p>
+                                <p class="mt-6">
+                                    {!! DNS2D::getBarcodeHTML("$item->sku", 'QRCODE') !!}
+                                </p>
                             </td>
-                            <td>
-                                {!! DNS2D::getBarcodeHTML("$item->sku", 'QRCODE') !!}
-                            </td>
+
                         </tr>
                     @endforeach
                 </tbody>

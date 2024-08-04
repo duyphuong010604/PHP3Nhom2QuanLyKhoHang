@@ -105,7 +105,7 @@
                             </div>
                             <div class="row mb-5">
                                 <!--begin::Col-->
-                                <div class="col-md-12 fv-row">
+                                <div class="col-md-6 fv-row">
                                     <!--begin::Label-->
                                     <label class="required fs-5 fw-bold mb-2">Tên sản phẩm</label>
                                     <!--end::Label-->
@@ -114,6 +114,18 @@
                                         placeholder="Tên sản phẩm..." name="name" wire:model='name' />
                                     <!--end::Input-->
                                     @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Mã sản phẩm</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Mã sản phẩm..." name="sku" wire:model='sku' />
+                                    <!--end::Input-->
+                                    @error('sku')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

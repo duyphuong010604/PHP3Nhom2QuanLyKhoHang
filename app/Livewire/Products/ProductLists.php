@@ -22,6 +22,7 @@ use Livewire\Attributes\Url;
 use Livewire\Attributes\Computed;
 use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Log;
+use Livewire\Attributes\Validate;
 
 #[Title('Danh sách sản phẩm')]
 class ProductLists extends Component
@@ -68,7 +69,6 @@ class ProductLists extends Component
         $this->resetPage();
     }
 
-
     public function loadProducts()
     {
         $query = Product::with('stocks.shelf');
@@ -78,6 +78,7 @@ class ProductLists extends Component
         } else {
             $query
                 ->where('name', 'like', "%" . $this->q . "%")
+                ->orWhere('sku', 'like', "%" . $this->q . "%")
                 ->orderBy('id', 'desc');
         }
         return $query->paginate(5);
@@ -204,7 +205,6 @@ class ProductLists extends Component
             ];
 
             $options = new Options();
-            $options->set('defaultFont', 'DejaVuSans');
             $dompdf = new Dompdf($options);
             $dompdf->loadHtml(view('exports.products-pdf', $data)->render());
             $dompdf->setPaper('A4', 'landscape');
@@ -281,9 +281,7 @@ class ProductLists extends Component
             $data = [
                 'products' => Product::all()
             ];
-
             $options = new Options();
-            $options->set('defaultFont', 'DejaVuSans');
             $dompdf = new Dompdf($options);
             $dompdf->loadHtml(view('exports.products-code-pdf', $data)->render());
             $dompdf->setPaper('A4', 'landscape');
@@ -294,5 +292,55 @@ class ProductLists extends Component
             }, 'products-code.pdf');
         }
     }
+
+    // newProduct
+    #[Validate('required', message: 'Vui lòng nhập tên sản phẩm.')]
+    #[Validate('min:3', message: 'Vui lòng nhiều hơn 3 kí tự.')]
+    public $nameN = '';
+    #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
+    public $categoryIdN = '';
+    #[Validate('required', message: 'Vui lòng nhập giá nhập.')]
+    #[Validate('min:100', message: 'Vui lòng nhiều hơn 100 vnđ.')]
+    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng tiền tệ.')]
+    #[Validate('lt:priceN', message: 'Vui lòng cho giá bán thấp hơn giá nhập.')]
+    public $costN = '';
+    #[Validate('required', message: 'Vui lòng nhập giá bán.')]
+    #[Validate('min:100', message: 'Vui lòng nhiều hơn 100 vnđ.')]
+    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng tiền tệ.')]
+    #[Validate('gt:costN', message: 'Vui lòng cho giá bán cao hơn giá nhập.')]
+    public $priceN = '';
+    #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
+    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
+    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
+    public $skuN = '';
+    public function newProduct()
+    {
+        $validated = $this->validate();
+
+        $products = Product::create([
+            "name" => $this->nameN,
+            "price" => $this->priceN,
+            "cost" => $this->costN,
+            "category_id" => $this->categoryIdN,
+            'sku' => $this->skuN
+        ]);
+
+        if ($products) {
+            $this->alert('success', 'Thêm sản phẩm mới thành công!', [
+                'position' => 'top-end',
+                'timer' => 3000,
+                'toast' => true,
+                'timerProgressBar' => true,
+            ]);
+            $this->reset([
+                "nameN",
+                "priceN",
+                "costN",
+                "categoryIdN",
+                'skuN'
+            ]);
+        }
+    }
+
 
 }
