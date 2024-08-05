@@ -193,7 +193,7 @@
                                                 @endif
                                             </td>
                                             <td class="text-end">
-                                                <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                                <a  class="btn btn-light btn-active-light-primary btn-sm"
                                                     data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Tùy
                                                     chọn
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
