@@ -56,6 +56,12 @@
                                         <input type="text" class="form-control form-control-solid" placeholder=""
                                             name="Địa chỉ" />
                                     </div>
+                                    <div class="col-md-6 fv-row">
+                                        <label class="required fs-5 fw-bold mb-2">Đối tác</label>
+
+                                        <input type="text" class="form-control form-control-solid" placeholder=""
+                                            name="Địa chỉ" />
+                                    </div>
                                 </div>
                                 <div class="d-flex flex-column mb-5 fv-row">
                                 </div>
