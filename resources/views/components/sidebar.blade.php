@@ -6,7 +6,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="{{ route('trang-chu.index') }}">
-            <img alt="Logo" src="" class="h-25px logo">
+            <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-50px logo">
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->

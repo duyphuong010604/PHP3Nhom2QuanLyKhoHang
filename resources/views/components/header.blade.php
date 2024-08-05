@@ -23,7 +23,7 @@
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
             <a href="../../demo1/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/media/logos/logo-2.svg') }}" class="h-30px">
+                <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-30px">
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -90,7 +90,7 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="{{ route('tai-khoan.index') }}" class="menu-link px-5">Thông tin tài
+                                <a href="" class="menu-link px-5">Thông tin tài
                                     khoản</a>
                             </div>
                             <!--end::Menu item-->

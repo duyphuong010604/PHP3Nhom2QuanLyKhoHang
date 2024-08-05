@@ -8,7 +8,9 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Title;
 
+#[Title('Sử thông tin sản phẩm')]
 class ProductUpdate extends Component
 {
     use LivewireAlert;
@@ -33,14 +35,15 @@ class ProductUpdate extends Component
     #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     public $dimensions = '';
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    #[Validate('min:3', message: 'Vui lòng nhập hơn 3 kí tự.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng.')]
     public $weight = '';
     #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
     public $category_id = '';
     public $imageUrl;
-    #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    public $product, $categories, $imageOld;
+    #[Validate('required', message: 'Vui lòng nhập chọn danh mục sản phẩm.')]
+    public $categories;
+    public $product;
+    public $imageOld;
     public function mount($id)
     {
         $this->product = Product::findOrFail($id);
@@ -62,12 +65,12 @@ class ProductUpdate extends Component
     public function rules()
     {
         return [
-            'imageUrl' => 'nullable|max:1048',
+            'imageUrl' => 'max:1048',
             'name' => 'required|min:3|',
             'price' => 'required|min:100|numeric|gt:cost',
             'cost' => 'required|min:100|numeric|lt:price',
-            'dimensions' => 'required|min:3|regex:/^\d+x\d+$/',
-            'weight' => 'required|min:3|numeric',
+            'dimensions' => 'required|min:2|regex:/^\d+x\d+$/',
+            'weight' => 'required|min:1|numeric',
             'category_id' => 'required',
             'description' => 'nullable'
         ];
@@ -75,8 +78,9 @@ class ProductUpdate extends Component
 
     public function update()
     {
+
         $validated = $this->validate();
-        // dd($validated);
+
         if ($this->imageUrl == null) {
             $path = $this->imageOld;
         } else {

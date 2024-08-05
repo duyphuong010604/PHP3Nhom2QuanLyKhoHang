@@ -1,11 +1,14 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Support\Facades\Route;
-
-
 
 Route::get('/', function () {
     return view('authentications.signUp');
+});
+
+Route::get('/test', function () {
+    return view('exports.products-code-pdf', ['products' => Product::all()]);
 });
 
 require __DIR__ . "/dashboard.php";
