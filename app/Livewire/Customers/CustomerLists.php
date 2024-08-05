@@ -15,6 +15,9 @@ class CustomerLists extends Component
     public $orderBy = 'id';
     public $sortBy = 'desc';
 
+    public $filterType = 'all'; // Thêm biến này để lưu trữ loại bộ lọc
+    public $objectType = 'all'; // Thêm biến này để lưu trữ bộ lọc object
+
     public function updatedQ()
     {
         $this->q = trim($this->q);
@@ -30,6 +33,16 @@ class CustomerLists extends Component
     public function updatedSortBy()
     {
         $this->sortBy = trim($this->sortBy);
+        $this->applyFilter();
+    }
+
+    public function updatedFilterType()
+    {
+        $this->applyFilter();
+    }
+
+    public function updatedObjectType()
+    {
         $this->applyFilter();
     }
 
@@ -54,8 +67,20 @@ class CustomerLists extends Component
             });
         }
 
+        if ($this->filterType === 'business') {
+            $query->where('type', 'business');
+        } elseif ($this->filterType === 'individual') {
+            $query->where('type', 'individual');
+        }
+
+        if ($this->objectType !== 'all') {
+            $query->where('object', $this->objectType);
+        }
+
         $this->customers = $query->orderBy($this->orderBy, $this->sortBy)->paginate(10); // 10 là số lượng bản ghi mỗi trang, có thể điều chỉnh
     }
+
+
 
     public function delete($customerId)
     {
