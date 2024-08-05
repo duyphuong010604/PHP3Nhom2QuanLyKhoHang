@@ -50,7 +50,6 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <!--end::Global Stylesheets Bundle-->
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!--end::Global Stylesheets Bundle-->
 
     @livewireStyles
