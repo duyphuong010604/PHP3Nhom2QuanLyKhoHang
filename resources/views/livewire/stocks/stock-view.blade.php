@@ -1,4 +1,4 @@
-
+{{-- @dd($stocks) --}}
 <section>
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -310,9 +310,11 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Loại sản phẩm</th>
+                                    <th class="min-w-125px">Tên sản phẩm</th>
                                     <th class="min-w-125px">Trạng thái</th>
                                     <th class="min-w-125px">Phân khu</th>
+                                    <th class="min-w-125px">Số lượng nhập</th>
+                                    <th class="min-w-125px">Số lượng tồn</th>
                                     <th class="min-w-125px">Số lượng</th>
                                     <th class="min-w-125px">Ngày nhập kho</th>
                                     <th class="text-end min-w-70px">Thao tác</th>
@@ -322,7 +324,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
-                          @foreach ($stocks['products'] as $item) 
+                          @foreach ($stocks['transactions'] as $item) 
                           <tr>
                               <!--begin::Checkbox-->
                               <td>
@@ -333,32 +335,40 @@
                               <!--end::Checkbox-->
                               <!--begin::Customer=-->
                               <td>
-                                  <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}</a>
+                                  <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $item['product_name'] }}</a>
                               </td>
                               <!--end::Customer=-->
                               <!--begin::Status=-->
                               <td>
-                                @if ($item->status == '1')
+                                @if ($item['quantity'] > 0)
                                 <div class="badge badge-light-success">
-                                    Có sử dụng
+                                    Có sản phẩm
                                 </div>
                                 @else
                                 <div class="badge badge-light-danger">
-                                    Không sử dụng
+                                    Không sản phẩm
                                 </div>
                                 @endif
                               </td>
                               <!--end::Status=-->
                               <!--begin::Phân khu=-->
                               <td>
-                                <div class="badge badge-light">{{$stocks['shelf']->section  }}</div>                             
+                                <div class="badge badge-light">{{ $item['shelf_section']  }}</div>                             
                               </td>
                               <!--end::Phân khu=-->
                               <!--begin::Số lượng=-->
-                              <td>100</td>
+                              <td>
+                                {{ $item['quantity'] }}
+                              </td>
+                              <td>
+                                {{ $item['stock_quantity'] }}
+                              </td>
+                              <td>
+                                {{ $item['stock_quantity'] + $item['quantity'] }}
+                              </td>
                               <!--end::Số lượng=-->
                               <!--begin::Date=-->
-                              <td>17-03-2022</td>
+                              <td>{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</td>
                               <!--end::Date=-->
                               <!--begin::Action=-->
                               <td class="text-end">
@@ -378,15 +388,8 @@
                                   <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                       data-kt-menu="true">
                                       <!--begin::Menu item-->
-                                      <div class="menu-item px-3">
-                                          <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
-                                      </div>
                                       <!--end::Menu item-->
                                       <!--begin::Menu item-->
-                                      <div class="menu-item px-3">
-                                          <a href="#" data-kt-subscriptions-table-filter="delete_row"
-                                              class="menu-link px-3">Xóa</a>
-                                      </div>
                                       <!--end::Menu item-->
                                   </div>
                                   <!--end::Menu-->
@@ -596,6 +599,7 @@
                     <!--begin::Body-->
                     <div class="card-body pt-0">
                         <!--begin::Item-->
+                        @foreach ($stocks['transactions'] as $item)
                         <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
                             <!--begin::Icon-->
                             <span class="svg-icon svg-icon-success me-5">
@@ -616,44 +620,16 @@
                             <!--end::Icon-->
                             <!--begin::Title-->
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
-                                    #654</a>
-                                <span class="text-muted fw-bold d-block">24/06/2004</span>
+                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa tồn kho </a>
+
+                                <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
                             </div>
                             <!--end::Title-->
                             <!--begin::Lable-->
-                            <span class="fw-bolder text-success py-1">50 sản phẩm</span>
+                            <span class="fw-bolder text-success py-1">{{ $item['quantity'] }} sản phẩm</span>
                             <!--end::Lable-->
                         </div>
-                        <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
-                            <!--begin::Icon-->
-                            <span class="svg-icon svg-icon-success me-5">
-                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                                <span class="svg-icon svg-icon-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path opacity="0.3"
-                                            d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                            fill="black"></path>
-                                        <path
-                                            d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                            fill="black"></path>
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
-                            </span>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <div class="flex-grow-1 me-2">
-                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
-                                    #654</a>
-                                <span class="text-muted fw-bold d-block">24/06/2004</span>
-                            </div>
-                            <!--end::Title-->
-                            <!--begin::Lable-->
-                            <span class="fw-bolder text-success py-1">50 sản phẩm</span>
-                            <!--end::Lable-->
-                        </div>
+                        @endforeach
                         <!--end::Item-->
                     </div>
                     <!--end::Body-->
@@ -719,35 +695,36 @@
                     <!--begin::Body-->
                     <div class="card-body pt-0">
                         <!--begin::Item-->
-                        <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
-                            <!--begin::Icon-->
-                            <span class="svg-icon svg-icon-danger me-5">
-                                <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                                <span class="svg-icon svg-icon-1">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                        viewBox="0 0 24 24" fill="none">
-                                        <path opacity="0.3"
-                                            d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                            fill="black"></path>
-                                        <path
-                                            d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                            fill="black"></path>
-                                    </svg>
-                                </span>
-                                <!--end::Svg Icon-->
+                       @foreach ($stocks['transactions_out'] as $item)
+                       <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-danger me-5">
+                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3"
+                                        d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                        fill="black"></path>
+                                    <path
+                                        d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                        fill="black"></path>
+                                </svg>
                             </span>
-                            <!--end::Icon-->
-                            <!--begin::Title-->
-                            <div class="flex-grow-1 me-2">
-                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa
-                                    #654</a>
-                                <span class="text-muted fw-bold d-block">24/06/2004</span>
-                            </div>
-                            <!--end::Title-->
-                            <!--begin::Lable-->
-                            <span class="fw-bolder text-danger py-1">100 sản phẩm</span>
-                            <!--end::Lable-->
+                            <!--end::Svg Icon-->
+                        </span>
+                        <!--end::Icon-->
+                        <!--begin::Title-->
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa</a>
+                            <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
                         </div>
+                        <!--end::Title-->
+                        <!--begin::Lable-->
+                        <span class="fw-bolder text-danger py-1">{{ $item['quantity'] }} sản phẩm</span>
+                        <!--end::Lable-->
+                    </div>
+                       @endforeach
                         <!--end::Item-->
                     </div>
                     <!--end::Body-->

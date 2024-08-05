@@ -8,13 +8,15 @@ use Livewire\Component;
 class ViewProfile extends Component
 {
 
+    public $id;
     public $profiles;
     protected $profileRepository;
 
-    public function mount(ProfilesRepository $profilesRepository){
+    public function mount(ProfilesRepository $profilesRepository, $id){
         $this->profileRepository = $profilesRepository;
-        $this->profiles = $this->profileRepository->getProfile();
-        // dd($this->profiles->fullname);
+        $this->id = $id;
+        $this->profiles = $this->profileRepository->getProfile($id);
+        // dd($this->profiles);
     }
 
 

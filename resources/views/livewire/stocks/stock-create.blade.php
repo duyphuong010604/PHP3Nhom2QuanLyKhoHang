@@ -1,6 +1,4 @@
-{{-- @foreach ($stock as $item )
-    @dd($item->shelf->section)
-@endforeach --}}
+{{-- @dd($products) --}}
 
 <div>
     <section>
@@ -85,8 +83,8 @@
                                                     <select name="product_id" data-placeholder="Chọn kệ hàng..."
                                                         wire:model='product_id' class="form-select form-select-solid">
                                                         <option value="">Chọn loại sản phẩm...</option>
-                                                        @foreach ($stock as $item)
-                                                            <option value="{{ $item->product->id }}">{{ $item->product->name }}
+                                                        @foreach ($products as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}
                                                             </option>
                                                         @endforeach
 
@@ -96,28 +94,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="col-md-6 fv-row">
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">Kệ hàng hóa</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Your payment statements may very based on selected country"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Select-->
-                                                    <select name="shelf_id" data-placeholder="Chọn kệ hàng..."
-                                                        wire:model='shelf_id' class="form-select form-select-solid">
-                                                        <option value="">Chọn kệ hàng...</option>
-                                                        @foreach ($stock as $item)
-                                                            <option value="{{ $item->shelf->id }}">{{ $item->shelf->name }}
-                                                            </option>
-                                                        @endforeach
-
-                                                    </select>
-                                                    @error('shelf_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
+                                              
 
                                                 <!--end::Col-->
                                                 <!--begin::Col-->
@@ -133,12 +110,34 @@
                                                     <select name="section" data-placeholder="Chọn phân khu..."
                                                         class="form-select form-select-solid" wire:model='section'>
                                                         <option value="">Chọn phân khu...</option>
-                                                        @foreach ($stock as $item)
-                                                            <option value="{{ $item->shelf->section }}">{{ $item->shelf->section }}
+                                                        @foreach ($sheves as $item)
+                                                            <option value="{{ $item->section }}">{{ $item->section }}
                                                             </option>
                                                         @endforeach
                                                     </select>
                                                     @error('section')
+                                                        <span class="text-danger">{{ $message }}</span>
+                                                    @enderror
+                                                </div>
+                                                <div class="col-md-6 fv-row">
+                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
+                                                        <span class="required">Kệ hàng hóa</span>
+                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
+                                                            data-bs-toggle="tooltip"
+                                                            title="Your payment statements may very based on selected country"></i>
+                                                    </label>
+                                                    <!--end::Label-->
+                                                    <!--begin::Select-->
+                                                    <select name="shelf_id" data-placeholder="Chọn kệ hàng..."
+                                                        wire:model='shelf_id' class="form-select form-select-solid">
+                                                        <option value="">Chọn kệ hàng...</option>
+                                                        @foreach ($sheves as $item)
+                                                            <option value="{{ $item->id }}">{{ $item->name }}
+                                                            </option>
+                                                        @endforeach
+
+                                                    </select>
+                                                    @error('shelf_id')
                                                         <span class="text-danger">{{ $message }}</span>
                                                     @enderror
                                                 </div>

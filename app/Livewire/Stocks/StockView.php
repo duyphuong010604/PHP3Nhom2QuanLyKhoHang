@@ -22,6 +22,9 @@ class StockView extends Component{
         $this->stocks = $this->stocksRepository->getOne($id);
         // dd($this->stocks);
     }
+
+
+ 
     public function render()
     {
         return view('livewire.stocks.stock-view');

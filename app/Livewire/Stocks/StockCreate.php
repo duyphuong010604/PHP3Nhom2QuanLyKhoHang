@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Stocks;
 
+use App\Models\Product;
 use Livewire\Component;
 use App\Repositories\Stocks\StocksRepository;
 use App\Models\Shelf;
@@ -26,6 +27,10 @@ class StockCreate extends Component
     public $status = '';
 
     public $stock;
+
+    public $products;
+
+    public $sheves;
     public function rules()
     {
         return [
@@ -40,6 +45,8 @@ class StockCreate extends Component
     {
         $this->stocksRepository = $stocksRepository;
         $this->stock = Stock::with(['shelf', 'product'])->get();
+        $this->products = Product::all();
+        $this->sheves = Shelf::all();
         // dd($this->stock);
     }
 
@@ -48,7 +55,7 @@ class StockCreate extends Component
 
     public function render()
     {
-
+       
         return view('livewire.stocks.stock-create');
     }
 

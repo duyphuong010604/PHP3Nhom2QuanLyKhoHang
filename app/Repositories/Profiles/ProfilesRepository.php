@@ -8,7 +8,7 @@ class ProfilesRepository {
     
 
 
-    public function getProfile(){
-        return User::get();
+    public function getProfile($id){
+        return User::findOrFail($id);
     }
 }
