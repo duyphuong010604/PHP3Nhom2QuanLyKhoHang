@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Models\User;
-use App\Http\Requests\LoginRequest;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
+use Illuminate\Support\Str;
+use Closure;
+use Illuminate\Auth\Events\PasswordReset;
+use Illuminate\Support\Facades\Password;
 
 class UserController extends Controller
 {
@@ -24,6 +27,10 @@ class UserController extends Controller
 
 
     public $password = '';
+    protected $routeMiddleware = [
+        // ...
+        'auth.check' => \App\Http\Middleware\CheckAuthenticated::class,
+    ];
 
     public function index()
     {
@@ -119,4 +126,97 @@ class UserController extends Controller
 
         return redirect('/');
     }
+    public function handle(Request $request, Closure $next)
+    {
+        if (!Auth::check()) {
+            return redirect()->route('authentications.signIn')->with('error', 'Bạn cần đăng nhập để truy cập trang này.');
+        }
+
+        return $next($request);
+    }
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
+
+    public function handleGoogleCallback()
+    {
+        try {
+            $googleUser = Socialite::driver('google')->stateless()->user();
+        } catch (\Exception $e) {
+            return redirect('/login')->withErrors(['msg' => 'Unable to login using Google. Please try again.']);
+        }
+
+        // Check if the user already exists in your database
+        $user = User::where('email', $googleUser->getEmail())->first();
+
+        if ($user) {
+            // If the user exists, log them in
+            Auth::login($user);
+        } else {
+            // If the user does not exist, create a new user
+            $user = User::create([
+                'name' => $googleUser->getName(),
+                'email' => $googleUser->getEmail(),
+                'password' =>  Hash::make(Str::random(16)), // You can use a random password or any other logic
+                // Add other fields as necessary
+            ]);
+            Auth::login($user);
+        }
+
+        return redirect()->intended('trang-chu.index'); // Redirect to the intended page or home
+    }
+    public function showLinkRequestForm()
+    {
+        return view('authentications.passwords.email');
+    }
+
+    // Gửi liên kết đặt lại mật khẩu
+    public function sendResetLinkEmail(Request $request)
+    {
+        $request->validate(['email' => 'required|email']);
+
+        $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with(['status' => __($status)])
+                    : back()->withErrors(['email' => __($status)]);
+    }
+
+    // Hiển thị form đặt lại mật khẩu
+    public function showResetForm($token)
+    {
+        return view('authentications.passwords.reset', ['token' => $token]);
+    }
+
+    // Đặt lại mật khẩu
+    public function reset(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|confirmed|min:8',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            function ($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password),
+                ])->save();
+
+                $user->setRememberToken(Str::random(60));
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+                    ? redirect()->route('tai-khoan.index')->with('status', __($status))
+                    : back()->withErrors(['email' => [__($status)]]);
+    }
+
+
+
+    
 }

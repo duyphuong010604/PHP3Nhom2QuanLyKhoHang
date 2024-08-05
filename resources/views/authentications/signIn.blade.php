@@ -51,7 +51,7 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href=""
+                                    <a href="{{ route('tai-khoan.create') }}"
                                     class="link-primary fw-bolder">Tạo Tài Khoản</a>
                                     @csrf
                                 </div>
@@ -66,6 +66,9 @@
                                 <!--begin::Input-->
                                 <input class="form-control form-control-lg form-control-solid" type="email" name="email"
                                  autocomplete="off" :value="__('email')"/>
+                                 @error('email')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -77,6 +80,9 @@
                                     <label class="form-label fs-6 fw-bolder text-dark">Mât Khẩu</label>
                                     <input class="form-control form-control-lg form-control-solid" type="password"
                                     name="password" autocomplete="off" :value="__('password')" />
+                                    @error('password')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Input-->
@@ -92,10 +98,12 @@
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->
-                                <div class="text-center text-muted text-uppercase fw-bolder mb-5">Hoặc</div>
+                                <div class="text-center text-muted text-uppercase fw-bolder mb-5"><a href="{{ route('tai-khoan.password.request') }}"
+                                class=" fw-bolder">Quên Mật Khẩu</a></div>
+                                
                                 <!--end::Separator-->
                                 <!--begin::Google link-->
-                                <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                                     <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
                                         class="h-20px me-3" />Đăng Nhập với Google</a>
 

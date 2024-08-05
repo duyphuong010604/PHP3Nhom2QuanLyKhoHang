@@ -41,7 +41,7 @@
 				<!--begin::Wrapper-->
 				<div class="w-lg-500px p-10 p-lg-15 mx-auto">
 					<!--begin::Form-->
-					<form class="form w-100" novalidate="novalidate" id="kt_password_reset_form">
+					<form method="POST" action="{{ route('tai-khoan.password.update') }}">
 						<!--begin::Heading-->
 						<div class="text-center mb-10">
 							<!--begin::Title-->
@@ -56,17 +56,20 @@
 						<!--begin::Input group-->
 						<div class="fv-row mb-10">
 							<label class="form-label fw-bolder text-gray-900 fs-6">Email</label>
-							<input class="form-control form-control-solid" type="email" placeholder="" name="email"
-								autocomplete="off" />
+							<input class="form-control form-control-lg form-control-solid" type="email" name="email"
+                                 autocomplete="off" :value="__('email')"/>
+                                 @error('email')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
+                                <!--end::Input-->
+                            </div>
 						</div>
 						<!--end::Input group-->
 						<!--begin::Actions-->
 						<div class="d-flex flex-wrap justify-content-center pb-lg-0">
-							<button type="button" id="kt_password_reset_submit"
+							<button type="submit" id="kt_password_reset_submit"
 								class="btn btn-lg btn-primary fw-bolder me-4">
 								<span class="indicator-label">Xác Nhận</span>
-								<span class="indicator-progress">Vui Lòng Chờ
-									<span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
 							</button>
 							<a href="../../demo1/dist/authentication/flows/aside/sign-up.html"
 								class="btn btn-lg btn-light-primary fw-bolder">Huỷ Bỏ</a>
