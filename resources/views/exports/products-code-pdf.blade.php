@@ -137,7 +137,7 @@
                             <td>{{ $item->category->name }}</td>
                             <td>
                                 <p class="mb-6">
-                                    {!! DNS1D::getBarcodeHTML("$item->sku", 'C39+') !!}
+                                    {!! DNS1D::getBarcodeHTML("$item->sku", 'EAN13') !!}
                                 </p>
                                 <p class="mt-6">
                                     {!! DNS2D::getBarcodeHTML("$item->sku", 'QRCODE') !!}

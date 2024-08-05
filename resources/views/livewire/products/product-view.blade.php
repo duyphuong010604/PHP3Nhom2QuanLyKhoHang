@@ -180,7 +180,7 @@
                                 <tr>
                                     <td class="text-gray-400 w-65px">Code:</td>
                                     <td class="text-gray-800 w-65px">
-                                        {!! DNS1D::getBarcodeSVG("$product->sku", 'C39') !!}
+                                        {!! DNS1D::getBarcodeHTML("$product->sku", 'EAN13') !!}
                                     </td>
                                 </tr>
                             </tbody>

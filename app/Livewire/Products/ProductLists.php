@@ -6,21 +6,14 @@ use App\Models\Category;
 use Livewire\Component;
 use App\Models\Product;
 use App\Models\Stock;
-use App\Models\Shelf;
-use Livewire\Attributes\Session;
 use Livewire\WithPagination;
-use Livewire\WithoutUrlPagination;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Dompdf\Dompdf;
 use Dompdf\Options;
 use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
-use Illuminate\Support\Facades\Storage;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
-use Livewire\Attributes\Url;
-use Livewire\Attributes\Computed;
-use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Validate;
 
@@ -30,18 +23,14 @@ class ProductLists extends Component
     use WithPagination;
     use LivewireAlert;
 
-    public $q = null;
+    public $search = null;
     public $categories = '';
-
     protected $products;
-
     public $category_id = 'all';
     public $orderBy = 'id';
     public $sortBy = 'desc';
     public $confirmingProjectDeletion = false;
     public $projectIdToDelete = false;
-
-
     public function render()
     {
         $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
@@ -49,13 +38,10 @@ class ProductLists extends Component
             'livewire.products.product-lists',
         );
     }
-    public function updatedQ()
+    public function updatedSearch()
     {
-        $this->q = trim($this->q);
-        // $this->resetPage();
-        log::info($this->q);
+        $this->search = trim($this->search);
     }
-
     public function updatedOrderBy()
     {
         $this->resetPage();
@@ -66,25 +52,23 @@ class ProductLists extends Component
     }
     public function updatedCategory_id()
     {
+        log::info($this->category_id);
         $this->resetPage();
     }
-
     public function loadProducts()
     {
         $query = Product::with('stocks.shelf');
-        if ($this->q === null) {
+        if ($this->search === null) {
             $query
                 ->orderBy('id', 'desc');
         } else {
             $query
-                ->where('name', 'like', "%" . $this->q . "%")
-                ->orWhere('sku', 'like', "%" . $this->q . "%")
+                ->where('name', 'like', "%" . $this->search . "%")
+                ->orWhere('sku', 'like', "%" . $this->search . "%")
                 ->orderBy('id', 'desc');
         }
         return $query->paginate(5);
-
     }
-
     public function applyFilter()
     {
         $query = Product::with('stocks.shelf');
@@ -101,22 +85,17 @@ class ProductLists extends Component
             $sortOrder = 'asc';
             $query->orderBy('price', $sortOrder);
         }
-
         return $this->products = $query->paginate(5);
     }
-
     public function boot()
     {
         $this->products = $this->loadProducts();
     }
-
-
     public function confirmProjectDeletion($projectId)
     {
         $this->confirmingProjectDeletion = true;
         $this->projectIdToDelete = $projectId;
     }
-
     public function deleteProject()
     {
         $stock = Stock::where('product_id', $this->projectIdToDelete)->get();
@@ -133,9 +112,6 @@ class ProductLists extends Component
     public $productId = [];
     public $selectAll = false;
     public $showDeleteButton = false;
-
-
-
     public function updatedProductId()
     {
         log::info($this->productId);
@@ -154,12 +130,10 @@ class ProductLists extends Component
         $this->showDeleteButton = count($this->productId) > 0;
     }
     public $productStock = true;
-
     public function updatingPage($page)
     {
         Log::info('cac o da check' . $page);
     }
-
     public function updatedPage($page)
     {
         Log::info('dang o trang so' . $page);
@@ -292,55 +266,4 @@ class ProductLists extends Component
             }, 'products-code.pdf');
         }
     }
-
-    // newProduct
-    #[Validate('required', message: 'Vui lòng nhập tên sản phẩm.')]
-    #[Validate('min:3', message: 'Vui lòng nhiều hơn 3 kí tự.')]
-    public $nameN = '';
-    #[Validate('required', message: 'Vui lòng nhập thông tin sản phẩm.')]
-    public $categoryIdN = '';
-    #[Validate('required', message: 'Vui lòng nhập giá nhập.')]
-    #[Validate('min:100', message: 'Vui lòng nhiều hơn 100 vnđ.')]
-    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng tiền tệ.')]
-    #[Validate('lt:priceN', message: 'Vui lòng cho giá bán thấp hơn giá nhập.')]
-    public $costN = '';
-    #[Validate('required', message: 'Vui lòng nhập giá bán.')]
-    #[Validate('min:100', message: 'Vui lòng nhiều hơn 100 vnđ.')]
-    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng tiền tệ.')]
-    #[Validate('gt:costN', message: 'Vui lòng cho giá bán cao hơn giá nhập.')]
-    public $priceN = '';
-    #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
-    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
-    #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
-    public $skuN = '';
-    public function newProduct()
-    {
-        $validated = $this->validate();
-
-        $products = Product::create([
-            "name" => $this->nameN,
-            "price" => $this->priceN,
-            "cost" => $this->costN,
-            "category_id" => $this->categoryIdN,
-            'sku' => $this->skuN
-        ]);
-
-        if ($products) {
-            $this->alert('success', 'Thêm sản phẩm mới thành công!', [
-                'position' => 'top-end',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
-            ]);
-            $this->reset([
-                "nameN",
-                "priceN",
-                "costN",
-                "categoryIdN",
-                'skuN'
-            ]);
-        }
-    }
-
-
 }

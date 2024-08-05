@@ -44,7 +44,8 @@ class ProductCreate extends Component
     public $weight = '';
     #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
-    #[Validate('min:100000000', message: 'Vui lòng nhập mã lớn hơn 1000000000.')]
+    #[Validate('min:100000000000', message: 'Vui lòng nhập mã theo chuẩn ENV13.')]
+    #[Validate('max:999999999999', message: 'Vui lòng nhập mã theo chuẩn ENV13.')]
     #[Validate('unique:products,sku', message: 'Mã sãn phẩm đã có.')]
     public $sku = '';
     public $imageUrl;
@@ -64,20 +65,20 @@ class ProductCreate extends Component
 
     }
 
-    public function rules()
-    {
-        return [
-            'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1048',
-            'name' => 'required|min:3|',
-            'price' => 'required|min:100|numeric|gt:cost',
-            'cost' => 'required|min:100|numeric|lt:price',
-            'dimensions' => 'required|min:3|regex:/^\d+x\d+$/',
-            'weight' => 'required|min:3|numeric',
-            'category_id' => 'required',
-            'description' => 'nullable',
-            'sku' => 'required|numeric|min:1000000000|unique:products,sku|'
-        ];
-    }
+    // public function rules()
+    // {
+    //     return [
+    //         'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1048',
+    //         'name' => 'required|min:3|',
+    //         'price' => 'required|min:100|numeric|gt:cost',
+    //         'cost' => 'required|min:100|numeric|lt:price',
+    //         'dimensions' => 'required|min:3|regex:/^\d+x\d+$/',
+    //         'weight' => 'required|min:3|numeric',
+    //         'category_id' => 'required',
+    //         'description' => 'nullable',
+    //         'sku' => 'required|numeric|min:1000000000|unique:products,sku|'
+    //     ];
+    // }
 
 
     public function create()
