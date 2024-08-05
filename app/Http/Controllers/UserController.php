@@ -19,13 +19,19 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
+    protected $fillable = [
+        'name',
+        'email',
+        'password',
+        'token', // Thêm vào đây
+    ];
     public $email = '';
 
     public $username = '';
 
     public $fullname = '';
 
-
+    public $token = '';
     public $password = '';
     // protected $routeMiddleware = [
     //     // ...
@@ -166,52 +172,5 @@ class UserController extends Controller
 
         return redirect()->intended('trang-chu.index'); // Redirect to the intended page or home
     }
-    public function showLinkRequestForm()
-    {
-        return view('authentications.email');
-    }
-
-    // Gửi liên kết đặt lại mật khẩu
-    public function sendResetLinkEmail(Request $request)
-    {
-        $request->validate(['email' => 'required|email']);
-
-        $status = Password::sendResetLink($request->only('email'));
-
-        return $status === Password::RESET_LINK_SENT
-            ? back()->with(['status' => __($status)])
-            : back()->withErrors(['email' => __($status)]);
-    }
-
-    // Hiển thị form đặt lại mật khẩu
-    public function showResetForm($token)
-    {
-        return view('authentications.passwordReset', ['token' => $token]);
-    }
-
-    // Đặt lại mật khẩu
-    public function reset(Request $request)
-    {
-        $request->validate([
-            'email' => 'required|email',
-            'password' => 'required|confirmed|min:8',
-        ]);
-
-        $status = Password::reset(
-            $request->only('email', 'password',),
-            function ($user, $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password),
-                ])->save();
-
-                $user->setRememberToken(Str::random(60));
-
-                event(new PasswordReset($user));
-            }
-        );
-
-        return $status === Password::PASSWORD_RESET
-            ? redirect()->route('tai-khoan.index')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
-    }
+    
 }

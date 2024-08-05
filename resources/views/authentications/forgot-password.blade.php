@@ -1,7 +1,7 @@
 @extends('layouts.auth')
 
 @section('contents')
-    <div class="d-flex flex-column flex-root">
+<div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
         <div class="d-flex flex-column flex-lg-row flex-column-fluid">
             <!--begin::Aside-->
@@ -41,20 +41,16 @@
                 <div class="d-flex flex-center flex-column flex-column-fluid">
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
-                        <!--begin::Form-->
-                        <form action="{{ route ('tai-khoan.login.submit')}}" method="POST"  class="form w-100">
+    <!-- Session Status -->
+
+    <form action="{{ route ('password.email')}}" method="POST"  class="form w-100">
                         @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
-                                <h1 class="text-dark mb-3">Đăng nhập</h1>
+                                <h1 class="text-dark mb-3">Quên Mật Khẩu</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
-                                <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="{{ route('tai-khoan.create') }}"
-                                    class="link-primary fw-bolder">Tạo Tài Khoản</a>
-                                    @csrf
-                                </div>
                                 <!--end::Link-->
                             </div>
                             <!--begin::Heading-->
@@ -73,18 +69,7 @@
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
-                            <div class="fv-row mb-10">
-                                <!--begin::Label-->
-                                <label class="form-label fs-6 fw-bolder text-dark">Mật Khẩu</label>
-                                <!--end::Label-->
-                                <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                                 autocomplete="off" :value="__('password')"/>
-                                 @error('password')
-                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
-                                <!--end::Input-->
-                            </div>
+                           
                             <!--end::Input group-->
                             <!--begin::Actions-->
                             <div class="text-center">
@@ -94,20 +79,11 @@
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->
-                                <div class="text-center text-muted text-uppercase fw-bolder mb-5"><a href="{{ route('password.request') }}"
-                                class=" fw-bolder">Quên Mật Khẩu</a></div>
-                                
-                                <!--end::Separator-->
-                                <!--begin::Google link-->
-                                <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                        class="h-20px me-3" />Đăng Nhập với Google</a>
 
                             </div>
                             <!--end::Actions-->
                         </form>
-                        <!--end::Form-->
-                    </div>
+                        </div>
                     <!--end::Wrapper-->
                 </div>
                 <!--end::Content-->
@@ -118,4 +94,4 @@
         </div>
         <!--end::Authentication - Sign-in-->
     </div>
-@endsection
+    @endsection
