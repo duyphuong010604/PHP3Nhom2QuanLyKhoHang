@@ -14,23 +14,26 @@ Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
     Route::get('login/google', [UserController::class, 'redirectToGoogle'])->name('login.google');
     Route::get('login/google/callback', [UserController::class, 'handleGoogleCallback'])->name('google.callback');
 
-    // Routes for password reset
+    // Các route cập nhật mật khẩu
     Route::get('/forgot-password', [UserController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot-password', [UserController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/reset-password/{token}', [UserController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [UserController::class, 'reset'])->name('password.update');
-   
+    Route::get('/{id}', [UserController::class, 'show'])->name('show');
+    Route::get('/{id}/chinh-sua', [UserController::class, 'edit'])->name('edit');
+    Route::put('/{id}', [UserController::class, 'update'])->name('update');
+    Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
 });
 
-Route::middleware('auth.check')->group(function () {
-    Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
-        // Các route yêu cầu đăng nhập
-        Route::get('/{id}', [UserController::class, 'show'])->name('show');
-        Route::get('/{id}/chinh-sua', [UserController::class, 'edit'])->name('edit');
-        Route::put('/{id}', [UserController::class, 'update'])->name('update');
-        Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
-    });
-});
+// Route::middleware('auth.check')->group(function () {
+//     Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
+//         // Các route yêu cầu đăng nhập
+//         Route::get('/{id}', [UserController::class, 'show'])->name('show');
+//         Route::get('/{id}/chinh-sua', [UserController::class, 'edit'])->name('edit');
+//         Route::put('/{id}', [UserController::class, 'update'])->name('update');
+//         Route::delete('/{id}', [UserController::class, 'destroy'])->name('destroy');
+//     });
+// });
 
 
 

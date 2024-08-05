@@ -1,14 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\UserController;
 
 
 Route::get('/', function () {
-    return view('authentications.SignIn');
+    return view('authentications.signIn');
 });
 
-Route::middleware(['auth.check'])->group(function () {
     // Các route yêu cầu đăng nhập
     require __DIR__ . "/dashboard.php";
     require __DIR__ . "/product.php";
@@ -17,4 +16,3 @@ Route::middleware(['auth.check'])->group(function () {
     require __DIR__ . "/outboundShipment.php";
     require __DIR__ . "/stock.php";
     require __DIR__ . "/user.php"; 
-});

@@ -74,19 +74,15 @@
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
-                                <!--begin::Wrapper-->
-                                <div class="d-flex flex-stack mb-2">
-                                    <!--begin::Label-->
-                                    <label class="form-label fs-6 fw-bolder text-dark">Mât Khẩu</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="password"
-                                    name="password" autocomplete="off" :value="__('password')" />
-                                    @error('password')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
-                                </div>
-                                <!--end::Wrapper-->
+                                <!--begin::Label-->
+                                <label class="form-label fs-6 fw-bolder text-dark">Mật Khẩu</label>
+                                <!--end::Label-->
                                 <!--begin::Input-->
-                                
+                                <input class="form-control form-control-lg form-control-solid" type="email" name="email"
+                                 autocomplete="off" :value="__('password')"/>
+                                 @error('password')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->

@@ -27,16 +27,16 @@ class UserController extends Controller
 
 
     public $password = '';
-    protected $routeMiddleware = [
-        // ...
-        'auth.check' => \App\Http\Middleware\CheckAuthenticated::class,
-    ];
+    // protected $routeMiddleware = [
+    //     // ...
+    //     'auth.check' => \App\Http\Middleware\CheckAuthenticated::class,
+    // ];
 
     public function index()
     {
         return view('authentications.signIn');
     }
-   
+
     /**
      * Show the form for creating a new resource.
      */
@@ -67,14 +67,14 @@ class UserController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(Request $request): RedirectResponse
-    { 
+    {
         $request->validate([
             'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
-            'password' => ['required','string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+            'password' => ['required', 'string', 'max:255'],
             'fullname' => ['required', 'string', 'max:255'],
         ]);
-       
+
         $users = User::create([
             'username' => $request->username,
             'email' => $request->email,
@@ -82,7 +82,7 @@ class UserController extends Controller
             'fullname' => $request->fullname,
         ]);
 
-        
+
 
         Auth::login($users);
 
@@ -144,7 +144,7 @@ class UserController extends Controller
         try {
             $googleUser = Socialite::driver('google')->stateless()->user();
         } catch (\Exception $e) {
-            return redirect('/login')->withErrors(['msg' => 'Unable to login using Google. Please try again.']);
+            return redirect('/tai-khoan')->withErrors(['msg' => 'Unable to login using Google. Please try again.']);
         }
 
         // Check if the user already exists in your database
@@ -158,7 +158,7 @@ class UserController extends Controller
             $user = User::create([
                 'name' => $googleUser->getName(),
                 'email' => $googleUser->getEmail(),
-                'password' =>  Hash::make(Str::random(16)), // You can use a random password or any other logic
+                'password' => Hash::make(Str::random(16)), // You can use a random password or any other logic
                 // Add other fields as necessary
             ]);
             Auth::login($user);
@@ -168,7 +168,7 @@ class UserController extends Controller
     }
     public function showLinkRequestForm()
     {
-        return view('authentications.passwords.email');
+        return view('authentications.email');
     }
 
     // Gửi liên kết đặt lại mật khẩu
@@ -179,27 +179,26 @@ class UserController extends Controller
         $status = Password::sendResetLink($request->only('email'));
 
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])
+            : back()->withErrors(['email' => __($status)]);
     }
 
     // Hiển thị form đặt lại mật khẩu
     public function showResetForm($token)
     {
-        return view('authentications.passwords.reset', ['token' => $token]);
+        return view('authentications.passwordReset', ['token' => $token]);
     }
 
     // Đặt lại mật khẩu
     public function reset(Request $request)
     {
         $request->validate([
-            'token' => 'required',
             'email' => 'required|email',
             'password' => 'required|confirmed|min:8',
         ]);
 
         $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
+            $request->only('email', 'password',),
             function ($user, $password) {
                 $user->forceFill([
                     'password' => Hash::make($password),
@@ -212,11 +211,7 @@ class UserController extends Controller
         );
 
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('tai-khoan.index')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('tai-khoan.index')->with('status', __($status))
+            : back()->withErrors(['email' => [__($status)]]);
     }
-
-
-
-    
 }
