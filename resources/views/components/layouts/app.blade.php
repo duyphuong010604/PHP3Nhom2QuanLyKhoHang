@@ -37,7 +37,10 @@ License: For each use you must have a valid license purchased only from above li
     <link href="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.css') }}" rel="stylesheet"
         type="text/css" />
     <!--end::Page Vendor Stylesheets-->
+    <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
     <!--begin::Global Stylesheets Bundle(used by all pages)-->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <link href="{{ asset('assets/plugins/global/plugins.bundle.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/style.bundle.css') }}" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -96,10 +99,14 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
     <script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
-    <script src="{{ asset('custom/js/add_item.js') }}"></script>
+
+    {{-- <script src="{{ asset('custom/js/add_item.js') }}"></script> --}}
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
     @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
+
 </body>
 <!--end::Body-->
 
