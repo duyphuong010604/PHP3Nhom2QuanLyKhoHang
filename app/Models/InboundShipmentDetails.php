@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundShipmentDetails extends Model
 {
     use HasFactory;
+    
+    protected $table = 'inbound_shipmentdetails';
     protected $fillable = [
         'product_id',
         'inbound_shipment_id',

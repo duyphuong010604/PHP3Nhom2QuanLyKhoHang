@@ -33,5 +33,10 @@ class InboundShipment extends Model
         return $this->belongsTo(Shelf::class);
     }
 
+    public function inboundShipmentDetails()
+    {
+        return $this->hasMany(InboundShipmentDetails::class);
+    }
+
 
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Stock;
 use Illuminate\Http\Request;
+use App\Repositories\Stocks\StockRepository;
 
 class StockController extends Controller
 {
@@ -12,8 +13,7 @@ class StockController extends Controller
      */
     public function index()
     {
-        $stock = Stock::with(['shelf', 'product'])->get();
-        dd($stock);
+
         return view('stocks.index');
     }
 
