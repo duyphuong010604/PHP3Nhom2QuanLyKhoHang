@@ -61,8 +61,6 @@
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
                                 placeholder="Tìm kiếm sản phẩm" wire:model.live='search'>
-
-
                         </div>
                         <!--end::Search-->
                     </div>
@@ -267,7 +265,6 @@
                                                         wire:click='updateDeleteButton' wire:model='productId'
                                                         value="{{ $item->id }}">
                                                 </div>
-
                                             </td>
                                             <!--end::Checkbox-->
                                             <!--begin::Customer=-->
@@ -301,7 +298,6 @@
                                                             {{ $stockProduct->quantity }}</small>
                                                     @endforeach
                                                 @endif
-
                                             </td>
                                             <td>
                                                 {{ $item->sku }}
@@ -469,7 +465,7 @@
                                     <select wire:model='typeExport' class="form-select form-select-solid ">
                                         <option value="excell">Excel</option>
                                         <option value="pdf">PDF</option>
-                                        <option value="code">PDF CODE</option>
+                                        <option value="code">PDF Code</option>
                                     </select>
                                     <!--end::Input-->
                                 </div>

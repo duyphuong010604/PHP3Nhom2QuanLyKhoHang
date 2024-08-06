@@ -15,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
 use Illuminate\Support\Facades\Log;
-use Livewire\Attributes\Validate;
+
 
 #[Title('Danh sách sản phẩm')]
 class ProductLists extends Component
@@ -31,6 +31,7 @@ class ProductLists extends Component
     public $sortBy = 'desc';
     public $confirmingProjectDeletion = false;
     public $projectIdToDelete = false;
+
     public function render()
     {
         $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
@@ -41,6 +42,7 @@ class ProductLists extends Component
     public function updatedSearch()
     {
         $this->search = trim($this->search);
+        $this->resetPage();
     }
     public function updatedOrderBy()
     {
@@ -55,6 +57,7 @@ class ProductLists extends Component
         log::info($this->category_id);
         $this->resetPage();
     }
+
     public function loadProducts()
     {
         $query = Product::with('stocks.shelf');
@@ -132,10 +135,12 @@ class ProductLists extends Component
     public $productStock = true;
     public function updatingPage($page)
     {
+
         Log::info('cac o da check' . $page);
     }
     public function updatedPage($page)
     {
+
         Log::info('dang o trang so' . $page);
     }
     public function deleteSelected()
