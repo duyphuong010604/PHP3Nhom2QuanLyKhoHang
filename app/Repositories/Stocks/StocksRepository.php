@@ -58,6 +58,7 @@ class StocksRepository
                     'product_name' => $detail->product->name,
                     'transaction_type' => 'Inbound',
                     'quantity' => $detail->quantity,
+                    'inbound_id' => $inboundShipment->id,
                     'transaction_date' => $inboundShipment->created_at,
                     'stock_quantity' => $shelf->stocks->where('product_id', $detail->product_id)->sum('quantity')
                 ];
@@ -71,6 +72,7 @@ class StocksRepository
                     'product_name' => $detail->product->name,
                     'transaction_type' => 'Outbound',
                     'quantity' => $detail->quantity,
+                    'outbound_id' => $detail->id,
                     'transaction_date' => $outboundShipment->created_at,
                     'stock_quantity' => $shelf->stocks->where('product_id', $detail->product_id)->sum('quantity')
                 ];

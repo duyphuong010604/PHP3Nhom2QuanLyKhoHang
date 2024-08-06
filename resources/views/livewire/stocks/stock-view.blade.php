@@ -620,7 +620,7 @@
                             <!--end::Icon-->
                             <!--begin::Title-->
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa tồn kho </a>
+                                <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa tồn kho #{{ $item['inbound_id'] }}</a>
 
                                 <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
                             </div>
@@ -716,7 +716,7 @@
                         <!--end::Icon-->
                         <!--begin::Title-->
                         <div class="flex-grow-1 me-2">
-                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa</a>
+                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa #{{ $item['outbound_id'] }}</a>
                             <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
                         </div>
                         <!--end::Title-->

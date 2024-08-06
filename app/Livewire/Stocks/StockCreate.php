@@ -8,6 +8,7 @@ use App\Repositories\Stocks\StocksRepository;
 use App\Models\Shelf;
 use App\Models\Stock;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Illuminate\Support\Facades\DB;
 
 class StockCreate extends Component
 {
@@ -66,6 +67,7 @@ class StockCreate extends Component
     {
         $validated = $this->validate();
 
+        dd(DB::getQueryLog());
         $stocks = Stock::create([
             'product_id' => $this->product_id,
             'shelf_id' => $this->shelf_id,
