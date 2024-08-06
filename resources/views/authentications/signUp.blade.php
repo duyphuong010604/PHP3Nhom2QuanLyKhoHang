@@ -37,7 +37,7 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route ('tai-khoan.store')}}" method="POST"  class="form w-100">
+                        <form action="{{ route ('store')}}" method="POST"  class="form w-100">
                            @csrf
                             <div class="mb-10 text-center">
                                 <!--begin::Title-->
@@ -53,7 +53,7 @@
                             <!--end::Heading-->
                             <!--begin::Action-->
                             
-                            <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                            <a href="{{ route('login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                                     <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
                                         class="h-20px me-3" />Đăng Nhập với Google</a>
 

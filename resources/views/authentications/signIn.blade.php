@@ -42,7 +42,7 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route('tai-khoan.login.submit')}}" method="POST"  class="form w-100">
+                        <form action="{{ route('login.submit')}}" method="POST"  class="form w-100">
                         @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
@@ -51,7 +51,7 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="{{ route('tai-khoan.create') }}"
+                                    <a href="{{ route('create') }}"
                                     class="link-primary fw-bolder">Tạo Tài Khoản</a>
                                 </div>
                                 <!--end::Link-->
@@ -98,7 +98,7 @@
                                 
                                 <!--end::Separator-->
                                 <!--begin::Google link-->
-                                <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                <a href="{{ route('login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                                     <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
                                         class="h-20px me-3" />Đăng Nhập với Google</a>
 
