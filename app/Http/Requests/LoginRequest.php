@@ -15,7 +15,7 @@ class LoginRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -23,6 +23,7 @@ class LoginRequest extends FormRequest
      *
      * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
      */
+    
     public function rules(): array
     {
         return [
@@ -31,6 +32,13 @@ class LoginRequest extends FormRequest
         ];
 
     }
+    //Bắt lỗi form 
+    public function messages() {
+        return [
+         'email.required' => 'Phải nhập họ tên chứ',
+         'password.required' => 'Password phải lên 8 kí tự',
+       ];
+     }
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();

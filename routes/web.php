@@ -3,8 +3,14 @@
 use App\Models\Product;
 use Illuminate\Support\Facades\Route;
 
+
+
 Route::get('/', function () {
-    return view('authentications.signUp');
+    return view('authentications.signIn');
+});
+
+Route::get('/test', function () {
+    return view('exports.products-code-pdf', ['products' => Product::all()]);
 });
 
 Route::get('/test', function () {

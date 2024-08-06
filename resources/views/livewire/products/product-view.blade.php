@@ -229,7 +229,6 @@
                         <!--end::Table head-->
                         <!--begin::Table body-->
                         <tbody class="fw-bold text-gray-800">
-
                             @if ($product->stocks)
                                 @foreach ($product->stocks as $item)
                                     <tr>

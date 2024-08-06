@@ -1,1647 +1,827 @@
 @extends('stocks.index')
 
 @section('contents')
-    <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
-        <!--begin::Toolbar-->
-        <div class="toolbar" id="kt_toolbar">
-            <!--begin::Container-->
-            <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
-                <!--begin::Page title-->
-                <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
-                    data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
-                    class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-                    <!--begin::Title-->
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">View User Details</h1>
-                    <!--end::Title-->
-                    <!--begin::Separator-->
-                    <span class="h-20px border-gray-200 border-start mx-4"></span>
-                    <!--end::Separator-->
-                    <!--begin::Breadcrumb-->
-                    <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">User Management</li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Users</li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-dark">View User</li>
-                        <!--end::Item-->
-                    </ul>
-                    <!--end::Breadcrumb-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Toolbar-->
+    <div class="toolbar" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend"
+                data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
+                class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Danh sách kệ hàng A</h1>
+                <!--end::Title-->
+                <!--begin::Separator-->
+                <span class="h-20px border-gray-200 border-start mx-4"></span>
+                <!--end::Separator-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">Danh sách tồn kho</li>
+                    <!--end::Item-->
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center py-1">
+                <!--begin::Wrapper-->
+                <div class="me-4">
+                    <!--begin::Menu-->
+                    <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
+                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                        <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                        <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none">
+                                <path
+                                    d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
+                                    fill="black" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->Filter</a>
+                    <!--begin::Menu 1-->
+                    <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
+                        id="kt_menu_61484c4e0b17a">
+                        <!--begin::Header-->
+                        <div class="px-7 py-5">
+                            <div class="fs-5 text-dark fw-bolder">Filter Options</div>
+                        </div>
+                        <!--end::Header-->
+                        <!--begin::Menu separator-->
+                        <div class="separator border-gray-200"></div>
+                        <!--end::Menu separator-->
+                        <!--begin::Form-->
+                        <div class="px-7 py-5">
+                            <!--begin::Input group-->
+                            <div class="mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label fw-bold">Status:</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <div>
+                                    <select class="form-select form-select-solid" data-kt-select2="true"
+                                        data-placeholder="Select option" data-dropdown-parent="#kt_menu_61484c4e0b17a"
+                                        data-allow-clear="true">
+                                        <option></option>
+                                        <option value="1">Approved</option>
+                                        <option value="2">Pending</option>
+                                        <option value="2">In Process</option>
+                                        <option value="2">Rejected</option>
+                                    </select>
+                                </div>
+                                <!--end::Input-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label fw-bold">Member Type:</label>
+                                <!--end::Label-->
+                                <!--begin::Options-->
+                                <div class="d-flex">
+                                    <!--begin::Options-->
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
+                                        <input class="form-check-input" type="checkbox" value="1" />
+                                        <span class="form-check-label">Author</span>
+                                    </label>
+                                    <!--end::Options-->
+                                    <!--begin::Options-->
+                                    <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="2"
+                                            checked="checked" />
+                                        <span class="form-check-label">Customer</span>
+                                    </label>
+                                    <!--end::Options-->
+                                </div>
+                                <!--end::Options-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                            <div class="mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label fw-bold">Notifications:</label>
+                                <!--end::Label-->
+                                <!--begin::Switch-->
+                                <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
+                                    <input class="form-check-input" type="checkbox" value="" name="notifications"
+                                        checked="checked" />
+                                    <label class="form-check-label">Enabled</label>
+                                </div>
+                                <!--end::Switch-->
+                            </div>
+                            <!--end::Input group-->
+                            <!--begin::Actions-->
+                            <div class="d-flex justify-content-end">
+                                <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
+                                    data-kt-menu-dismiss="true">Reset</button>
+                                <button type="submit" class="btn btn-sm btn-primary"
+                                    data-kt-menu-dismiss="true">Apply</button>
+                            </div>
+                            <!--end::Actions-->
+                        </div>
+                        <!--end::Form-->
+                    </div>
+                    <!--end::Menu 1-->
+                    <!--end::Menu-->
                 </div>
-                <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center py-1">
-                    <!--begin::Wrapper-->
-                    <div class="me-4">
-                        <!--begin::Menu-->
-                        <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
+                <!--end::Wrapper-->
+                <!--begin::Button-->
+                <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
+                    data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
+                <!--end::Button-->
+            </div>
+            <!--end::Actions-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Toolbar-->
+    <!--begin::Post-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Card-->
+            <div class="card">
+                <!--begin::Card header-->
+                <div class="card-header border-0 pt-6">
+                    <!--begin::Card title-->
+                    <div class="card-title">
+                        <!--begin::Search-->
+                        <div class="d-flex align-items-center position-relative my-1">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen021.svg-->
+                            <span class="svg-icon svg-icon-1 position-absolute ms-6">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <rect opacity="0.5" x="17.0365" y="15.1223" width="8.15546" height="2"
+                                        rx="1" transform="rotate(45 17.0365 15.1223)" fill="black" />
                                     <path
-                                        d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
+                                        d="M11 19C6.55556 19 3 15.4444 3 11C3 6.55556 6.55556 3 11 3C15.4444 3 19 6.55556 19 11C19 15.4444 15.4444 19 11 19ZM11 5C7.53333 5 5 7.53333 5 11C5 14.4667 7.53333 17 11 17C14.4667 17 17 14.4667 17 11C17 7.53333 14.4667 5 11 5Z"
                                         fill="black" />
                                 </svg>
                             </span>
-                            <!--end::Svg Icon-->Filter</a>
-                        <!--begin::Menu 1-->
-                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                            id="kt_menu_61484c5675eda">
-                            <!--begin::Header-->
-                            <div class="px-7 py-5">
-                                <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Menu separator-->
-                            <div class="separator border-gray-200"></div>
-                            <!--end::Menu separator-->
-                            <!--begin::Form-->
-                            <div class="px-7 py-5">
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Status:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <div>
-                                        <select class="form-select form-select-solid" data-kt-select2="true"
-                                            data-placeholder="Select option" data-dropdown-parent="#kt_menu_61484c5675eda"
-                                            data-allow-clear="true">
+                            <!--end::Svg Icon-->
+                            <input type="text" data-kt-subscription-table-filter="search"
+                                class="form-control form-control-solid w-250px ps-14" placeholder="Tìm kiếm" />
+                        </div>
+                        <!--end::Search-->
+                    </div>
+                    <!--begin::Card title-->
+                    <!--begin::Card toolbar-->
+                    <div class="card-toolbar">
+                        <!--begin::Toolbar-->
+                        <div class="d-flex justify-content-end" data-kt-subscription-table-toolbar="base">
+                            <!--begin::Filter-->
+                            <button type="button" class="btn btn-light-primary me-3" data-kt-menu-trigger="click"
+                                data-kt-menu-placement="bottom-end">
+                                <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <path
+                                            d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
+                                            fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Lọc</button>
+                            <!--begin::Menu 1-->
+                            <div class="menu menu-sub menu-sub-dropdown w-300px w-md-325px" data-kt-menu="true">
+                                <!--begin::Header-->
+                                <div class="px-7 py-5">
+                                    <div class="fs-5 text-dark fw-bolder">Chọn chế độ</div>
+                                </div>
+                                <!--end::Header-->
+                                <!--begin::Separator-->
+                                <div class="separator border-gray-200"></div>
+                                <!--end::Separator-->
+                                <!--begin::Content-->
+                                <div class="px-7 py-5" data-kt-subscription-table-filter="form">
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <label class="form-label fs-6 fw-bold">Tháng:</label>
+                                        <select class="form-select form-select-solid fw-bolder" data-kt-select2="true"
+                                            data-placeholder="Chọn thời gian" data-allow-clear="true"
+                                            data-kt-subscription-table-filter="month" data-hide-search="true">
                                             <option></option>
-                                            <option value="1">Approved</option>
-                                            <option value="2">Pending</option>
-                                            <option value="2">In Process</option>
-                                            <option value="2">Rejected</option>
+                                            <option value="jan">Tháng 1</option>
+                                            <option value="feb">Tháng 2</option>
+                                            <option value="mar">Tháng 3</option>
+                                            <option value="apr">Tháng 4</option>
+                                            <option value="may">Tháng 5</option>
+                                            <option value="jun">Tháng 6</option>
+                                            <option value="jul">Tháng 7</option>
+                                            <option value="aug">Tháng 8</option>
+                                            <option value="sep">Tháng 9</option>
+                                            <option value="oct">Tháng 10</option>
+                                            <option value="nov">Tháng 11</option>
+                                            <option value="dec">Tháng 12</option>
                                         </select>
                                     </div>
+                                    <!--end::Input group-->
+                                    <!--begin::Input group-->
+                                    <div class="mb-10">
+                                        <label class="form-label fs-6 fw-bold">Trạng thái:</label>
+                                        <select class="form-select form-select-solid fw-bolder" data-kt-select2="true"
+                                            data-placeholder="Select option" data-allow-clear="true"
+                                            data-kt-subscription-table-filter="status" data-hide-search="true">
+                                            <option></option>
+                                            <option value="Active">Còn sử dụng</option>
+                                            <option value="Expiring">Không sử dụng</option>
+                                        </select>
+                                    </div>
+                                    <!--begin::Actions-->
+                                    <div class="d-flex justify-content-end">
+                                        <button type="reset"
+                                            class="btn btn-light btn-active-light-primary fw-bold me-2 px-6"
+                                            data-kt-menu-dismiss="true"
+                                            data-kt-subscription-table-filter="reset">Reset</button>
+                                        <button type="submit" class="btn btn-primary fw-bold px-6"
+                                            data-kt-menu-dismiss="true"
+                                            data-kt-subscription-table-filter="filter">Lọc</button>
+                                    </div>
+                                    <!--end::Actions-->
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Menu 1-->
+                            <!--end::Filter-->
+                            {{-- <!--begin::Export-->
+                            <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal"
+                                data-bs-target="#kt_subscriptions_export_modal">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.3" x="12.75" y="4.25" width="12" height="2"
+                                            rx="1" transform="rotate(90 12.75 4.25)" fill="black" />
+                                        <path
+                                            d="M12.0573 6.11875L13.5203 7.87435C13.9121 8.34457 14.6232 8.37683 15.056 7.94401C15.4457 7.5543 15.4641 6.92836 15.0979 6.51643L12.4974 3.59084C12.0996 3.14332 11.4004 3.14332 11.0026 3.59084L8.40206 6.51643C8.0359 6.92836 8.0543 7.5543 8.44401 7.94401C8.87683 8.37683 9.58785 8.34458 9.9797 7.87435L11.4427 6.11875C11.6026 5.92684 11.8974 5.92684 12.0573 6.11875Z"
+                                            fill="black" />
+                                        <path
+                                            d="M18.75 8.25H17.75C17.1977 8.25 16.75 8.69772 16.75 9.25C16.75 9.80228 17.1977 10.25 17.75 10.25C18.3023 10.25 18.75 10.6977 18.75 11.25V18.25C18.75 18.8023 18.3023 19.25 17.75 19.25H5.75C5.19772 19.25 4.75 18.8023 4.75 18.25V11.25C4.75 10.6977 5.19771 10.25 5.75 10.25C6.30229 10.25 6.75 9.80228 6.75 9.25C6.75 8.69772 6.30229 8.25 5.75 8.25H4.75C3.64543 8.25 2.75 9.14543 2.75 10.25V19.25C2.75 20.3546 3.64543 21.25 4.75 21.25H18.75C19.8546 21.25 20.75 20.3546 20.75 19.25V10.25C20.75 9.14543 19.8546 8.25 18.75 8.25Z"
+                                            fill="#C4C4C4" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Export</button>
+                            <!--end::Export--> --}}
+                            <!--begin::Add subscription-->
+                            <a href="{{ route('ton-kho.create') }}" class="btn btn-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="11.364" y="20.364" width="16" height="2"
+                                            rx="1" transform="rotate(-90 11.364 20.364)" fill="black" />
+                                        <rect x="4.36396" y="11.364" width="16" height="2" rx="1"
+                                            fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->Thêm</a>
+                            <!--end::Add subscription-->
+                        </div>
+                        <!--end::Toolbar-->
+                        <!--begin::Group actions-->
+                        <div class="d-flex justify-content-end align-items-center d-none"
+                            data-kt-subscription-table-toolbar="selected">
+                            <div class="fw-bolder me-5">
+                                <span class="me-2"
+                                    data-kt-subscription-table-select="selected_count"></span>Selected
+                            </div>
+                            <button type="button" class="btn btn-danger"
+                                data-kt-subscription-table-select="delete_selected">Delete Selected</button>
+                        </div>
+                        <!--end::Group actions-->
+                    </div>
+                    <!--end::Card toolbar-->
+                </div>
+                <!--end::Card header-->
+                <!--begin::Card body-->
+                <div class="card-body pt-0">
+                    <!--begin::Table-->
+                    <table class="table align-middle table-row-dashed fs-6 gy-5" id="kt_subscriptions_table">
+                        <!--begin::Table head-->
+                        <thead>
+                            <!--begin::Table row-->
+                            <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                <th class="w-10px pe-2">
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid me-3">
+                                        <input class="form-check-input" type="checkbox" data-kt-check="true"
+                                            data-kt-check-target="#kt_subscriptions_table .form-check-input"
+                                            value="1" />
+                                    </div>
+                                </th>
+                                <th class="min-w-125px">Loại sản phẩm</th>
+                                <th class="min-w-125px">Trạng thái</th>
+                                <th class="min-w-125px">Phân khu</th>
+                                <th class="min-w-125px">Số lượng</th>
+                                <th class="min-w-125px">Ngày nhập kho</th>
+                                <th class="text-end min-w-70px">Thao tác</th>
+                            </tr>
+                            <!--end::Table row-->
+                        </thead>
+                        <!--end::Table head-->
+                        <!--begin::Table body-->
+                        <tbody class="text-gray-600 fw-bold">
+                            <tr>
+                                <!--begin::Checkbox-->
+                                <td>
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="1" />
+                                    </div>
+                                </td>
+                                <!--end::Checkbox-->
+                                <!--begin::Customer=-->
+                                <td>
+                                    <a href="#" class="text-gray-800 text-hover-primary mb-1">Giày</a>
+                                </td>
+                                <!--end::Customer=-->
+                                <!--begin::Status=-->
+                                <td>
+                                    <div class="badge badge-light-success">Còn sử dụng</div>
+                                </td>
+                                <!--end::Status=-->
+                                <!--begin::Phân khu=-->
+                                <td>
+                                    <div class="badge badge-light">Phân khu A</div>
+                                </td>
+                                <!--end::Phân khu=-->
+                                <!--begin::Số lượng=-->
+                                <td>100</td>
+                                <!--end::Số lượng=-->
+                                <!--begin::Date=-->
+                                <td>17-03-2022</td>
+                                <!--end::Date=-->
+                                <!--begin::Action=-->
+                                <td class="text-end">
+                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Thao tác
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                    fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon--></a>
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="" class="menu-link px-3">Xem</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" data-kt-subscriptions-table-filter="delete_row"
+                                                class="menu-link px-3">Xóa</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu-->
+                                </td>
+                                <!--end::Action=-->
+                            </tr>
+                            <tr>
+                                <!--begin::Checkbox-->
+                                <td>
+                                    <div class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <input class="form-check-input" type="checkbox" value="1" />
+                                    </div>
+                                </td>
+                                <!--end::Checkbox-->
+                                <!--begin::Customer=-->
+                                <td>
+                                    <a href="#" class="text-gray-800 text-hover-primary mb-1">Áo</a>
+                                </td>
+                                <!--end::Customer=-->
+                                <!--begin::Status=-->
+                                <td>
+                                    <div class="badge badge-light-warning">Không sử dụng</div>
+                                </td>
+                                <!--end::Status=-->
+                                <!--begin::Phân khu=-->
+                                <td>
+                                    <div class="badge badge-light">Phân khu B</div>
+                                </td>
+                                <!--end::Phân khu=-->
+                                <!--begin::Số lượng=-->
+                                <td>100</td>
+                                <!--end::Số lượng=-->
+                                <!--begin::Date=-->
+                                <td>26-06-2000</td>
+                                <!--end::Date=-->
+                                <!--begin::Action=-->
+                                <td class="text-end">
+                                    <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
+                                        data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Thao tác
+                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
+                                        <span class="svg-icon svg-icon-5 m-0">
+                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                viewBox="0 0 24 24" fill="none">
+                                                <path
+                                                    d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
+                                                    fill="black" />
+                                            </svg>
+                                        </span>
+                                        <!--end::Svg Icon--></a>
+                                    <!--begin::Menu-->
+                                    <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
+                                        data-kt-menu="true">
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">Xem</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" class="menu-link px-3">Sửa</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                        <!--begin::Menu item-->
+                                        <div class="menu-item px-3">
+                                            <a href="#" data-kt-subscriptions-table-filter="delete_row"
+                                                class="menu-link px-3">Xóa</a>
+                                        </div>
+                                        <!--end::Menu item-->
+                                    </div>
+                                    <!--end::Menu-->
+                                </td>
+                                <!--end::Action=-->
+                            </tr>
+
+
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    <!--end::Table-->
+                </div>
+                <!--end::Card body-->
+            </div>
+            <!--end::Card-->
+            <!--begin::Modals-->
+            <!--begin::Modal - Adjust Balance-->
+            <div class="modal fade" id="kt_subscriptions_export_modal" tabindex="-1" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bolder">Export Subscriptions</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div id="kt_subscriptions_export_close"
+                                class="btn btn-icon btn-sm btn-active-icon-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                <span class="svg-icon svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                            rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                            transform="rotate(45 7.41422 6)" fill="black" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                            <!--begin::Form-->
+                            <form id="kt_subscriptions_export_form" class="form" action="#">
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10">
+                                    <!--begin::Label-->
+                                    <label class="fs-5 fw-bold form-label mb-5">Select Date Range:</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input class="form-control form-control-solid" placeholder="Pick a date"
+                                        name="date" />
                                     <!--end::Input-->
                                 </div>
                                 <!--end::Input group-->
                                 <!--begin::Input group-->
-                                <div class="mb-10">
+                                <div class="fv-row mb-10">
                                     <!--begin::Label-->
-                                    <label class="form-label fw-bold">Member Type:</label>
+                                    <label class="fs-5 fw-bold form-label mb-5">Select Export Format:</label>
                                     <!--end::Label-->
-                                    <!--begin::Options-->
-                                    <div class="d-flex">
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                            <input class="form-check-input" type="checkbox" value="1" />
-                                            <span class="form-check-label">Author</span>
+                                    <!--begin::Input-->
+                                    <select data-control="select2" data-placeholder="Select a format"
+                                        data-hide-search="true" name="format" class="form-select form-select-solid">
+                                        <option value="excell">Excel</option>
+                                        <option value="pdf">PDF</option>
+                                        <option value="cvs">CVS</option>
+                                        <option value="zip">ZIP</option>
+                                    </select>
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Row-->
+                                <div class="row fv-row mb-15">
+                                    <!--begin::Label-->
+                                    <label class="fs-5 fw-bold form-label mb-5">Payment Type:</label>
+                                    <!--end::Label-->
+                                    <!--begin::Radio group-->
+                                    <div class="d-flex flex-column">
+                                        <!--begin::Radio button-->
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+                                            <input class="form-check-input" type="checkbox" value="1"
+                                                checked="checked" name="payment_type" />
+                                            <span class="form-check-label text-gray-600 fw-bold">All</span>
                                         </label>
-                                        <!--end::Options-->
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
+                                        <!--end::Radio button-->
+                                        <!--begin::Radio button-->
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
                                             <input class="form-check-input" type="checkbox" value="2"
-                                                checked="checked" />
-                                            <span class="form-check-label">Customer</span>
+                                                checked="checked" name="payment_type" />
+                                            <span class="form-check-label text-gray-600 fw-bold">Visa</span>
                                         </label>
-                                        <!--end::Options-->
+                                        <!--end::Radio button-->
+                                        <!--begin::Radio button-->
+                                        <label
+                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
+                                            <input class="form-check-input" type="checkbox" value="3"
+                                                name="payment_type" />
+                                            <span class="form-check-label text-gray-600 fw-bold">Mastercard</span>
+                                        </label>
+                                        <!--end::Radio button-->
+                                        <!--begin::Radio button-->
+                                        <label class="form-check form-check-custom form-check-sm form-check-solid">
+                                            <input class="form-check-input" type="checkbox" value="4"
+                                                name="payment_type" />
+                                            <span class="form-check-label text-gray-600 fw-bold">American
+                                                Express</span>
+                                        </label>
+                                        <!--end::Radio button-->
                                     </div>
-                                    <!--end::Options-->
+                                    <!--end::Input group-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Notifications:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="" name="notifications"
-                                            checked="checked" />
-                                        <label class="form-check-label">Enabled</label>
-                                    </div>
-                                    <!--end::Switch-->
-                                </div>
-                                <!--end::Input group-->
+                                <!--end::Row-->
                                 <!--begin::Actions-->
-                                <div class="d-flex justify-content-end">
-                                    <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                        data-kt-menu-dismiss="true">Reset</button>
-                                    <button type="submit" class="btn btn-sm btn-primary"
-                                        data-kt-menu-dismiss="true">Apply</button>
-                                </div>
-                                <!--end::Actions-->
-                            </div>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Menu 1-->
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Wrapper-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-                    <!--end::Button-->
-                </div>
-                <!--end::Actions-->
-            </div>
-            <!--end::Container-->
-        </div>
-        <!--end::Toolbar-->
-        <!--begin::Post-->
-        <div class="post d-flex flex-column-fluid" id="kt_post">
-            <!--begin::Container-->
-            <div id="kt_content_container" class="container-xxl">
-                <!--begin::Layout-->
-                <div class="flex flex-column flex-xl-row ">
-                    <!--begin::Sidebar-->
-                    < <!--begin::Card-->
-                        <div class="card mb-5 mb-xl-8">
-                            <!--begin::Card body-->
-                            <div class="card-body">
-                                <!--begin::Summary-->
-                                <!--begin::User Info-->
-                                <div class="d-flex flex-center flex-column py-5">
-                                    <!--begin::Avatar-->
-                                    <div class=" mb-7">
-                                        <img src="assets/media/avatars/150-1.jpg" alt="image" />
-                                    </div>
-                                    <!--end::Avatar-->
-                                    <!--begin::Name-->
-                                    <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-3">Iphone
-                                        15 ProMax</a>
-                                    <!--end::Name-->
-                                    <!--begin::Position-->
-                                    <div class="mb-9">
-                                        <!--begin::Badge-->
-                                        <div class="badge badge-lg badge-light-success d-inline">Còn sử dụng</div>
-                                        <!--begin::Badge-->
-                                    </div>
-                                    <!--end::Position-->
-                                    <!--begin::Info-->
-                                    <!--begin::Info heading-->
-                                    <div class="fw-bolder mb-3">Loại: Iphone
-                                        <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                            data-bs-trigger="hover" data-bs-html="true"
-                                            data-bs-content="Number of support tickets assigned, closed and pending this week."></i>
-                                    </div>
-                                    <!--end::Info heading-->
-                                    <div class="d-flex flex-wrap flex-center">
-                                        <!--begin::Stats-->
-                                        <div class="border border-gray-300 border-dashed rounded py-3 px-3 mb-3">
-                                            <div class="fs-4 fw-bolder text-gray-700 text-center">
-                                                <span class="w-75px">100</span>
-                                            </div>
-                                            <div class="fw-bold text-muted">Số lượng</div>
-                                        </div>
-                                        <!--end::Stats-->
-                                    </div>
-                                    <!--end::Info-->
-                                </div>
-                                <!--end::User Info-->
-                                <!--end::Summary-->
-                                <!--begin::Details toggle-->
-                                <div class="d-flex flex-stack fs-4 py-3">
-                                    <div class="fw-bolder rotate collapsible" data-bs-toggle="collapse"
-                                        href="#kt_user_view_details" role="button" aria-expanded="false"
-                                        aria-controls="kt_user_view_details">Chi tiết
-                                        <span class="ms-2 rotate-180">
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-3">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon-->
-                                        </span>
-                                    </div>
-                                    <span data-bs-toggle="tooltip" data-bs-trigger="hover" title="Edit customer details">
-                                        <a href="#" class="btn btn-sm btn-light-primary" data-bs-toggle="modal"
-                                            data-bs-target="#kt_modal_update_details">Sửa</a>
-                                    </span>
-                                </div>
-                                <!--end::Details toggle-->
-                                <div class="separator"></div>
-                                <!--begin::Details content-->
-                                <div id="kt_user_view_details" class="collapse show">
-                                    <div class="pb-5 fs-6 row">
-                                        <div class="col-6">
-                                            <!--begin::Details item-->
-                                            <div class="fw-bolder mt-5">Mã tồn kho</div>
-                                            <div class="text-gray-600">001</div>
-                                            <div class="fw-bolder mt-5">Tên sản phẩm</div>
-                                            <div class="text-gray-600">Iphone 15 ProMax</div>
-                                            <div class="fw-bolder mt-5">Loại sản phẩm</div>
-                                            <div class="text-gray-600">Iphone</div>
-                                            <div class="fw-bolder mt-5">Phân khu</div>
-                                            <div class="text-gray-600">Phân khu A</div>
-                                            <!--begin::Details item-->
-                                            <!--begin::Details item-->
-                                            <div class="fw-bolder mt-5">Số lượng tồn</div>
-                                            <div class="text-gray-600">
-                                                <a href="#" class="text-gray-600 text-hover-primary">100 sản
-                                                    phẩm</a>
-                                            </div>
-                                        </div>
-                                        <div class="col-6">
-                                            <!--begin::Details item-->
-                                            <!--begin::Details item-->
-                                            <div class="fw-bolder mt-5">Ngày nhập</div>
-                                            <div class="text-gray-600">17-03-2022</div>
-                                            <!--begin::Details item-->
-                                            <!--begin::Details item-->
-                                            <div class="fw-bolder mt-5">Số lượng nhập</div>
-                                            <div class="text-gray-600">200</div>
-                                            <!--begin::Details item-->
-                                            <!--begin::Details item-->
-                                            
-                                            <!--begin::Details item-->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!--end::Details content-->
-                            </div>
-                            <!--end::Card body-->
-                        </div>
-                        <!--end::Card-->
-                        <!--end::Sidebar-->
-                </div>
-                <!--end::Layout-->
-                <!--begin::Modals-->
-                <!--begin::Modal - Update user details-->
-                <div class="modal fade" id="kt_modal_update_details" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Form-->
-                            <form class="form" action="#" id="kt_modal_update_user_form">
-                                <!--begin::Modal header-->
-                                <div class="modal-header" id="kt_modal_update_user_header">
-                                    <!--begin::Modal title-->
-                                    <h2 class="fw-bolder">Update User Details</h2>
-                                    <!--end::Modal title-->
-                                    <!--begin::Close-->
-                                    <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                        data-kt-users-modal-action="close">
-                                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                        <span class="svg-icon svg-icon-1">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                    rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                                <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                    transform="rotate(45 7.41422 6)" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                    </div>
-                                    <!--end::Close-->
-                                </div>
-                                <!--end::Modal header-->
-                                <!--begin::Modal body-->
-                                <div class="modal-body py-10 px-lg-17">
-                                    <!--begin::Scroll-->
-                                    <div class="d-flex flex-column scroll-y me-n7 pe-7" id="kt_modal_update_user_scroll"
-                                        data-kt-scroll="true" data-kt-scroll-activate="{default: false, lg: true}"
-                                        data-kt-scroll-max-height="auto"
-                                        data-kt-scroll-dependencies="#kt_modal_update_user_header"
-                                        data-kt-scroll-wrappers="#kt_modal_update_user_scroll"
-                                        data-kt-scroll-offset="300px">
-                                        <!--begin::User toggle-->
-                                        <div class="fw-boldest fs-3 rotate collapsible mb-7" data-bs-toggle="collapse"
-                                            href="#kt_modal_update_user_user_info" role="button" aria-expanded="false"
-                                            aria-controls="kt_modal_update_user_user_info">User Information
-                                            <span class="ms-2 rotate-180">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </span>
-                                        </div>
-                                        <!--end::User toggle-->
-                                        <!--begin::User form-->
-                                        <div id="kt_modal_update_user_user_info" class="collapse show">
-                                            <!--begin::Input group-->
-                                            <div class="mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">
-                                                    <span>Update Avatar</span>
-                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                        data-bs-toggle="tooltip"
-                                                        title="Allowed file types: png, jpg, jpeg."></i>
-                                                </label>
-                                                <!--end::Label-->
-                                                <!--begin::Image input wrapper-->
-                                                <div class="mt-1">
-                                                    <!--begin::Image input-->
-                                                    <div class="image-input image-input-outline"
-                                                        data-kt-image-input="true"
-                                                        style="background-image: url(assets/media/avatars/blank.png)">
-                                                        <!--begin::Preview existing avatar-->
-                                                        <div class="image-input-wrapper w-125px h-125px"
-                                                            style="background-image: url(assets/media/avatars/150-1.jpg">
-                                                        </div>
-                                                        <!--end::Preview existing avatar-->
-                                                        <!--begin::Edit-->
-                                                        <label
-                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                            data-kt-image-input-action="change" data-bs-toggle="tooltip"
-                                                            title="Change avatar">
-                                                            <i class="bi bi-pencil-fill fs-7"></i>
-                                                            <!--begin::Inputs-->
-                                                            <input type="file" name="avatar"
-                                                                accept=".png, .jpg, .jpeg" />
-                                                            <input type="hidden" name="avatar_remove" />
-                                                            <!--end::Inputs-->
-                                                        </label>
-                                                        <!--end::Edit-->
-                                                        <!--begin::Cancel-->
-                                                        <span
-                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                            data-kt-image-input-action="cancel" data-bs-toggle="tooltip"
-                                                            title="Cancel avatar">
-                                                            <i class="bi bi-x fs-2"></i>
-                                                        </span>
-                                                        <!--end::Cancel-->
-                                                        <!--begin::Remove-->
-                                                        <span
-                                                            class="btn btn-icon btn-circle btn-active-color-primary w-25px h-25px bg-body shadow"
-                                                            data-kt-image-input-action="remove" data-bs-toggle="tooltip"
-                                                            title="Remove avatar">
-                                                            <i class="bi bi-x fs-2"></i>
-                                                        </span>
-                                                        <!--end::Remove-->
-                                                    </div>
-                                                    <!--end::Image input-->
-                                                </div>
-                                                <!--end::Image input wrapper-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Name</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-solid"
-                                                    placeholder="" name="name" value="Emma Smith" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">
-                                                    <span>Email</span>
-                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                        data-bs-toggle="tooltip" title="Email address must be active"></i>
-                                                </label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="email" class="form-control form-control-solid"
-                                                    placeholder="" name="email" value="e.smith@kpmg.com.au" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-7">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Description</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input type="text" class="form-control form-control-solid"
-                                                    placeholder="" name="description" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="fv-row mb-15">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Language</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <select name="language" aria-label="Select a Language"
-                                                    data-control="select2" data-placeholder="Select a Language..."
-                                                    class="form-select form-select-solid"
-                                                    data-dropdown-parent="#kt_modal_update_details">
-                                                    <option></option>
-                                                    <option value="id">Bahasa Indonesia - Indonesian</option>
-                                                    <option value="msa">Bahasa Melayu - Malay</option>
-                                                    <option value="ca">Català - Catalan</option>
-                                                    <option value="cs">Čeština - Czech</option>
-                                                    <option value="da">Dansk - Danish</option>
-                                                    <option value="de">Deutsch - German</option>
-                                                    <option value="en">English</option>
-                                                    <option value="en-gb">English UK - British English</option>
-                                                    <option value="es">Español - Spanish</option>
-                                                    <option value="fil">Filipino</option>
-                                                    <option value="fr">Français - French</option>
-                                                    <option value="ga">Gaeilge - Irish (beta)</option>
-                                                    <option value="gl">Galego - Galician (beta)</option>
-                                                    <option value="hr">Hrvatski - Croatian</option>
-                                                    <option value="it">Italiano - Italian</option>
-                                                    <option value="hu">Magyar - Hungarian</option>
-                                                    <option value="nl">Nederlands - Dutch</option>
-                                                    <option value="no">Norsk - Norwegian</option>
-                                                    <option value="pl">Polski - Polish</option>
-                                                    <option value="pt">Português - Portuguese</option>
-                                                    <option value="ro">Română - Romanian</option>
-                                                    <option value="sk">Slovenčina - Slovak</option>
-                                                    <option value="fi">Suomi - Finnish</option>
-                                                    <option value="sv">Svenska - Swedish</option>
-                                                    <option value="vi">Tiếng Việt - Vietnamese</option>
-                                                    <option value="tr">Türkçe - Turkish</option>
-                                                    <option value="el">Ελληνικά - Greek</option>
-                                                    <option value="bg">Български език - Bulgarian</option>
-                                                    <option value="ru">Русский - Russian</option>
-                                                    <option value="sr">Српски - Serbian</option>
-                                                    <option value="uk">Українська мова - Ukrainian</option>
-                                                    <option value="he">עִבְרִית - Hebrew</option>
-                                                    <option value="ur">اردو - Urdu (beta)</option>
-                                                    <option value="ar">العربية - Arabic</option>
-                                                    <option value="fa">فارسی - Persian</option>
-                                                    <option value="mr">मराठी - Marathi</option>
-                                                    <option value="hi">हिन्दी - Hindi</option>
-                                                    <option value="bn">বাংলা - Bangla</option>
-                                                    <option value="gu">ગુજરાતી - Gujarati</option>
-                                                    <option value="ta">தமிழ் - Tamil</option>
-                                                    <option value="kn">ಕನ್ನಡ - Kannada</option>
-                                                    <option value="th">ภาษาไทย - Thai</option>
-                                                    <option value="ko">한국어 - Korean</option>
-                                                    <option value="ja">日本語 - Japanese</option>
-                                                    <option value="zh-cn">简体中文 - Simplified Chinese</option>
-                                                    <option value="zh-tw">繁體中文 - Traditional Chinese</option>
-                                                </select>
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                        <!--end::User form-->
-                                        <!--begin::Address toggle-->
-                                        <div class="fw-boldest fs-3 rotate collapsible mb-7" data-bs-toggle="collapse"
-                                            href="#kt_modal_update_user_address" role="button" aria-expanded="false"
-                                            aria-controls="kt_modal_update_user_address">Address Details
-                                            <span class="ms-2 rotate-180">
-                                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                                <span class="svg-icon svg-icon-3">
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                        viewBox="0 0 24 24" fill="none">
-                                                        <path
-                                                            d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                            fill="black" />
-                                                    </svg>
-                                                </span>
-                                                <!--end::Svg Icon-->
-                                            </span>
-                                        </div>
-                                        <!--end::Address toggle-->
-                                        <!--begin::Address form-->
-                                        <div id="kt_modal_update_user_address" class="collapse show">
-                                            <!--begin::Input group-->
-                                            <div class="d-flex flex-column mb-7 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Address Line 1</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input class="form-control form-control-solid" placeholder=""
-                                                    name="address1" value="101, Collins Street" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="d-flex flex-column mb-7 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Address Line 2</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input class="form-control form-control-solid" placeholder=""
-                                                    name="address2" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="d-flex flex-column mb-7 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">Town</label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <input class="form-control form-control-solid" placeholder=""
-                                                    name="city" value="Melbourne" />
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="row g-9 mb-7">
-                                                <!--begin::Col-->
-                                                <div class="col-md-6 fv-row">
-                                                    <!--begin::Label-->
-                                                    <label class="fs-6 fw-bold mb-2">State / Province</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input class="form-control form-control-solid" placeholder=""
-                                                        name="state" value="Victoria" />
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Col-->
-                                                <!--begin::Col-->
-                                                <div class="col-md-6 fv-row">
-                                                    <!--begin::Label-->
-                                                    <label class="fs-6 fw-bold mb-2">Post Code</label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Input-->
-                                                    <input class="form-control form-control-solid" placeholder=""
-                                                        name="postcode" value="3000" />
-                                                    <!--end::Input-->
-                                                </div>
-                                                <!--end::Col-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="d-flex flex-column mb-7 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="fs-6 fw-bold mb-2">
-                                                    <span>Country</span>
-                                                    <i class="fas fa-exclamation-circle ms-1 fs-7"
-                                                        data-bs-toggle="tooltip" title="Country of origination"></i>
-                                                </label>
-                                                <!--end::Label-->
-                                                <!--begin::Input-->
-                                                <select name="country" aria-label="Select a Country"
-                                                    data-control="select2" data-placeholder="Select a Country..."
-                                                    class="form-select form-select-solid"
-                                                    data-dropdown-parent="#kt_modal_update_details">
-                                                    <option value="">Select a Country...</option>
-                                                    <option value="AF">Afghanistan</option>
-                                                    <option value="AX">Aland Islands</option>
-                                                    <option value="AL">Albania</option>
-                                                    <option value="DZ">Algeria</option>
-                                                    <option value="AS">American Samoa</option>
-                                                    <option value="AD">Andorra</option>
-                                                    <option value="AO">Angola</option>
-                                                    <option value="AI">Anguilla</option>
-                                                    <option value="AG">Antigua and Barbuda</option>
-                                                    <option value="AR">Argentina</option>
-                                                    <option value="AM">Armenia</option>
-                                                    <option value="AW">Aruba</option>
-                                                    <option value="AU">Australia</option>
-                                                    <option value="AT">Austria</option>
-                                                    <option value="AZ">Azerbaijan</option>
-                                                    <option value="BS">Bahamas</option>
-                                                    <option value="BH">Bahrain</option>
-                                                    <option value="BD">Bangladesh</option>
-                                                    <option value="BB">Barbados</option>
-                                                    <option value="BY">Belarus</option>
-                                                    <option value="BE">Belgium</option>
-                                                    <option value="BZ">Belize</option>
-                                                    <option value="BJ">Benin</option>
-                                                    <option value="BM">Bermuda</option>
-                                                    <option value="BT">Bhutan</option>
-                                                    <option value="BO">Bolivia, Plurinational State of</option>
-                                                    <option value="BQ">Bonaire, Sint Eustatius and Saba</option>
-                                                    <option value="BA">Bosnia and Herzegovina</option>
-                                                    <option value="BW">Botswana</option>
-                                                    <option value="BR">Brazil</option>
-                                                    <option value="IO">British Indian Ocean Territory</option>
-                                                    <option value="BN">Brunei Darussalam</option>
-                                                    <option value="BG">Bulgaria</option>
-                                                    <option value="BF">Burkina Faso</option>
-                                                    <option value="BI">Burundi</option>
-                                                    <option value="KH">Cambodia</option>
-                                                    <option value="CM">Cameroon</option>
-                                                    <option value="CA">Canada</option>
-                                                    <option value="CV">Cape Verde</option>
-                                                    <option value="KY">Cayman Islands</option>
-                                                    <option value="CF">Central African Republic</option>
-                                                    <option value="TD">Chad</option>
-                                                    <option value="CL">Chile</option>
-                                                    <option value="CN">China</option>
-                                                    <option value="CX">Christmas Island</option>
-                                                    <option value="CC">Cocos (Keeling) Islands</option>
-                                                    <option value="CO">Colombia</option>
-                                                    <option value="KM">Comoros</option>
-                                                    <option value="CK">Cook Islands</option>
-                                                    <option value="CR">Costa Rica</option>
-                                                    <option value="CI">Côte d'Ivoire</option>
-                                                    <option value="HR">Croatia</option>
-                                                    <option value="CU">Cuba</option>
-                                                    <option value="CW">Curaçao</option>
-                                                    <option value="CZ">Czech Republic</option>
-                                                    <option value="DK">Denmark</option>
-                                                    <option value="DJ">Djibouti</option>
-                                                    <option value="DM">Dominica</option>
-                                                    <option value="DO">Dominican Republic</option>
-                                                    <option value="EC">Ecuador</option>
-                                                    <option value="EG">Egypt</option>
-                                                    <option value="SV">El Salvador</option>
-                                                    <option value="GQ">Equatorial Guinea</option>
-                                                    <option value="ER">Eritrea</option>
-                                                    <option value="EE">Estonia</option>
-                                                    <option value="ET">Ethiopia</option>
-                                                    <option value="FK">Falkland Islands (Malvinas)</option>
-                                                    <option value="FJ">Fiji</option>
-                                                    <option value="FI">Finland</option>
-                                                    <option value="FR">France</option>
-                                                    <option value="PF">French Polynesia</option>
-                                                    <option value="GA">Gabon</option>
-                                                    <option value="GM">Gambia</option>
-                                                    <option value="GE">Georgia</option>
-                                                    <option value="DE">Germany</option>
-                                                    <option value="GH">Ghana</option>
-                                                    <option value="GI">Gibraltar</option>
-                                                    <option value="GR">Greece</option>
-                                                    <option value="GL">Greenland</option>
-                                                    <option value="GD">Grenada</option>
-                                                    <option value="GU">Guam</option>
-                                                    <option value="GT">Guatemala</option>
-                                                    <option value="GG">Guernsey</option>
-                                                    <option value="GN">Guinea</option>
-                                                    <option value="GW">Guinea-Bissau</option>
-                                                    <option value="HT">Haiti</option>
-                                                    <option value="VA">Holy See (Vatican City State)</option>
-                                                    <option value="HN">Honduras</option>
-                                                    <option value="HK">Hong Kong</option>
-                                                    <option value="HU">Hungary</option>
-                                                    <option value="IS">Iceland</option>
-                                                    <option value="IN">India</option>
-                                                    <option value="ID">Indonesia</option>
-                                                    <option value="IR">Iran, Islamic Republic of</option>
-                                                    <option value="IQ">Iraq</option>
-                                                    <option value="IE">Ireland</option>
-                                                    <option value="IM">Isle of Man</option>
-                                                    <option value="IL">Israel</option>
-                                                    <option value="IT">Italy</option>
-                                                    <option value="JM">Jamaica</option>
-                                                    <option value="JP">Japan</option>
-                                                    <option value="JE">Jersey</option>
-                                                    <option value="JO">Jordan</option>
-                                                    <option value="KZ">Kazakhstan</option>
-                                                    <option value="KE">Kenya</option>
-                                                    <option value="KI">Kiribati</option>
-                                                    <option value="KP">Korea, Democratic People's Republic of</option>
-                                                    <option value="KW">Kuwait</option>
-                                                    <option value="KG">Kyrgyzstan</option>
-                                                    <option value="LA">Lao People's Democratic Republic</option>
-                                                    <option value="LV">Latvia</option>
-                                                    <option value="LB">Lebanon</option>
-                                                    <option value="LS">Lesotho</option>
-                                                    <option value="LR">Liberia</option>
-                                                    <option value="LY">Libya</option>
-                                                    <option value="LI">Liechtenstein</option>
-                                                    <option value="LT">Lithuania</option>
-                                                    <option value="LU">Luxembourg</option>
-                                                    <option value="MO">Macao</option>
-                                                    <option value="MG">Madagascar</option>
-                                                    <option value="MW">Malawi</option>
-                                                    <option value="MY">Malaysia</option>
-                                                    <option value="MV">Maldives</option>
-                                                    <option value="ML">Mali</option>
-                                                    <option value="MT">Malta</option>
-                                                    <option value="MH">Marshall Islands</option>
-                                                    <option value="MQ">Martinique</option>
-                                                    <option value="MR">Mauritania</option>
-                                                    <option value="MU">Mauritius</option>
-                                                    <option value="MX">Mexico</option>
-                                                    <option value="FM">Micronesia, Federated States of</option>
-                                                    <option value="MD">Moldova, Republic of</option>
-                                                    <option value="MC">Monaco</option>
-                                                    <option value="MN">Mongolia</option>
-                                                    <option value="ME">Montenegro</option>
-                                                    <option value="MS">Montserrat</option>
-                                                    <option value="MA">Morocco</option>
-                                                    <option value="MZ">Mozambique</option>
-                                                    <option value="MM">Myanmar</option>
-                                                    <option value="NA">Namibia</option>
-                                                    <option value="NR">Nauru</option>
-                                                    <option value="NP">Nepal</option>
-                                                    <option value="NL">Netherlands</option>
-                                                    <option value="NZ">New Zealand</option>
-                                                    <option value="NI">Nicaragua</option>
-                                                    <option value="NE">Niger</option>
-                                                    <option value="NG">Nigeria</option>
-                                                    <option value="NU">Niue</option>
-                                                    <option value="NF">Norfolk Island</option>
-                                                    <option value="MP">Northern Mariana Islands</option>
-                                                    <option value="NO">Norway</option>
-                                                    <option value="OM">Oman</option>
-                                                    <option value="PK">Pakistan</option>
-                                                    <option value="PW">Palau</option>
-                                                    <option value="PS">Palestinian Territory, Occupied</option>
-                                                    <option value="PA">Panama</option>
-                                                    <option value="PG">Papua New Guinea</option>
-                                                    <option value="PY">Paraguay</option>
-                                                    <option value="PE">Peru</option>
-                                                    <option value="PH">Philippines</option>
-                                                    <option value="PL">Poland</option>
-                                                    <option value="PT">Portugal</option>
-                                                    <option value="PR">Puerto Rico</option>
-                                                    <option value="QA">Qatar</option>
-                                                    <option value="RO">Romania</option>
-                                                    <option value="RU">Russian Federation</option>
-                                                    <option value="RW">Rwanda</option>
-                                                    <option value="BL">Saint Barthélemy</option>
-                                                    <option value="KN">Saint Kitts and Nevis</option>
-                                                    <option value="LC">Saint Lucia</option>
-                                                    <option value="MF">Saint Martin (French part)</option>
-                                                    <option value="VC">Saint Vincent and the Grenadines</option>
-                                                    <option value="WS">Samoa</option>
-                                                    <option value="SM">San Marino</option>
-                                                    <option value="ST">Sao Tome and Principe</option>
-                                                    <option value="SA">Saudi Arabia</option>
-                                                    <option value="SN">Senegal</option>
-                                                    <option value="RS">Serbia</option>
-                                                    <option value="SC">Seychelles</option>
-                                                    <option value="SL">Sierra Leone</option>
-                                                    <option value="SG">Singapore</option>
-                                                    <option value="SX">Sint Maarten (Dutch part)</option>
-                                                    <option value="SK">Slovakia</option>
-                                                    <option value="SI">Slovenia</option>
-                                                    <option value="SB">Solomon Islands</option>
-                                                    <option value="SO">Somalia</option>
-                                                    <option value="ZA">South Africa</option>
-                                                    <option value="KR">South Korea</option>
-                                                    <option value="SS">South Sudan</option>
-                                                    <option value="ES">Spain</option>
-                                                    <option value="LK">Sri Lanka</option>
-                                                    <option value="SD">Sudan</option>
-                                                    <option value="SR">Suriname</option>
-                                                    <option value="SZ">Swaziland</option>
-                                                    <option value="SE">Sweden</option>
-                                                    <option value="CH">Switzerland</option>
-                                                    <option value="SY">Syrian Arab Republic</option>
-                                                    <option value="TW">Taiwan, Province of China</option>
-                                                    <option value="TJ">Tajikistan</option>
-                                                    <option value="TZ">Tanzania, United Republic of</option>
-                                                    <option value="TH">Thailand</option>
-                                                    <option value="TG">Togo</option>
-                                                    <option value="TK">Tokelau</option>
-                                                    <option value="TO">Tonga</option>
-                                                    <option value="TT">Trinidad and Tobago</option>
-                                                    <option value="TN">Tunisia</option>
-                                                    <option value="TR">Turkey</option>
-                                                    <option value="TM">Turkmenistan</option>
-                                                    <option value="TC">Turks and Caicos Islands</option>
-                                                    <option value="TV">Tuvalu</option>
-                                                    <option value="UG">Uganda</option>
-                                                    <option value="UA">Ukraine</option>
-                                                    <option value="AE">United Arab Emirates</option>
-                                                    <option value="GB">United Kingdom</option>
-                                                    <option value="US">United States</option>
-                                                    <option value="UY">Uruguay</option>
-                                                    <option value="UZ">Uzbekistan</option>
-                                                    <option value="VU">Vanuatu</option>
-                                                    <option value="VE">Venezuela, Bolivarian Republic of</option>
-                                                    <option value="VN">Vietnam</option>
-                                                    <option value="VI">Virgin Islands</option>
-                                                    <option value="YE">Yemen</option>
-                                                    <option value="ZM">Zambia</option>
-                                                    <option value="ZW">Zimbabwe</option>
-                                                </select>
-                                                <!--end::Input-->
-                                            </div>
-                                            <!--end::Input group-->
-                                        </div>
-                                        <!--end::Address form-->
-                                    </div>
-                                    <!--end::Scroll-->
-                                </div>
-                                <!--end::Modal body-->
-                                <!--begin::Modal footer-->
-                                <div class="modal-footer flex-center">
-                                    <!--begin::Button-->
-                                    <button type="reset" class="btn btn-light me-3"
-                                        data-kt-users-modal-action="cancel">Discard</button>
-                                    <!--end::Button-->
-                                    <!--begin::Button-->
-                                    <button type="submit" class="btn btn-primary" data-kt-users-modal-action="submit">
+                                <div class="text-center">
+                                    <button type="reset" id="kt_subscriptions_export_cancel"
+                                        class="btn btn-light me-3">Discard</button>
+                                    <button type="submit" id="kt_subscriptions_export_submit"
+                                        class="btn btn-primary">
                                         <span class="indicator-label">Submit</span>
                                         <span class="indicator-progress">Please wait...
-                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                            <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                     </button>
-                                    <!--end::Button-->
                                 </div>
-                                <!--end::Modal footer-->
+                                <!--end::Actions-->
                             </form>
                             <!--end::Form-->
                         </div>
+                        <!--end::Modal body-->
                     </div>
+                    <!--end::Modal content-->
                 </div>
-                <!--end::Modal - Update user details-->
-                <!--begin::Modal - Add schedule-->
-                <div class="modal fade" id="kt_modal_add_schedule" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Add an Event</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form id="kt_modal_add_schedule_form" class="form" action="#">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Date &amp; Time</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                                data-bs-trigger="hover" data-bs-html="true"
-                                                data-bs-content="Select a date &amp; time."></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input class="form-control form-control-solid" placeholder="Pick date &amp; time"
-                                            name="event_datetime" id="kt_modal_add_schedule_datepicker" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Event Name</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="event_name"
-                                            value="" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Event Organiser</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="event_org"
-                                            value="" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Send Event Details To</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input id="kt_modal_add_schedule_tagify" type="text"
-                                            class="form-control form-control-solid" name="event_invitees"
-                                            value="e.smith@kpmg.com.au, melody@altbox.com" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Discard</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Add schedule-->
-                <!--begin::Modal - Add task-->
-                <div class="modal fade" id="kt_modal_add_task" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Add a Task</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form id="kt_modal_add_task_form" class="form" action="#">
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Task Due Date</span>
-                                            <i class="fas fa-exclamation-circle ms-2 fs-7" data-bs-toggle="popover"
-                                                data-bs-trigger="hover" data-bs-html="true"
-                                                data-bs-content="Select a due date."></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input class="form-control form-control-solid" placeholder="Pick date"
-                                            name="task_duedate" id="kt_modal_add_task_datepicker" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="required fs-6 fw-bold form-label mb-2">Task Name</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid" name="task_name"
-                                            value="" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">Task Description</label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <textarea class="form-control form-control-solid rounded-3"></textarea>
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Discard</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Add task-->
-                <!--begin::Modal - Update email-->
-                <div class="modal fade" id="kt_modal_update_email" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Update Email Address</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form id="kt_modal_update_email_form" class="form" action="#">
-                                    <!--begin::Notice-->
-                                    <!--begin::Notice-->
-                                    <div
-                                        class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                                        <!--begin::Icon-->
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                                        <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20"
-                                                    rx="10" fill="black" />
-                                                <rect x="11" y="14" width="7" height="2" rx="1"
-                                                    transform="rotate(-90 11 14)" fill="black" />
-                                                <rect x="11" y="17" width="2" height="2" rx="1"
-                                                    transform="rotate(-90 11 17)" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <!--end::Icon-->
-                                        <!--begin::Wrapper-->
-                                        <div class="d-flex flex-stack flex-grow-1">
-                                            <!--begin::Content-->
-                                            <div class="fw-bold">
-                                                <div class="fs-6 text-gray-700">Please note that a valid email address is
-                                                    required to complete the email verification.</div>
-                                            </div>
-                                            <!--end::Content-->
-                                        </div>
-                                        <!--end::Wrapper-->
-                                    </div>
-                                    <!--end::Notice-->
-                                    <!--end::Notice-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Email Address</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input class="form-control form-control-solid" placeholder=""
-                                            name="profile_email" value="e.smith@kpmg.com.au" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Discard</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Update email-->
-                <!--begin::Modal - Update password-->
-                <div class="modal fade" id="kt_modal_update_password" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Update Password</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form id="kt_modal_update_password_form" class="form" action="#">
-                                    <!--begin::Input group=-->
-                                    <div class="fv-row mb-10">
-                                        <label class="required form-label fs-6 mb-2">Current Password</label>
-                                        <input class="form-control form-control-lg form-control-solid" type="password"
-                                            placeholder="" name="current_password" autocomplete="off" />
-                                    </div>
-                                    <!--end::Input group=-->
-                                    <!--begin::Input group-->
-                                    <div class="mb-10 fv-row" data-kt-password-meter="true">
-                                        <!--begin::Wrapper-->
-                                        <div class="mb-1">
-                                            <!--begin::Label-->
-                                            <label class="form-label fw-bold fs-6 mb-2">New Password</label>
-                                            <!--end::Label-->
-                                            <!--begin::Input wrapper-->
-                                            <div class="position-relative mb-3">
-                                                <input class="form-control form-control-lg form-control-solid"
-                                                    type="password" placeholder="" name="new_password"
-                                                    autocomplete="off" />
-                                                <span
-                                                    class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                                    data-kt-password-meter-control="visibility">
-                                                    <i class="bi bi-eye-slash fs-2"></i>
-                                                    <i class="bi bi-eye fs-2 d-none"></i>
-                                                </span>
-                                            </div>
-                                            <!--end::Input wrapper-->
-                                            <!--begin::Meter-->
-                                            <div class="d-flex align-items-center mb-3"
-                                                data-kt-password-meter-control="highlight">
-                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                                </div>
-                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                                </div>
-                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px me-2">
-                                                </div>
-                                                <div class="flex-grow-1 bg-secondary bg-active-success rounded h-5px">
-                                                </div>
-                                            </div>
-                                            <!--end::Meter-->
-                                        </div>
-                                        <!--end::Wrapper-->
-                                        <!--begin::Hint-->
-                                        <div class="text-muted">Use 8 or more characters with a mix of letters, numbers
-                                            &amp; symbols.</div>
-                                        <!--end::Hint-->
-                                    </div>
-                                    <!--end::Input group=-->
-                                    <!--begin::Input group=-->
-                                    <div class="fv-row mb-10">
-                                        <label class="form-label fw-bold fs-6 mb-2">Confirm New Password</label>
-                                        <input class="form-control form-control-lg form-control-solid" type="password"
-                                            placeholder="" name="confirm_password" autocomplete="off" />
-                                    </div>
-                                    <!--end::Input group=-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Discard</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Update password-->
-                <!--begin::Modal - Update role-->
-                <div class="modal fade" id="kt_modal_update_role" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Update User Role</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form id="kt_modal_update_role_form" class="form" action="#">
-                                    <!--begin::Notice-->
-                                    <!--begin::Notice-->
-                                    <div
-                                        class="notice d-flex bg-light-primary rounded border-primary border border-dashed mb-9 p-6">
-                                        <!--begin::Icon-->
-                                        <!--begin::Svg Icon | path: icons/duotune/general/gen044.svg-->
-                                        <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
-                                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                viewBox="0 0 24 24" fill="none">
-                                                <rect opacity="0.3" x="2" y="2" width="20" height="20"
-                                                    rx="10" fill="black" />
-                                                <rect x="11" y="14" width="7" height="2" rx="1"
-                                                    transform="rotate(-90 11 14)" fill="black" />
-                                                <rect x="11" y="17" width="2" height="2" rx="1"
-                                                    transform="rotate(-90 11 17)" fill="black" />
-                                            </svg>
-                                        </span>
-                                        <!--end::Svg Icon-->
-                                        <!--end::Icon-->
-                                        <!--begin::Wrapper-->
-                                        <div class="d-flex flex-stack flex-grow-1">
-                                            <!--begin::Content-->
-                                            <div class="fw-bold">
-                                                <div class="fs-6 text-gray-700">Please note that reducing a user role rank,
-                                                    that user will lose all priviledges that was assigned to the previous
-                                                    role.</div>
-                                            </div>
-                                            <!--end::Content-->
-                                        </div>
-                                        <!--end::Wrapper-->
-                                    </div>
-                                    <!--end::Notice-->
-                                    <!--end::Notice-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-5">
-                                            <span class="required">Select a user role</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input row-->
-                                        <div class="d-flex">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role" type="radio"
-                                                    value="0" id="kt_modal_update_role_option_0"
-                                                    checked='checked' />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="kt_modal_update_role_option_0">
-                                                    <div class="fw-bolder text-gray-800">Administrator</div>
-                                                    <div class="text-gray-600">Best for business owners and company
-                                                        administrators</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <div class="d-flex">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role" type="radio"
-                                                    value="1" id="kt_modal_update_role_option_1" />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="kt_modal_update_role_option_1">
-                                                    <div class="fw-bolder text-gray-800">Developer</div>
-                                                    <div class="text-gray-600">Best for developers or people primarily
-                                                        using the API</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <div class="d-flex">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role" type="radio"
-                                                    value="2" id="kt_modal_update_role_option_2" />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="kt_modal_update_role_option_2">
-                                                    <div class="fw-bolder text-gray-800">Analyst</div>
-                                                    <div class="text-gray-600">Best for people who need full access to
-                                                        analytics data, but don't need to update business settings</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <div class="d-flex">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role" type="radio"
-                                                    value="3" id="kt_modal_update_role_option_3" />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="kt_modal_update_role_option_3">
-                                                    <div class="fw-bolder text-gray-800">Support</div>
-                                                    <div class="text-gray-600">Best for employees who regularly refund
-                                                        payments and respond to disputes</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                        <div class='separator separator-dashed my-5'></div>
-                                        <!--begin::Input row-->
-                                        <div class="d-flex">
-                                            <!--begin::Radio-->
-                                            <div class="form-check form-check-custom form-check-solid">
-                                                <!--begin::Input-->
-                                                <input class="form-check-input me-3" name="user_role" type="radio"
-                                                    value="4" id="kt_modal_update_role_option_4" />
-                                                <!--end::Input-->
-                                                <!--begin::Label-->
-                                                <label class="form-check-label" for="kt_modal_update_role_option_4">
-                                                    <div class="fw-bolder text-gray-800">Trial</div>
-                                                    <div class="text-gray-600">Best for people who need to preview content
-                                                        data, but don't need to make any updates</div>
-                                                </label>
-                                                <!--end::Label-->
-                                            </div>
-                                            <!--end::Radio-->
-                                        </div>
-                                        <!--end::Input row-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Discard</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Update role-->
-                <!--begin::Modal - Add task-->
-                <div class="modal fade" id="kt_modal_add_auth_app" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Add Authenticator App</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Content-->
-                                <div class="fw-bolder d-flex flex-column justify-content-center mb-5">
-                                    <!--begin::Label-->
-                                    <div class="text-center mb-5" data-kt-add-auth-action="qr-code-label">Download the
-                                        <a href="#">Authenticator app</a>, add a new account, then scan this barcode
-                                        to set up your account.
-                                    </div>
-                                    <div class="text-center mb-5 d-none" data-kt-add-auth-action="text-code-label">
-                                        Download the
-                                        <a href="#">Authenticator app</a>, add a new account, then enter this code
-                                        to set up your account.
-                                    </div>
-                                    <!--end::Label-->
-                                    <!--begin::QR code-->
-                                    <div class="d-flex flex-center" data-kt-add-auth-action="qr-code">
-                                        <img src="assets/media/misc/qr-code.png" alt="Scan this QR code" />
-                                    </div>
-                                    <!--end::QR code-->
-                                    <!--begin::Text code-->
-                                    <div class="border rounded p-5 d-flex flex-center d-none"
-                                        data-kt-add-auth-action="text-code">
-                                        <div class="fs-1">gi2kdnb54is709j</div>
-                                    </div>
-                                    <!--end::Text code-->
-                                </div>
-                                <!--end::Content-->
-                                <!--begin::Action-->
-                                <div class="d-flex flex-center">
-                                    <div class="btn btn-light-primary" data-kt-add-auth-action="text-code-button">Enter
-                                        code manually</div>
-                                    <div class="btn btn-light-primary d-none" data-kt-add-auth-action="qr-code-button">
-                                        Scan barcode instead</div>
-                                </div>
-                                <!--end::Action-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Add task-->
-                <!--begin::Modal - Add task-->
-                <div class="modal fade" id="kt_modal_add_one_time_password" tabindex="-1" aria-hidden="true">
-                    <!--begin::Modal dialog-->
-                    <div class="modal-dialog modal-dialog-centered mw-650px">
-                        <!--begin::Modal content-->
-                        <div class="modal-content">
-                            <!--begin::Modal header-->
-                            <div class="modal-header">
-                                <!--begin::Modal title-->
-                                <h2 class="fw-bolder">Enable One Time Password</h2>
-                                <!--end::Modal title-->
-                                <!--begin::Close-->
-                                <div class="btn btn-icon btn-sm btn-active-icon-primary"
-                                    data-kt-users-modal-action="close">
-                                    <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                    <span class="svg-icon svg-icon-1">
-                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                            viewBox="0 0 24 24" fill="none">
-                                            <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
-                                                rx="1" transform="rotate(-45 6 17.3137)" fill="black" />
-                                            <rect x="7.41422" y="6" width="16" height="2" rx="1"
-                                                transform="rotate(45 7.41422 6)" fill="black" />
-                                        </svg>
-                                    </span>
-                                    <!--end::Svg Icon-->
-                                </div>
-                                <!--end::Close-->
-                            </div>
-                            <!--end::Modal header-->
-                            <!--begin::Modal body-->
-                            <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
-                                <!--begin::Form-->
-                                <form class="form" id="kt_modal_add_one_time_password_form">
-                                    <!--begin::Label-->
-                                    <div class="fw-bolder mb-9">Enter the new phone number to receive an SMS to when you
-                                        log in.</div>
-                                    <!--end::Label-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Mobile number</span>
-                                            <i class="fas fa-exclamation-circle ms-1 fs-7" data-bs-toggle="tooltip"
-                                                title="A valid mobile number is required to receive the one-time password to validate your account login."></i>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="text" class="form-control form-control-solid"
-                                            name="otp_mobile_number" placeholder="+6123 456 789" value="" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Separator-->
-                                    <div class="separator saperator-dashed my-5"></div>
-                                    <!--end::Separator-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Email</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="email" class="form-control form-control-solid" name="otp_email"
-                                            value="e.smith@kpmg.com.au" readonly="readonly" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Input group-->
-                                    <div class="fv-row mb-7">
-                                        <!--begin::Label-->
-                                        <label class="fs-6 fw-bold form-label mb-2">
-                                            <span class="required">Confirm password</span>
-                                        </label>
-                                        <!--end::Label-->
-                                        <!--begin::Input-->
-                                        <input type="password" class="form-control form-control-solid"
-                                            name="otp_confirm_password" value="" />
-                                        <!--end::Input-->
-                                    </div>
-                                    <!--end::Input group-->
-                                    <!--begin::Actions-->
-                                    <div class="text-center pt-15">
-                                        <button type="reset" class="btn btn-light me-3"
-                                            data-kt-users-modal-action="cancel">Cancel</button>
-                                        <button type="submit" class="btn btn-primary"
-                                            data-kt-users-modal-action="submit">
-                                            <span class="indicator-label">Submit</span>
-                                            <span class="indicator-progress">Please wait...
-                                                <span
-                                                    class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
-                                        </button>
-                                    </div>
-                                    <!--end::Actions-->
-                                </form>
-                                <!--end::Form-->
-                            </div>
-                            <!--end::Modal body-->
-                        </div>
-                        <!--end::Modal content-->
-                    </div>
-                    <!--end::Modal dialog-->
-                </div>
-                <!--end::Modal - Add task-->
-                <!--end::Modals-->
+                <!--end::Modal dialog-->
             </div>
-            <!--end::Container-->
+            <!--end::Modal - New Card-->
+            <!--end::Modals-->
         </div>
-        <!--end::Post-->
+        <!--end::Container-->
     </div>
+    <!--end::Post-->
+    
+</div>
+<div id="kt_toolbar_container" class="container-fluid ">
+    <div class="row gy-5 g-xl-8">
+        <!--begin::Col-->
+        <div class="col-xl-6">
+            <!--begin::List Widget 6-->
+            <div class="card card-xl-stretch mb-xl-8">
+                <!--begin::Header-->
+                <div class="card-header border-0">
+                    <h3 class="card-title fw-bolder text-dark">Nhập kệ hàng hóa</h3>
+                    <div class="card-toolbar">
+                        <!--begin::Menu-->
+                        <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                    viewBox="0 0 24 24">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000">
+                                        </rect>
+                                        <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                        <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                        <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                    </g>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </button>
+                        <!--begin::Menu 3-->
+                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
+                            data-kt-menu="true" style="">
+                            <!--begin::Heading-->
+                            <div class="menu-item px-3">
+                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                    Xuất hàng hóa</div>
+                            </div>
+                            <!--end::Heading-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3">Danh sách xuất</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link flex-stack px-3">Thêm mới
+                                </a>
+                            </div>
+                            <!--end::Menu item-->
+                        </div>
+                        <!--end::Menu 3-->
+                        <!--end::Menu-->
+                    </div>
+                </div>
+                <!--end::Header-->
+                <!--begin::Body-->
+                <div class="card-body pt-0">
+                    <!--begin::Item-->
+                    <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-success me-5">
+                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3"
+                                        d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                        fill="black"></path>
+                                    <path
+                                        d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                        fill="black"></path>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <!--end::Icon-->
+                        <!--begin::Title-->
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
+                                #654</a>
+                            <span class="text-muted fw-bold d-block">24/06/2004</span>
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Lable-->
+                        <span class="fw-bolder text-success py-1">50 sản phẩm</span>
+                        <!--end::Lable-->
+                    </div>
+                    <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-success me-5">
+                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3"
+                                        d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                        fill="black"></path>
+                                    <path
+                                        d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                        fill="black"></path>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <!--end::Icon-->
+                        <!--begin::Title-->
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Nhập hàng hóa
+                                #654</a>
+                            <span class="text-muted fw-bold d-block">24/06/2004</span>
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Lable-->
+                        <span class="fw-bolder text-success py-1">50 sản phẩm</span>
+                        <!--end::Lable-->
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::List Widget 6-->
+        </div>
+        <!--end::Col-->
+        <!--begin::Col-->
+        <div class="col-xl-6">
+            <!--begin::List Widget 6-->
+            <div class="card card-xl-stretch mb-xl-8">
+                <!--begin::Header-->
+                <div class="card-header border-0">
+                    <h3 class="card-title fw-bolder text-dark">Xuất kệ hàng hóa</h3>
+                    <div class="card-toolbar">
+                        <!--begin::Menu-->
+                        <button type="button" class="btn btn-sm btn-icon btn-color-primary btn-active-light-primary"
+                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen024.svg-->
+                            <span class="svg-icon svg-icon-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24px" height="24px"
+                                    viewBox="0 0 24 24">
+                                    <g stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+                                        <rect x="5" y="5" width="5" height="5" rx="1" fill="#000000">
+                                        </rect>
+                                        <rect x="14" y="5" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                        <rect x="5" y="14" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                        <rect x="14" y="14" width="5" height="5" rx="1" fill="#000000"
+                                            opacity="0.3"></rect>
+                                    </g>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </button>
+                        <!--begin::Menu 3-->
+                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-800 menu-state-bg-light-primary fw-bold w-200px py-3"
+                            data-kt-menu="true" style="">
+                            <!--begin::Heading-->
+                            <div class="menu-item px-3">
+                                <div class="menu-content text-muted pb-2 px-3 fs-7 text-uppercase">
+                                    Xuất hàng hóa</div>
+                            </div>
+                            <!--end::Heading-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link px-3">Danh sách xuất</a>
+                            </div>
+                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <div class="menu-item px-3">
+                                <a href="#" class="menu-link flex-stack px-3">Thêm mới
+                                </a>
+                            </div>
+                            <!--end::Menu item-->
+                        </div>
+                        <!--end::Menu 3-->
+                        <!--end::Menu-->
+                    </div>
+                </div>
+                <!--end::Header-->
+                <!--begin::Body-->
+                <div class="card-body pt-0">
+                    <!--begin::Item-->
+                    <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
+                        <!--begin::Icon-->
+                        <span class="svg-icon svg-icon-danger me-5">
+                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                            <span class="svg-icon svg-icon-1">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                    viewBox="0 0 24 24" fill="none">
+                                    <path opacity="0.3"
+                                        d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                        fill="black"></path>
+                                    <path
+                                        d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                        fill="black"></path>
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                        </span>
+                        <!--end::Icon-->
+                        <!--begin::Title-->
+                        <div class="flex-grow-1 me-2">
+                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa
+                                #654</a>
+                            <span class="text-muted fw-bold d-block">24/06/2004</span>
+                        </div>
+                        <!--end::Title-->
+                        <!--begin::Lable-->
+                        <span class="fw-bolder text-danger py-1">100 sản phẩm</span>
+                        <!--end::Lable-->
+                    </div>
+                    <!--end::Item-->
+                </div>
+                <!--end::Body-->
+            </div>
+            <!--end::List Widget 6-->
+        </div>
+        <!--end::Col-->
+    </div>
+
+</div>
+
 @endsection

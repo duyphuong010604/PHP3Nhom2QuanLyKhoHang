@@ -25,7 +25,7 @@ class ProductFactory extends Factory
         $price = $this->faker->randomFloat(2, $cost, 1000);
         return [
             'category_id' => $this->faker->randomElement($categoryIds),
-            'sku' => $this->faker->unique()->numberBetween(100000000000, 999999999999),
+            'sku' => $this->faker->unique()->numberBetween(10000000000, 999999999999),
             'name' => $this->faker->name(),
             'price' => $price,
             'cost' => $cost,

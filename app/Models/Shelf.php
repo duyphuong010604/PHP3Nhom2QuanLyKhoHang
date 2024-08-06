@@ -16,6 +16,7 @@ class Shelf extends Model
         'status',
     ];
 
+
     public function stocks(): HasMany
     {
         return $this->hasMany(Stock::class);

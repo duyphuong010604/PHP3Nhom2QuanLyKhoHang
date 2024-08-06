@@ -416,7 +416,7 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Lable-->
-                        <span class="fw-bolder text-success py-1">{{number_formar($item->totalAmount)}} VNĐ</span>
+                        <span class="fw-bolder text-success py-1">{{number_format($item->totalAmount)}} VNĐ</span>
                         <!--end::Lable-->
                     </div>
                     <!--end::Item-->
