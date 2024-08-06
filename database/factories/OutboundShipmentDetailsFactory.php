@@ -22,9 +22,11 @@ class OutboundShipmentDetailsFactory extends Factory
 
     public function definition()
     {
+        $product = Product::pluck('id')->toArray();
+        $outbound = OutboundShipment::pluck('id')->toArray();
         return [
-            'product_id' => Product::factory()->nullable(), // Assuming you have a Product factory
-            'outbound_shipment_id' => OutboundShipment::factory()->nullable(), // Link to OutboundShipment factory
+            'product_id' => $this->faker->randomElement($product),
+            'outbound_shipment_id' => $this->faker->randomElement($outbound),
             'quantity' => $this->faker->numberBetween(1, 100),
             'unitPrice' => $this->faker->randomFloat(2, 10, 1000),
             'totalPrice' => function (array $attributes) {

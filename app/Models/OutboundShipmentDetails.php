@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class OutboundShipmentDetails extends Model
 {
     use HasFactory;
-    protected $table = 'outbound_shipmentdetails';
+    protected $table = 'outbound_shipment_details';
 
 
     public function outboundShipment(): BelongsTo

@@ -8,7 +8,7 @@ use App\Models\Shelf;
 
 class StockList extends Component
 {
-    public $q= null;
+    public $q = null;
 
     public $stocks;
 
@@ -27,11 +27,12 @@ class StockList extends Component
 
     public function mount(StocksRepository $stocksRepository)
     {
+
         $this->stocksRepository = $stocksRepository;
         $this->stocks = $this->stocksRepository->getAll();
         $this->shelf = Shelf::select('id', 'name')->orderBy('id', 'asc')->get();
         // dd($this->stocks);
-        
+
     }
 
     public function applyFilter()

@@ -16,14 +16,14 @@ class StocksRepository
             'stocks',
             'inboundShipments.inboundShipmentDetails'
         ])->get();
-        
+
         $results = $shelves->map(function ($shelf) {
             $stockQuantity = $shelf->stocks->sum('quantity');
             $inboundQuantity = $shelf->inboundShipments->flatMap(function ($shipment) {
                 return $shipment->inboundShipmentDetails;
             })->sum('quantity');
             $totalQuantity = $stockQuantity + $inboundQuantity;
-        
+
             return [
                 'shelf_id' => $shelf->id,
                 'shelf_name' => $shelf->name,
@@ -33,7 +33,7 @@ class StocksRepository
                 'total_quantity' => $totalQuantity,
             ];
         });
-        
+
         return $results;
 
     }
@@ -45,10 +45,10 @@ class StocksRepository
             'outboundShipments.outboundShipmentDetails.product',
             'stocks.product'
         ])->findOrFail($id);
-    
+
         $transactions = [];
-        $transactions_out =[];
-    
+        $transactions_out = [];
+
 
         foreach ($shelf->inboundShipments as $inboundShipment) {
             foreach ($inboundShipment->inboundShipmentDetails as $detail) {
@@ -76,9 +76,9 @@ class StocksRepository
                 ];
             }
         }
-    
 
-    
+
+
         return [
             'shelf' => $shelf,
             'transactions' => $transactions,
