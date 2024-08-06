@@ -61,7 +61,7 @@
                 <h5 class="mb-4">Thông tin chi tiết:</h5>
                 <!--end::Title-->
                 <!--begin::Details-->
-                <div class="d-flex  py-5">
+                <div class="d-flex py-5">
                     <div class="flex-equal me-5">
                         <!--begin::Details-->
                         <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
@@ -83,6 +83,8 @@
 
                                     </td>
                                 </tr>
+
+
                                 <!--end::Row-->
                             </tbody>
                         </table>
@@ -126,7 +128,7 @@
                     </div>
                     <!--end::Row-->
                     <!--begin::Row-->
-                    <div class="flex-equal">
+                    <div class="flex-equal me-5">
                         <!--begin::Details-->
                         <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
                             <!--begin::Row-->
@@ -169,6 +171,35 @@
                         <!--end::Details-->
                     </div>
                     <!--end::Row-->
+                </div>
+                <div class="d-flex">
+                    <div class="flex-equal me-5">
+                        <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
+                            <!--begin::Row-->
+                            <tbody>
+                                <tr>
+                                    <td class="text-gray-400 w-65px">Code:</td>
+                                    <td class="text-gray-800 w-65px">
+                                        {!! DNS1D::getBarcodeHTML("$product->sku", 'EAN13') !!}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="flex-equal">
+                        <table class="table fs-6 fw-bold gs-0 gy-2 gx-2 m-0">
+                            <!--begin::Row-->
+                            <tbody>
+                                <tr>
+                                    <td class="text-gray-400 w-25px">Qr:</td>
+                                    <td class="text-gray-800 w-25px">
+                                        {!! DNS2D::getBarcodeHTML("$product->sku", 'QRCODE') !!}
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <!--end::Row-->
             </div>

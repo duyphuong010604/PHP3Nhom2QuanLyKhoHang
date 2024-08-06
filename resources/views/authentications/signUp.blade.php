@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Đăng hý tài khoản')
 @section('contents')
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-up -->
@@ -12,7 +12,7 @@
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
                         <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                            <img alt="Logo" src="" class="h-60px" />
+                            <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
@@ -37,24 +37,26 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" id="kt_sign_up_form">
-                            <!--begin::Heading-->
+                        <form action="{{ route ('tai-khoan.store')}}" method="POST"  class="form w-100">
+                           @csrf
                             <div class="mb-10 text-center">
                                 <!--begin::Title-->
                                 <h1 class="text-dark mb-3">Tạo một tài khoản</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Bạn đã có tài khoản?
-                                    <a href="../../demo1/dist/authentication/flows/aside/sign-in.html"
+                                    <a href=""
                                         class="link-primary fw-bolder">Đăng nhập tại đây</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
                             <!--end::Heading-->
                             <!--begin::Action-->
-                            <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-                                <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                    class="h-20px me-3" />Đăng nhập với Google</button>
+                            
+                            <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
+                                        class="h-20px me-3" />Đăng Nhập với Google</a>
+
                             <!--end::Action-->
                             <!--begin::Separator-->
                             <div class="d-flex align-items-center mb-10">
@@ -67,16 +69,22 @@
                             <div class="row fv-row mb-7">
                                 <!--begin::Col-->
                                 <div class="col-xl-6">
-                                    <label class="form-label fw-bolder text-dark fs-6">Họ</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="text"
-                                        placeholder="" name="first-name" autocomplete="off" />
+                                    <label class="form-label fw-bolder text-dark fs-6">Tài Khoản</label>
+                                    <input for="username" :value="__('username')" class="form-control form-control-lg form-control-solid" type="text"
+                                        placeholder="" name="username" id="username" autocomplete="off" />
+                                        @error('username')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <!--end::Col-->
                                 <!--begin::Col-->
                                 <div class="col-xl-6">
                                     <label class="form-label fw-bolder text-dark fs-6">Tên</label>
-                                    <input class="form-control form-control-lg form-control-solid" type="text"
-                                        placeholder="" name="last-name" autocomplete="off" />
+                                    <input for="fullname" :value="__('fullname')" class="form-control form-control-lg form-control-solid" type="text"
+                                        placeholder="" name="fullname" id="fullname" autocomplete="off" />
+                                        @error('fullname')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -84,8 +92,11 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                                <input class="form-control form-control-lg form-control-solid" type="email" placeholder=""
-                                    name="email" autocomplete="off" />
+                                <input for="email" :value="__('email')" class="form-control form-control-lg form-control-solid" type="email" placeholder=""
+                                    name="email" id="email" autocomplete="off" wire:model="email" />
+                                    @error('email')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
@@ -97,15 +108,13 @@
                                     <!--end::Label-->
                                     <!--begin::Input wrapper-->
                                     <div class="position-relative mb-3">
-                                        <input class="form-control form-control-lg form-control-solid" type="password"
-                                            placeholder="" name="password" autocomplete="off" />
-                                        <span
-                                            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                            data-kt-password-meter-control="visibility">
-                                            <i class="bi bi-eye-slash fs-2"></i>
-                                            <i class="bi bi-eye fs-2 d-none"></i>
-                                        </span>
+                                        <input for="password" :value="__('password')" class="form-control form-control-lg form-control-solid" type="password"
+                                            placeholder="" name="password" id="password" autocomplete="off"  />
+                                            @error('password')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                     </div>
+                                    
                                     <!--end::Input wrapper-->
                                     <!--begin::Meter-->
                                     <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">
@@ -118,16 +127,10 @@
                                 </div>
                                 <!--end::Wrapper-->
                                 <!--begin::Hint-->
-                                <div class="text-muted">Sử dụng 8 ký tự trở lên kết hợp chữ cái, số và ký hiệu.</div>
                                 <!--end::Hint-->
                             </div>
                             <!--end::Input group=-->
                             <!--begin::Input group-->
-                            <div class="fv-row mb-5">
-                                <label class="form-label fw-bolder text-dark fs-6">Nhập lại mật khẩu</label>
-                                <input class="form-control form-control-lg form-control-solid" type="password"
-                                    placeholder="" name="confirm-password" autocomplete="off" />
-                            </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
@@ -141,10 +144,7 @@
                             <!--end::Input group-->
                             <!--begin::Actions-->
                             <div class="text-center">
-                                <button type="button" id="kt_sign_up_submit" class="btn btn-lg btn-primary">
-                                    <span class="indicator-label">Đăng Kí</span>
-                                    <span class="indicator-progress">Vui lòng chờ...
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                <button type="submit" class="btn btn-lg btn-primary">Đăng Kí
                                 </button>
                             </div>
                             <!--end::Actions-->

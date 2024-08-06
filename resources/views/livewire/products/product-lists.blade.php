@@ -60,10 +60,8 @@
                             </span>
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
-                                placeholder="Tìm kiếm sản phẩm" wire:model.live='q'>
-                            @if ($products->count() == 0)
-                                <span class="text-danger">Không có sản phẩm cần tiềm</span>
-                            @endif
+                                placeholder="Tìm kiếm sản phẩm" wire:model.live='search'>
+
 
                         </div>
                         <!--end::Search-->
@@ -145,8 +143,8 @@
                                             <!--begin::Option-->
                                             <label
                                                 class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                                <input class="form-check-input" type="radio" wire:model='sortBy'
-                                                    value="asc" name="type">
+                                                <input class="form-check-input" type="radio" name="type"
+                                                    value="asc" wire:model='orderBy'>
                                                 <span class="form-check-label text-gray-600">Giá
                                                     thấp đến cao</span>
                                             </label>
@@ -214,16 +212,15 @@
                             <table class="table align-middle table-row-dashed fs-6 gy-5 dataTable no-footer"
                                 id="kt_subscriptions_table">
                                 <!--begin::Table head-->
-                                <thead>
+                                <thead class="">
                                     <!--begin::Table row-->
-                                    <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0">
+                                    <tr class="text-start text-muted fw-bolder fs-7 text-uppercase gs-0 ">
                                         <th class="w-10px pe-2 sorting_disabled" rowspan="1" colspan="1"
                                             aria-label="" style="width: 29.25px;">
                                             <div
                                                 class="form-check form-check-sm form-check-custom form-check-solid me-3">
                                                 <input class="form-check-input" type="checkbox" data-kt-check="true"
-                                                    data-kt-check-target="#kt_subscriptions_table .form-check-input"
-                                                    value="1">
+                                                    wire:model='selectAll' wire:click='checkAll'>
                                             </div>
                                         </th>
                                         <th class="min-w-125px sorting" tabindex="0"
@@ -246,6 +243,10 @@
                                             aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
                                             aria-label="Created Date: activate to sort column ascending"
                                             style="width: 166.484px;">Số lượng</th>
+                                        <th class="min-w-125px sorting" tabindex="0"
+                                            aria-controls="kt_subscriptions_table" rowspan="1" colspan="1"
+                                            aria-label="Created Date: activate to sort column ascending"
+                                            style="width: 166.484px;">Code</th>
                                         <th class="text-end min-w-70px sorting_disabled" rowspan="1"
                                             colspan="1" aria-label="Actions" style="width: 124.828px;">Tùy chọn
                                         </th>
@@ -254,20 +255,25 @@
                                 </thead>
                                 <!--end::Table head-->
                                 <!--begin::Table body-->
-                                <tbody class="text-gray-600 fw-bold">
-                                    @foreach ($products as $item)
+
+                                <tbody class="text-gray-600 fw-bold ">
+                                    @foreach ($this->products as $item)
                                         <tr class="odd">
                                             <!--begin::Checkbox-->
                                             <td>
                                                 <div
                                                     class="form-check form-check-sm form-check-custom form-check-solid">
-                                                    <input class="form-check-input" type="checkbox" value="1">
+                                                    <input class="form-check-input" type="checkbox"
+                                                        wire:click='updateDeleteButton' wire:model='productId'
+                                                        value="{{ $item->id }}">
                                                 </div>
+
                                             </td>
                                             <!--end::Checkbox-->
                                             <!--begin::Customer=-->
                                             <td>
-                                                <div class="text-gray-800 text-hover-primary mb-1">{{ $item->name }}
+                                                <div class="text-gray-800 text-hover-primary mb-1">
+                                                    {{ $item->name }}
                                                 </div>
                                             </td>
                                             <!--end::Customer=-->
@@ -287,25 +293,25 @@
                                             <td>{{ $item->category->name }}</td>
                                             <!--end::Product=-->
                                             <!--begin::Date=-->
-                                            <td>
+                                            <td class="">
                                                 @if ($item->stocks)
                                                     @foreach ($item->stocks as $stockProduct)
-                                                        <p class="inline-block">
-                                                            {{ $stockProduct->quantity }}sp-
-                                                            <small class="badge badge-secondary ">
-                                                                Kệ {{ $stockProduct->shelf->name }} </small>
-                                                        </p>
+                                                        <small class="badge badge-secondary ">
+                                                            Kệ {{ $stockProduct->shelf->name }}:
+                                                            {{ $stockProduct->quantity }}</small>
                                                     @endforeach
                                                 @endif
 
                                             </td>
+                                            <td>
+                                                {{ $item->sku }}
+                                            </td>
                                             <!--end::Date=-->
                                             <!--begin::Action=-->
                                             <td class="text-end">
-                                                <a href="#"
-                                                    class="btn btn-light btn-active-light-primary btn-sm"
-                                                    data-kt-menu-trigger="click"
-                                                    data-kt-menu-placement="bottom-end">Tùy
+                                                <div class="btn btn-light btn-active-light-primary btn-sm"
+                                                    data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
+                                                    Tùy
                                                     chọn
                                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
                                                     <span class="svg-icon svg-icon-5 m-0">
@@ -316,7 +322,8 @@
                                                                 fill="black"></path>
                                                         </svg>
                                                     </span>
-                                                    <!--end::Svg Icon--></a>
+                                                    <!--end::Svg Icon-->
+                                                </div>
                                                 <!--begin::Menu-->
                                                 <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                                     data-kt-menu="true">
@@ -336,8 +343,11 @@
                                                     <!--end::Menu item-->
                                                     <!--begin::Menu item-->
                                                     <div class="menu-item px-3">
-                                                        <a wire:click="confirmProjectDeletion({{ $item->id }})"data-kt-subscriptions-table-filter="delete_row"
-                                                            class="menu-link px-3">Xóa</a>
+                                                        <span wire:click="confirmProjectDeletion({{ $item->id }})"
+                                                            data-bs-toggle="modal"
+                                                            data-bs-target="#confirmDeleteModal1"
+                                                            class="menu-link
+                                                        px-3">Xóa</span>
                                                     </div>
                                                     <!--end::Menu item-->
                                                 </div>
@@ -346,72 +356,78 @@
                                             <!--end::Action=-->
                                         </tr>
                                     @endforeach
-
+                                    @if ($this->products->count() <= 0)
+                                        <span class="text-danger ms-3">Không có sản phẩm cần tìm!</span>
+                                    @endif
+                                    {{ $this->products->links() }}
                                 </tbody>
-                                <!-- Modal -->
-                                <div wire:ignore.self class="modal fade" id="confirmDeleteModal" tabindex="-1"
-                                    aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                    aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Bạn có chắc chắn muốn xoá dự án này không?
-                                            </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary"
-                                                    data-bs-dismiss="modal">Hủy</button>
-                                                <button type="button" class="btn btn-danger"
-                                                    wire:click="deleteProject" data-bs-dismiss="modal">Xác
-                                                    nhận</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                                 <!--end::Table body-->
                             </table>
+                            <div>
+                                @if ($showDeleteButton)
+                                    <div>
+                                        <button class="btn btn-danger" data-bs-toggle="modal"
+                                            data-bs-target="#confirmDeleteModalAll">
+                                            Xóa tất cả
+                                        </button>
+                                    </div>
+                                @endif
+                            </div>
                         </div>
-
-                        {{-- {{ $products->links() }} --}}
-                        {{-- <div class="row">
-                            <div
-                                class="col-sm-12 col-md-5 d-flex align-items-center justify-content-center justify-content-md-start">
-                            </div>
-                            <div
-                                class="col-sm-12 col-md-7 d-flex align-items-center justify-content-center justify-content-md-end">
-                                <div class="dataTables_paginate paging_simple_numbers"
-                                    id="kt_subscriptions_table_paginate">
-                                    <ul class="pagination">
-                                        <li class="paginate_button page-item previous disabled"
-                                            id="kt_subscriptions_table_previous"><a href="#"
-                                                aria-controls="kt_subscriptions_table" data-dt-idx="0" tabindex="0"
-                                                class="page-link"><i class="previous"></i></a></li>
-                                        <li class="paginate_button page-item active"><a href="#"
-                                                aria-controls="kt_subscriptions_table" data-dt-idx="1" tabindex="0"
-                                                class="page-link">1</a></li>
-                                        <li class="paginate_button page-item "><a href="#"
-                                                aria-controls="kt_subscriptions_table" data-dt-idx="2" tabindex="0"
-                                                class="page-link">2</a></li>
-                                        <li class="paginate_button page-item next" id="kt_subscriptions_table_next"><a
-                                                href="#" aria-controls="kt_subscriptions_table" data-dt-idx="3"
-                                                tabindex="0" class="page-link"><i class="next"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div> --}}
                     </div>
                     <!--end::Table-->
                 </div>
                 <!--end::Card body-->
             </div>
+            <!-- Modal -->
+            <div wire:ignore.self class="modal fade" id="confirmDeleteModal1" tabindex="-1"
+                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá sản phẩm</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xoá sản phẩm này không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" wire:click="deleteProject"
+                                data-bs-dismiss="modal">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal -->
+            <div wire:ignore.self class="modal fade" id="confirmDeleteModalAll" tabindex="-1"
+                aria-labelledby="confirmDeleteModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="confirmDeleteModalLabel">Xác nhận xoá các sản phẩm đã
+                                chọn.</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Bạn có chắc chắn muốn xoá sản phẩm các sản phẩm này không?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Hủy</button>
+                            <button type="button" class="btn btn-danger" wire:click='deleteSelected'
+                                data-bs-dismiss="modal">Xác nhận</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <!--end::Card-->
             <!--begin::Modals-->
             <!--begin::Modal - Adjust Balance-->
-            <div class="modal fade" id="kt_subscriptions_export_modal" tabindex="-1" style="display: none;"
-                aria-hidden="true">
+            <div wire:ignore.self class="modal fade" id="kt_subscriptions_export_modal" tabindex="-1"
+                style="display: none;" aria-hidden="true">
                 <!--begin::Modal dialog-->
                 <div class="modal-dialog modal-dialog-centered mw-650px">
                     <!--begin::Modal content-->
@@ -419,13 +435,13 @@
                         <!--begin::Modal header-->
                         <div class="modal-header">
                             <!--begin::Modal title-->
-                            <h2 class="fw-bolder">Export Subscriptions</h2>
+                            <h2 class="fw-bolder">Xuất danh sách</h2>
                             <!--end::Modal title-->
                             <!--begin::Close-->
                             <div id="kt_subscriptions_export_close"
                                 class="btn btn-icon btn-sm btn-active-icon-primary">
                                 <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
-                                <span class="svg-icon svg-icon-1">
+                                {{-- <span class="svg-icon svg-icon-1">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
                                         viewBox="0 0 24 24" fill="none">
                                         <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
@@ -433,7 +449,7 @@
                                         <rect x="7.41422" y="6" width="16" height="2" rx="1"
                                             transform="rotate(45 7.41422 6)" fill="black"></rect>
                                     </svg>
-                                </span>
+                                </span> --}}
                                 <!--end::Svg Icon-->
                             </div>
                             <!--end::Close-->
@@ -443,102 +459,26 @@
                         <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
                             <!--begin::Form-->
                             <form id="kt_subscriptions_export_form"
-                                class="form fv-plugins-bootstrap5 fv-plugins-framework" action="#">
-                                <!--begin::Input group-->
-                                <div class="fv-row mb-10 fv-plugins-icon-container">
-                                    <!--begin::Label-->
-                                    <label class="fs-5 fw-bold form-label mb-5">Select Date Range:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <input class="form-control form-control-solid flatpickr-input"
-                                        placeholder="Pick a date" name="date" type="hidden"><input
-                                        class="form-control form-control-solid form-control input"
-                                        placeholder="Pick a date" tabindex="0" type="text" readonly="readonly">
-                                    <!--end::Input-->
-                                    <div class="fv-plugins-message-container invalid-feedback"></div>
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
+                                class="form fv-plugins-bootstrap5 fv-plugins-framework" wire:submit='export'>
+
                                 <div class="fv-row mb-10">
                                     <!--begin::Label-->
-                                    <label class="fs-5 fw-bold form-label mb-5">Select Export Format:</label>
+                                    <label class="fs-5 fw-bold form-label mb-5">Lựa chọn kiểu xuất:</label>
                                     <!--end::Label-->
                                     <!--begin::Input-->
-                                    <select data-control="select2" data-placeholder="Select a format"
-                                        data-hide-search="true" name="format"
-                                        class="form-select form-select-solid select2-hidden-accessible"
-                                        data-select2-id="select2-data-22-qqs0" tabindex="-1" aria-hidden="true">
-                                        <option value="excell" data-select2-id="select2-data-24-givu">Excel</option>
+                                    <select wire:model='typeExport' class="form-select form-select-solid ">
+                                        <option value="excell">Excel</option>
                                         <option value="pdf">PDF</option>
-                                        <option value="cvs">CVS</option>
-                                        <option value="zip">ZIP</option>
-                                    </select><span class="select2 select2-container select2-container--bootstrap5"
-                                        dir="ltr" data-select2-id="select2-data-23-6pjm"
-                                        style="width: 100%;"><span class="selection"><span
-                                                class="select2-selection select2-selection--single form-select form-select-solid"
-                                                role="combobox" aria-haspopup="true" aria-expanded="false"
-                                                tabindex="0" aria-disabled="false"
-                                                aria-labelledby="select2-format-0h-container"
-                                                aria-controls="select2-format-0h-container"><span
-                                                    class="select2-selection__rendered"
-                                                    id="select2-format-0h-container" role="textbox"
-                                                    aria-readonly="true" title="Excel">Excel</span><span
-                                                    class="select2-selection__arrow" role="presentation"><b
-                                                        role="presentation"></b></span></span></span><span
-                                            class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        <option value="code">PDF CODE</option>
+                                    </select>
                                     <!--end::Input-->
                                 </div>
-                                <!--end::Input group-->
-                                <!--begin::Row-->
-                                <div class="row fv-row mb-15">
-                                    <!--begin::Label-->
-                                    <label class="fs-5 fw-bold form-label mb-5">Payment Type:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Radio group-->
-                                    <div class="d-flex flex-column">
-                                        <!--begin::Radio button-->
-                                        <label
-                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                            <input class="form-check-input" type="checkbox" value="1"
-                                                checked="checked" name="payment_type">
-                                            <span class="form-check-label text-gray-600 fw-bold">All</span>
-                                        </label>
-                                        <!--end::Radio button-->
-                                        <!--begin::Radio button-->
-                                        <label
-                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                            <input class="form-check-input" type="checkbox" value="2"
-                                                checked="checked" name="payment_type">
-                                            <span class="form-check-label text-gray-600 fw-bold">Visa</span>
-                                        </label>
-                                        <!--end::Radio button-->
-                                        <!--begin::Radio button-->
-                                        <label
-                                            class="form-check form-check-custom form-check-sm form-check-solid mb-3">
-                                            <input class="form-check-input" type="checkbox" value="3"
-                                                name="payment_type">
-                                            <span class="form-check-label text-gray-600 fw-bold">Mastercard</span>
-                                        </label>
-                                        <!--end::Radio button-->
-                                        <!--begin::Radio button-->
-                                        <label class="form-check form-check-custom form-check-sm form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="4"
-                                                name="payment_type">
-                                            <span class="form-check-label text-gray-600 fw-bold">American
-                                                Express</span>
-                                        </label>
-                                        <!--end::Radio button-->
-                                    </div>
-                                    <!--end::Input group-->
-                                </div>
-                                <!--end::Row-->
-                                <!--begin::Actions-->
+
                                 <div class="text-center">
-                                    <button type="reset" id="kt_subscriptions_export_cancel"
-                                        class="btn btn-light me-3">Discard</button>
+
                                     <button type="submit" id="kt_subscriptions_export_submit"
                                         class="btn btn-primary">
-                                        <span class="indicator-label">Submit</span>
+                                        <span class="indicator-label">Xuất</span>
                                         <span class="indicator-progress">Please wait...
                                             <span
                                                 class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
@@ -560,4 +500,5 @@
         </div>
         <!--end::Container-->
     </div>
+
 </section>

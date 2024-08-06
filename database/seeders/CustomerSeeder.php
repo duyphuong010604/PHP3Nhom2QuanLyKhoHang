@@ -2,7 +2,6 @@
 
 namespace Database\Seeders;
 
-use Database\Factories\CustomerFactory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Customer;
@@ -14,6 +13,13 @@ class CustomerSeeder extends Seeder
      */
     public function run(): void
     {
-        Customer::factory()->count(50)->create();
+        Customer::create([
+            'name' => 'nhan',
+            'email' => 'nhan@gmail.com',
+            'phone' => '0342078433',
+            'address' => 'Can tho',
+            'object' => 'Khach hang',
+            'status' => true
+        ]);
     }
 }

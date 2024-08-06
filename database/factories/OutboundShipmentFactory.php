@@ -22,12 +22,15 @@ class OutboundShipmentFactory extends Factory
 
     public function definition()
     {
+        $user = User::pluck('id')->toArray();
+        $customer = Customer::pluck('id')->toArray();
+        $shelf = Shelf::pluck('id')->toArray();
         return [
-            'user_id' => User::factory()->nullable(), // Assuming you have a User factory
-            'customer_id' => Customer::factory()->nullable(), // Assuming you have a Customer factory
-            'shelf_id' => Shelf::factory()->nullable(), // Assuming you have a Shelf factory
-            'totalAmount' => $this->faker->randomFloat(2, 100, 10000),
-            'remarks' => $this->faker->sentence(),
+            'user_id' => $this->faker->randomElement($user),
+            'customer_id' => $this->faker->randomElement($customer),
+            'shelf_id' => $this->faker->randomElement($shelf),
+            'totalAmount' => $this->faker->randomFloat(2, 0, 10000),
+            'remarks' => $this->faker->word,
             'status' => $this->faker->randomElement(['active', 'draft']),
         ];
     }

@@ -2,8 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
+use App\Livewire\Dashboard;
 
 Route::prefix('trang-chu')->name('trang-chu.')->group(function () {
-    Route::get('/', [DashboardController::class, 'index'])->name('index');
-
+    Route::get('/', Dashboard::class)->name('index');
 });

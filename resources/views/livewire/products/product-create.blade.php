@@ -46,7 +46,6 @@
                         <h2>Thêm mới sản phẩm</h2>
                         <!--end::Modal title-->
                     </div>
-
                     <!--end::Modal header-->
                     <!--begin::Modal body-->
                     <div class="modal-body py-10 px-lg-17">
@@ -106,7 +105,7 @@
                             </div>
                             <div class="row mb-5">
                                 <!--begin::Col-->
-                                <div class="col-md-12 fv-row">
+                                <div class="col-md-6 fv-row">
                                     <!--begin::Label-->
                                     <label class="required fs-5 fw-bold mb-2">Tên sản phẩm</label>
                                     <!--end::Label-->
@@ -115,6 +114,18 @@
                                         placeholder="Tên sản phẩm..." name="name" wire:model='name' />
                                     <!--end::Input-->
                                     @error('name')
+                                        <span class="text-danger">{{ $message }}</span>
+                                    @enderror
+                                </div>
+                                <div class="col-md-6 fv-row">
+                                    <!--begin::Label-->
+                                    <label class="required fs-5 fw-bold mb-2">Mã sản phẩm</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    <input type="text" class="form-control form-control-solid"
+                                        placeholder="Mã sản phẩm..." name="sku" wire:model='sku' />
+                                    <!--end::Input-->
+                                    @error('sku')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -129,7 +140,7 @@
                                     <!--end::Label-->
                                     <!--begin::Select-->
                                     <select name="categoryId" data-placeholder="Chọn loại sản phẩm..."
-                                        wire:model='category_id' class="form-select form-select-solid">
+                                        wire:model.change='category_id' class="form-select form-select-solid">
                                         <option value="">Chọn loại sản phẩm...</option>
                                         @foreach ($categories as $item)
                                             <option value="{{ $item->id }}">{{ $item->name }}</option>
@@ -188,7 +199,7 @@
                                     <!--end::Label-->
                                     <!--begin::Input-->
                                     <input type="text" class="form-control form-control-solid"
-                                        placeholder="Trọng lượng..." name="weight" wire:model='weight' />
+                                        placeholder="Trọng lượng (Kg)..." name="weight" wire:model='weight' />
                                     <!--end::Input-->
                                     @error('weight')
                                         <span class="text-danger">{{ $message }}</span>
@@ -199,7 +210,7 @@
                                     <label class="required fs-5 fw-bold mb-2">Mô tả</label>
                                     <!--end::Label-->
                                     <textarea name="" wire:model='description' class="form-control form-control-solid" id=""
-                                        cols="30" rows="5"></textarea>
+                                        cols="30" rows="1"></textarea>
                                 </div>
                             </div>
                             <!--end::Input group-->

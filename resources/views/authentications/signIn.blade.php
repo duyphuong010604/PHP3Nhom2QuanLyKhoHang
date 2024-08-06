@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Đăng nhập tài khoản')
 @section('contents')
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
@@ -14,8 +14,8 @@
                         <!--begin::Content-->
                         <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                             <!--begin::Logo-->
-                            <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                                <img alt="Logo" src="" class="h-60px" />
+                            <a href="#" class="py-9 mb-5">
+                                <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                             </a>
                             <!--end::Logo-->
                             <!--begin::Title-->
@@ -42,7 +42,8 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form class="form w-100" novalidate="novalidate" id="kt_sign_in_form" action="#">
+                        <form action="{{ route('tai-khoan.login.submit')}}" method="POST"  class="form w-100">
+                        @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
@@ -50,8 +51,8 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="../../demo1/dist/authentication/flows/aside/sign-up.html"
-                                        class="link-primary fw-bolder">Tạo Tài Khoản</a>
+                                    <a href="{{ route('tai-khoan.create') }}"
+                                    class="link-primary fw-bolder">Tạo Tài Khoản</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
@@ -62,44 +63,42 @@
                                 <label class="form-label fs-6 fw-bolder text-dark">Email</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="text" name="email"
-                                    autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="email" name="email"
+                                 autocomplete="off" :value="__('email')"/>
+                                 @error('email')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
-                                <!--begin::Wrapper-->
-                                <div class="d-flex flex-stack mb-2">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bolder text-dark fs-6 mb-0">Mât Khẩu</label>
-                                    <!--end::Label-->
-                                    <!--begin::Link-->
-                                    <a href="../../demo1/dist/authentication/flows/aside/password-reset.html"
-                                        class="link-primary fs-6 fw-bolder">Nhập Lại Mật Khẩu ?</a>
-                                    <!--end::Link-->
-                                </div>
-                                <!--end::Wrapper-->
+                                <!--begin::Label-->
+                                <label class="form-label fs-6 fw-bolder text-dark">Mật Khẩu</label>
+                                <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="password"
-                                    name="password" autocomplete="off" />
+                                <input class="form-control form-control-lg form-control-solid" type="password" name="password"
+                                 autocomplete="off" :value="__('password')"/>
+                                 @error('password')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                            @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
                             <!--begin::Actions-->
                             <div class="text-center">
                                 <!--begin::Submit button-->
-                                <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
+                                <button type="submit" class="btn btn-lg btn-primary w-100 mb-5">
                                     <span class="indicator-label">Đăng Nhập</span>
-                                    <span class="indicator-progress">Vui Lòng Chờ
-                                        <span class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->
-                                <div class="text-center text-muted text-uppercase fw-bolder mb-5">Hoặc</div>
+                                <div class="text-center text-muted text-uppercase fw-bolder mb-5"><a href="{{ route('password.request') }}"
+                                class=" fw-bolder">Quên Mật Khẩu</a></div>
+                                
                                 <!--end::Separator-->
                                 <!--begin::Google link-->
-                                <a href="#" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                                     <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
                                         class="h-20px me-3" />Đăng Nhập với Google</a>
 
