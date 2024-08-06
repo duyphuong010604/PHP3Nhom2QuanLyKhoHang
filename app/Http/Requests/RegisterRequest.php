@@ -8,7 +8,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
-class LoginRequest extends FormRequest
+use App\Models\User;
+class RegisterRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -27,8 +28,10 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
+            'username' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
             'password' => ['required', 'string'],
+            'fullname' => ['required', 'string', 'max:255'],
         ];
 
     }
@@ -37,6 +40,8 @@ class LoginRequest extends FormRequest
         return [
          'email.required' => 'Phải nhập họ tên chứ',
          'password.required' => 'Password phải lên 8 kí tự',
+         'fullname.required' => 'Họ và tên phải lên 8 kí tự',
+         'username.required' => 'Tên đăng nhập phải lên 8 kí tự',
        ];
      }
     public function authenticate(): void

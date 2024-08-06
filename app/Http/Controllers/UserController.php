@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\Request;
-
+use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Http\RedirectResponse;
@@ -11,28 +12,14 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Closure;
-use Illuminate\Auth\Events\PasswordReset;
-use Illuminate\Support\Facades\Password;
+
 
 class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-        'token', // Thêm vào đây
-    ];
-    public $email = '';
 
-    public $username = '';
-
-    public $fullname = '';
-
-    public $token = '';
-    public $password = '';
     // protected $routeMiddleware = [
     //     // ...
     //     'auth.check' => \App\Http\Middleware\CheckAuthenticated::class,
@@ -50,36 +37,41 @@ class UserController extends Controller
     {
         return view('authentications.signUp');
     }
-    public function login(Request $request)
-    {
+    public function login(LoginRequest $request): RedirectResponse
+    {   
         // Validate the login form data
-        $request->validate([
-            'email' => ['required', 'string', 'email', 'max:255'],
-            'password' => ['required', 'string', 'max:255'],
-        ]);
+        // $request->validate([
+        //     'email' => ['required', 'string', 'email', 'max:255'],
+        //     'password' => ['required', 'string', 'max:255'],
+        // ]);
+      
+        // // Attempt to log the user in
+        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        //     // Authentication passed, redirect to the homepage
+        //     return redirect()->intended(route('trang-chu.index'));
+        // }
 
-        // Attempt to log the user in
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Authentication passed, redirect to the homepage
-            return redirect()->intended(route('trang-chu.index'));
-        }
+        // // Authentication failed, return error
+        // return redirect(route('trang-chu.index', absolute: false));
+        $request->authenticate();
 
-        // Authentication failed, return error
-        return redirect(route('trang-chu.index', absolute: false));
+        $request->session()->regenerate();
+
+        return redirect()->intended(route('trang-chu.index', absolute: false));
     }
 
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(RegisterRequest $request): RedirectResponse
     {
-        $request->validate([
-            'username' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
-            'password' => ['required', 'string', 'max:255'],
-            'fullname' => ['required', 'string', 'max:255'],
-        ]);
+        // $request->validate([
+        //     'username' => ['required', 'string', 'max:255'],
+        //     'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:' . User::class],
+        //     'password' => ['required', 'string', 'max:255'],
+        //     'fullname' => ['required', 'string', 'max:255'],
+        // ]);
 
         $users = User::create([
             'username' => $request->username,

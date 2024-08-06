@@ -1,32 +1,89 @@
-<x-guest-layout>
-    <div class="mb-4 text-sm text-gray-600 dark:text-gray-400">
-        {{ __('Thanks for signing up! Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn\'t receive the email, we will gladly send you another.') }}
-    </div>
+@extends('layouts.auth')
 
-    @if (session('status') == 'verification-link-sent')
-        <div class="mb-4 font-medium text-sm text-green-600 dark:text-green-400">
-            {{ __('A new verification link has been sent to the email address you provided during registration.') }}
-        </div>
-    @endif
-
-    <div class="mt-4 flex items-center justify-between">
-        <form method="POST" action="{{ route('verification.send') }}">
-            @csrf
-
-            <div>
-                <x-primary-button>
-                    {{ __('Resend Verification Email') }}
-                </x-primary-button>
+@section('contents')
+<div class="d-flex flex-column flex-root">
+        <!--begin::Authentication - Sign-in -->
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+            <!--begin::Aside-->
+            <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #F2C98A">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative"
+                    style="background-color: #F2C98A">
+                    <!--begin::Wrapper-->
+                    <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
+                        <!--begin::Content-->
+                        <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
+                            <!--begin::Logo-->
+                            <a href="../../demo1/dist/index.html" class="py-9 mb-5">
+                                <img alt="Logo" src="" class="h-60px" />
+                            </a>
+                            <!--end::Logo-->
+                            <!--begin::Title-->
+                            <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
+                            <!--end::Title-->
+                            <!--begin::Description-->
+                            <!--end::Description-->
+                        </div>
+                        <!--end::Content-->
+                        <!--begin::Illustration-->
+                        <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-350px"
+                            style="background-image: url(assets/media/illustrations/sketchy-1/13.png"></div>
+                        <!--end::Illustration-->
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Wrapper-->
             </div>
-        </form>
+            <!--end::Aside-->
+            <!--begin::Body-->
+            <div class="d-flex flex-column flex-lg-row-fluid py-10">
+                <!--begin::Content-->
+                <div class="d-flex flex-center flex-column flex-column-fluid">
+                    <!--begin::Wrapper-->
+                    <div class="w-lg-500px p-10 p-lg-15 mx-auto">
+    <!-- Session Status -->
 
-        <form method="POST" action="{{ route('logout') }}">
-            @csrf
+    <form action="{{ route ('verification.send')}}" method="POST"  class="form w-100">
+                        @csrf
+                            <!--begin::Heading-->
+                            <div class="text-center mb-10">
+                                <!--begin::Title-->
+                                <h1 class="text-dark mb-3">Quên Mật Khẩu</h1>
+                                <!--end::Title-->
+                                <!--begin::Link-->
+                                <!--end::Link-->
+                            </div>
+                            <!--begin::Heading-->
+                            <!--begin::Input group-->
+                            <!--end::Input group-->
+                            <!--begin::Input group-->
+                           
+                            <!--end::Input group-->
+                            <!--begin::Actions-->
+                            <div class="text-center">
+                                <!--begin::Submit button-->
+                                <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
+                                    <span class="indicator-label">Gửi Lại Email</span>
+                                </button>
+                                <!--end::Submit button-->
+                                <!--begin::Separator-->
 
-            <button type="submit" class="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800">
-                {{ __('Log Out') }}
-            </button>
-        </form>
+                            </div>
+                            <!--end::Actions-->
+                        </form>
+                        </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <!--end::Footer-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Authentication - Sign-in-->
     </div>
-</x-guest-layout>
+    @endsection
+
+
+
     
