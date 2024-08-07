@@ -2,11 +2,12 @@
 
 namespace Database\Factories;
 
+use App\Models\Customer;
+use App\Models\Shelf;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\OutboundShipment;
-use App\Models\User;
-use App\Models\Shelf;
-use App\Models\Customer;
+
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\OutboundShipment>

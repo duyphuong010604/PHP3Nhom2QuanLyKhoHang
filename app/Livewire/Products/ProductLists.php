@@ -15,7 +15,7 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
 use Illuminate\Support\Facades\Log;
-use Livewire\Attributes\Validate;
+
 
 #[Title('Danh sách sản phẩm')]
 class ProductLists extends Component
@@ -31,6 +31,7 @@ class ProductLists extends Component
     public $sortBy = 'desc';
     public $confirmingProjectDeletion = false;
     public $projectIdToDelete = false;
+
     public function render()
     {
         $this->categories = Category::select('id', 'name')->orderBy('id', 'desc')->get();
@@ -40,7 +41,9 @@ class ProductLists extends Component
     }
     public function updatedSearch()
     {
+        log::info($this->search);
         $this->search = trim($this->search);
+        $this->resetPage();
     }
     public function updatedOrderBy()
     {
@@ -55,10 +58,11 @@ class ProductLists extends Component
         log::info($this->category_id);
         $this->resetPage();
     }
+
     public function loadProducts()
     {
         $query = Product::with('stocks.shelf');
-        if ($this->search === null) {
+        if (empty($this->search) || $this->search === null) {
             $query
                 ->orderBy('id', 'desc');
         } else {
@@ -110,9 +114,10 @@ class ProductLists extends Component
         }
     }
     public $productId = [];
+
     public $selectAll = false;
     public $showDeleteButton = false;
-    public function updatedProductId()
+    public function updatedProductId($value, $key)
     {
         log::info($this->productId);
     }
@@ -130,12 +135,14 @@ class ProductLists extends Component
         $this->showDeleteButton = count($this->productId) > 0;
     }
     public $productStock = true;
-    public function updatingPage($page)
+    public function updatingPage($page, $value)
     {
+        log::info($value);
         Log::info('cac o da check' . $page);
     }
-    public function updatedPage($page)
+    public function updatedPage($page, $value)
     {
+        log::info($value);
         Log::info('dang o trang so' . $page);
     }
     public function deleteSelected()
@@ -177,6 +184,7 @@ class ProductLists extends Component
             $data = [
                 'products' => Product::all()
             ];
+            dd($data);
 
             $options = new Options();
             $dompdf = new Dompdf($options);
@@ -225,7 +233,6 @@ class ProductLists extends Component
                 $sheet->setCellValue('D' . $row, $product->cost); // Giá nhập
                 $sheet->setCellValue('E' . $row, $product->price); // Giá bán
                 $sheet->setCellValue('F' . $row, $product->category->name); // Danh mục sản phẩm
-
                 foreach ($product->stocks as $stockProduct) {
                     $sheet->setCellValue('G' . $row, $stockProduct->shelf->name . ' - ' . $stockProduct->quantity); // Kệ hàng - Số lượng
                     $sheet->setCellValue('H' . $row, $stockProduct->updated_at); // Ngày nhập

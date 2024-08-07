@@ -103,7 +103,6 @@
                         <th scope="col">Giá Bán</th>
                         <th scope="col">Danh Mục</th>
                         <th scope="col">Mã Code</th>
-
                     </tr>
                 </thead>
                 <tbody>
@@ -136,14 +135,16 @@
                             </td>
                             <td>{{ $item->category->name }}</td>
                             <td>
-                                <p class="mb-6">
+                                <p>
                                     {!! DNS1D::getBarcodeHTML("$item->sku", 'EAN13') !!}
+                                </p>
+                                <p class="mb-6">
+                                    {{ $item->sku }}
                                 </p>
                                 <p class="mt-6">
                                     {!! DNS2D::getBarcodeHTML("$item->sku", 'QRCODE') !!}
                                 </p>
                             </td>
-
                         </tr>
                     @endforeach
                 </tbody>
