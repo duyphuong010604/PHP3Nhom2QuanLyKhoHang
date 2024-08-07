@@ -90,6 +90,9 @@ License: For each use you must have a valid license purchased only from above li
         </div>
     </div>
 
+    @livewireScripts
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <x-livewire-alert::scripts />
 
     <script>
         var hostUrl = "./assets/";
@@ -110,9 +113,6 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/js/custom/modals/upgrade-plan.js') }}"></script>
 
    
-    @livewireScripts
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <x-livewire-alert::scripts />
 
 </body>
 <!--end::Body-->
