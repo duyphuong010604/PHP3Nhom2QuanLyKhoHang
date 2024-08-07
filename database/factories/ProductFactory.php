@@ -30,7 +30,7 @@ class ProductFactory extends Factory
             'price' => $price,
             'cost' => $cost,
             'description' => $this->faker->sentence,
-            'imageUrl' => $this->faker->imageUrl,
+            'imageUrl' => '',
             'dimensions' => $this->faker->word,
             'weight' => $this->faker->randomFloat(2, 0.1, 10),
             'status' => $this->faker->boolean

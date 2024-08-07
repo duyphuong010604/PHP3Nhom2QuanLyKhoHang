@@ -13,11 +13,8 @@ Route::get('/test', function () {
     return view('exports.products-code-pdf', ['products' => Product::all()]);
 });
 
-Route::get('/test', function () {
-    return view('exports.products-code-pdf', ['products' => Product::all()]);
-});
-
 require __DIR__ . "/dashboard.php";
+require __DIR__ . "/statistical.php";
 require __DIR__ . "/product.php";
 require __DIR__ . "/customer.php";
 require __DIR__ . "/inboundShipment.php";

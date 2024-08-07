@@ -60,7 +60,7 @@
                             </span>
                             <!--end::Svg Icon-->
                             <input type="text" class="form-control form-control-solid w-250px ps-14"
-                                placeholder="Tìm kiếm sản phẩm" wire:model.live='search'>
+                                placeholder="Tìm kiếm sản phẩm" wire:model.live.debounce.150ms='search'>
                         </div>
                         <!--end::Search-->
                     </div>

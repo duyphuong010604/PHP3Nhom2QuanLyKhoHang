@@ -10,7 +10,7 @@ use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 
-#[Title('Sử thông tin sản phẩm')]
+#[Title('Sửa thông tin sản phẩm')]
 class ProductUpdate extends Component
 {
     use LivewireAlert;
