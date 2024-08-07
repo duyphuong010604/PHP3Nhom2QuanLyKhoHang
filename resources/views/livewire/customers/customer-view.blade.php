@@ -133,10 +133,11 @@
                                                         </td>
                                                         <td>{{$outbound->created_at}}</td>
                                                         <td class="text-end">
-                                                            <button
-                                                                class="btn btn-sm btn-light btn-active-light-primary">Xuất hóa đơn</button>
+
+                                                        <button wire:click='export({{$outbound->id}})' class="btn btn-primary">Xuất PDF</button>
 
                                                         </td>
+
                                                     </tr>
 
                                                     @endforeach
