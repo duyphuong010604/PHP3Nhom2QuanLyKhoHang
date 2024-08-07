@@ -10,6 +10,16 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class OutboundShipment extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'user_id',
+        'customer_id',
+        'shelf_id',
+        'totalAmount',
+        'remark',
+        'status',
+        'created_at',
+        'updated_at',
+    ];
 
     public function user(): BelongsTo
     {
