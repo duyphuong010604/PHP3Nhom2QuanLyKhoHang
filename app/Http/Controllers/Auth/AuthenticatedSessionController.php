@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Auth\LoginRequest;
+use App\Http\Requests\LoginRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -24,11 +24,14 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): RedirectResponse
     {
-        $request->authenticate();
+       // Attempt to log the user in
+       if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        // Authentication passed, redirect to the homepage
+        return redirect()->intended(route('trang-chu.index'));
+    }
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('trang-chu.index', absolute: false));
+    // Authentication failed, return error
+    return redirect(route('trang-chu.index', absolute: false));
     }
 
     /**

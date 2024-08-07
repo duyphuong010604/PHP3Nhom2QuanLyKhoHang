@@ -90,17 +90,17 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                                <a href="" class="menu-link px-5">Thông tin tài
-                                    khoản</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('').submit();">Thông Tin Tài Khoản</a>
                             </div>
                             <!--end::Menu item-->
-                            <!--begin::Menu item-->
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
+                            @csrf
                             <div class="menu-item px-5">
-                                <a href="#" class="menu-link px-5">Sign Out</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
                             </div>
                             <!--end::Menu item-->
                         </div>
-                        <!--end::Menu-->
+                        </form>
                         <!--end::Menu wrapper-->
                     </div>
                     <!--end::User -->

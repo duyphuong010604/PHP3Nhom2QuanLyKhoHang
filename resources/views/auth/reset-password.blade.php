@@ -87,7 +87,7 @@
                             <div class="text-center">
                                 <!--begin::Submit button-->
                                 <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-primary w-100 mb-5">
-                                    <span class="indicator-label">Đăng Nhập</span>
+                                    <span class="indicator-label">Xác Nhận</span>
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->
