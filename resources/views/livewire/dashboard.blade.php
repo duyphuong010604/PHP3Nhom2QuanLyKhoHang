@@ -94,7 +94,7 @@
                             <!--end::Bullet-->
                             <!--begin::Description-->
                             <div class="flex-grow-1 ms-2">
-                                <a href="{{ route('nhap-hang.show', $item->id) }}"
+                                <a href="{{route('nhap-hang.detail',$item->id)}}"
                                     class="text-gray-800 text-hover-primary fw-bolder fs-6">Nhập hàng
                                     hóa
                                     #{{ $item->id }}</a>
@@ -107,7 +107,7 @@
                                 </div>
                                 <p
                                     class="fs-8 d-block  {{ $item->status === 'active' ? 'text-success' : 'text-muted' }}">
-                                    {{ $item->status === 'active' ? 'Đã xử lý' : 'Nháp' }}
+                                    {{-- {{ $item->status === 'active' ? 'Đã xử lý' : 'Nháp' }} --}}
                                 </p>
                             </div>
                         </div>
@@ -184,7 +184,7 @@
 
                                                 </div>
                                                 <div class="d-flex justify-content-start flex-column">
-                                                    <a href="#"
+                                                    <a href="{{route('san-pham.show',$item->id)}}"
                                                         class="text-dark fw-bolder text-hover-primary fs-6">{{ $item->name }}</a>
                                                     <span class="text-muted fw-bold text-muted d-block fs-7">Mã:
                                                         #{{ $item->sku }}</span>
@@ -319,7 +319,7 @@
                         <!--end::Avatar-->
                         <!--begin::Text-->
                         <div class="flex-grow-1">
-                            <a href="#" class="text-dark fw-bolder text-hover-primary fs-6">{{$item->name}}</a>
+                            <a href="{{route('doi-tac.show',$item->id)}}" class="text-dark fw-bolder text-hover-primary fs-6">{{$item->name}}</a>
                             <span class="text-muted d-block fw-bold">Đối tượng: {{$item->object}}</span>
                         </div>
                         <!--end::Text-->
@@ -415,7 +415,7 @@
                         <!--end::Icon-->
                         <!--begin::Title-->
                         <div class="flex-grow-1 me-2">
-                            <a href="{{ route('xuat-hang.show', $item->id) }}"
+                            <a href="{{route('xuat-hang.detail',$item->id)}}"
                                 class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa
                                 #{{$item->id}}</a>
                             <span class="text-muted fw-bold d-block">{{$item->formatted_created_at}}</span>

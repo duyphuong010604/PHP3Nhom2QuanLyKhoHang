@@ -9,6 +9,8 @@ Route::get('/', function () {
     return view('authentications.signIn');
 });
 
+
+
 Route::get('/test', function () {
     return view('exports.products-code-pdf', ['products' => Product::all()]);
 });
