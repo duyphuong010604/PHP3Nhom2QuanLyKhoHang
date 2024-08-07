@@ -112,7 +112,7 @@ License: For each use you must have a valid license purchased only from above li
     {{-- <script src="{{ asset('custom/js/add_item.js') }}"></script> --}}
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
-    @livewireScripts
+
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <x-livewire-alert::scripts />
 
