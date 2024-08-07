@@ -85,7 +85,7 @@
                 </div>
                 <!--end::Header-->
                 <!--begin::Body-->
-                <div class="card-body pt-2">
+                <div class="card-body pt-2 position-relative">
                     <!--begin::Item-->
                     @foreach ($this->inbounds as $item)
                         <div class="d-flex align-items-center mb-8">
@@ -113,6 +113,9 @@
                         </div>
                         <!--end:Item-->
                     @endforeach
+                    <a href="{{route('nhap-hang.index')}}" class="fw-bolder position-absolute bottom-0 start-0 ms-10 mb-4">
+                        Xem thêm
+                    </a>
                 </div>
                 <!--end::Body-->
             </div>
@@ -323,6 +326,9 @@
                     </div>
                     @endforeach
                     <!--end::Item-->
+                    <a href="{{route('doi-tac.index')}}" class="fw-bolder position-absolute bottom-0 start-0 ms-10 mb-4">
+                        Xem thêm
+                    </a>
                 </div>
                 <!--end::Body-->
             </div>
@@ -416,12 +422,14 @@
                         </div>
                         <!--end::Title-->
                         <!--begin::Lable-->
-                        <span class="fw-bolder text-success py-1">{{number_formar($item->totalAmount)}} VNĐ</span>
+                        <span class="fw-bolder text-success py-1">{{number_format($item->totalAmount)}} VNĐ</span>
                         <!--end::Lable-->
                     </div>
                     <!--end::Item-->
                     @endforeach
-                   
+                    <a href="{{route('xuat-hang.index')}}" class="fw-bolder position-absolute bottom-0 start-0 ms-10 mb-4">
+                        Xem thêm
+                    </a>
                 </div>
                 <!--end::Body-->
             </div>
@@ -435,10 +443,9 @@
                 <!--begin::Header-->
                 <div class="card-header border-0 pt-5">
                     <h3 class="card-title align-items-start flex-column">
-                        <span class="card-label fw-bolder text-dark">Các sản phẩm xuất nhiều nhất</span>
+                        <span class="card-label fw-bolder text-dark">Số lượng các đối tượng</span>
                         <span class="text-muted mt-1 fw-bold fs-7"></span>
                     </h3>
-
                 </div>
                 <!--end::Header-->
                 <!--begin::Body-->
@@ -448,7 +455,7 @@
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
                             <span class="symbol-label">
-                                <img src="assets/media/svg/brand-logos/plurk.svg" class="h-50 align-self-center"
+                                <img src="{{ asset('storage/images/products/product.png') }}" class="h-50 align-self-center"
                                     alt="">
                             </span>
                         </div>
@@ -456,12 +463,10 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Top
-                                    Authors</a>
-                                <span class="text-muted fw-bold d-block fs-7">Mark, Rowling,
-                                    Esther</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng số lượng sản phẩm</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
                             </div>
-                            <span class="badge badge-light fw-bolder my-2">+82.000.000 vnđ</span>
+                            <span class="badge badge-light fw-bolder my-2">{{$countTable['products']}}</span>
                         </div>
                         <!--end::Section-->
                     </div>
@@ -471,7 +476,7 @@
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
                             <span class="symbol-label">
-                                <img src="assets/media/svg/brand-logos/telegram.svg" class="h-50 align-self-center"
+                                <img src="{{ asset('storage/images/customer.jpg') }}" class="h-50 align-self-center"
                                     alt="">
                             </span>
                         </div>
@@ -479,12 +484,10 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Popular
-                                    Authors</a>
-                                <span class="text-muted fw-bold d-block fs-7">Randy, Steve,
-                                    Mike</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng các khách hàng</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
                             </div>
-                            <span class="badge badge-light fw-bolder my-2">+280.000.000 vnđ</span>
+                            <span class="badge badge-light fw-bolder my-2">{{$countTable['customers']}}</span>
                         </div>
                         <!--end::Section-->
                     </div>
@@ -494,7 +497,7 @@
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
                             <span class="symbol-label">
-                                <img src="assets/media/svg/brand-logos/vimeo.svg" class="h-50 align-self-center"
+                                <img src="{{asset('assets/media/logos/inbound.webp')}}" class="h-50 align-self-center"
                                     alt="">
                             </span>
                         </div>
@@ -502,12 +505,10 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">New
-                                    Users</a>
-                                <span class="text-muted fw-bold d-block fs-7">John, Pat,
-                                    Jimmy</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng hóa đơn nhập</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
                             </div>
-                            <span class="badge badge-light fw-bolder my-2">+4500.000.000 vnđ</span>
+                            <span class="badge badge-light fw-bolder my-2">{{$countTable['inbound']}}</span>
                         </div>
                         <!--end::Section-->
                     </div>
@@ -517,7 +518,7 @@
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
                             <span class="symbol-label">
-                                <img src="assets/media/svg/brand-logos/bebo.svg" class="h-50 align-self-center"
+                                <img src="{{asset('assets/media/logos/outbound.png')}}" class="h-50 align-self-center"
                                     alt="">
                             </span>
                         </div>
@@ -525,22 +526,19 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Active
-                                    Customers</a>
-                                <span class="text-muted fw-bold d-block fs-7">Mark, Rowling,
-                                    Esther</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng hóa đơn xuất</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
                             </div>
-                            <span class="badge badge-light fw-bolder my-2">+686.000.000 vnđ</span>
+                            <span class="badge badge-light fw-bolder my-2">{{$countTable['outbound']}}</span>
                         </div>
                         <!--end::Section-->
                     </div>
                     <!--end::Item-->
-                    <!--begin::Item-->
                     <div class="d-flex align-items-sm-center mb-7">
                         <!--begin::Symbol-->
                         <div class="symbol symbol-50px me-5">
                             <span class="symbol-label">
-                                <img src="assets/media/svg/brand-logos/kickstarter.svg" class="h-50 align-self-center"
+                                <img src="{{asset('assets/media/logos/green_plus.png')}}" class="h-50 align-self-center"
                                     alt="">
                             </span>
                         </div>
@@ -548,16 +546,59 @@
                         <!--begin::Section-->
                         <div class="d-flex align-items-center flex-row-fluid flex-wrap">
                             <div class="flex-grow-1 me-2">
-                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Bestseller
-                                    Theme</a>
-                                <span class="text-muted fw-bold d-block fs-7">Disco, Retro,
-                                    Sports</span>
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng số lượng các sản phẩm hiện đang tồn kho</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
                             </div>
-                            <span class="badge badge-light fw-bolder my-2">+726.000.000 vnđ</span>
+                            <span class="badge badge-success fw-bolder my-2">{{$sumQuantityTable['stock']}}</span>
                         </div>
                         <!--end::Section-->
+                       
                     </div>
-                    <!--end::Item-->
+                    <div class="d-flex align-items-sm-center mb-7">
+                        <!--begin::Symbol-->
+                        <div class="symbol symbol-50px me-5">
+                            <span class="symbol-label">
+                                <img src="{{asset('assets/media/logos/green_plus.png')}}" class="h-50 align-self-center"
+                                    alt="">
+                            </span>
+                        </div>
+                        <!--end::Symbol-->
+                        <!--begin::Section-->
+                        <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng số lượng các sản phẩm nhập</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
+                            </div>
+                            <span class="badge badge-success fw-bolder my-2">{{$sumQuantityTable['inbound']}}</span>
+                        </div>
+                        <!--end::Section-->
+                       
+                    </div>
+
+                    <div class="d-flex align-items-sm-center mb-7">
+                        <!--begin::Symbol-->
+                        <div class="symbol symbol-50px me-5">
+                            <span class="symbol-label">
+                                <img src="{{asset('assets/media/logos/green_plus.png')}}" class="h-50 align-self-center"
+                                    alt="">
+                            </span>
+                        </div>
+                        <!--end::Symbol-->
+                        <!--begin::Section-->
+                        <div class="d-flex align-items-center flex-row-fluid flex-wrap">
+                            <div class="flex-grow-1 me-2">
+                                <a href="#" class="text-gray-800 text-hover-primary fs-6 fw-bolder">Tổng số lượng các sản phẩm xuất</a>
+                                <span class="text-muted fw-bold d-block fs-7"></span>
+                            </div>
+                            <span class="badge badge-success fw-bolder my-2">{{$sumQuantityTable['outbound']}}</span>
+                        </div>
+                        <!--end::Section-->
+                       
+                    </div>
+
+                    <a href="{{route('thong-ke.index')}}" class="fw-bolder position-absolute bottom-0 start-0 ms-10 mb-4">
+                        Thống kê chi tiết
+                    </a>
                 </div>
                 <!--end::Body-->
             </div>

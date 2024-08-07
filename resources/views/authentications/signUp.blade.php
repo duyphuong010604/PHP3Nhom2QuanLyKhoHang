@@ -45,16 +45,18 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Bạn đã có tài khoản?
-                                    <a href="../../demo1/dist/authentication/flows/aside/sign-in.html"
+                                    <a href=""
                                         class="link-primary fw-bolder">Đăng nhập tại đây</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
                             <!--end::Heading-->
                             <!--begin::Action-->
-                            <button type="button" class="btn btn-light-primary fw-bolder w-100 mb-10">
-                                <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                    class="h-20px me-3" />Đăng nhập với Google</button>
+                            
+                            <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
+                                        class="h-20px me-3" />Đăng Nhập với Google</a>
+
                             <!--end::Action-->
                             <!--begin::Separator-->
                             <div class="d-flex align-items-center mb-10">
@@ -70,6 +72,9 @@
                                     <label class="form-label fw-bolder text-dark fs-6">Tài Khoản</label>
                                     <input for="username" :value="__('username')" class="form-control form-control-lg form-control-solid" type="text"
                                         placeholder="" name="username" id="username" autocomplete="off" />
+                                        @error('username')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <!--end::Col-->
                                 <!--begin::Col-->
@@ -77,6 +82,9 @@
                                     <label class="form-label fw-bolder text-dark fs-6">Tên</label>
                                     <input for="fullname" :value="__('fullname')" class="form-control form-control-lg form-control-solid" type="text"
                                         placeholder="" name="fullname" id="fullname" autocomplete="off" />
+                                        @error('fullname')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -86,6 +94,9 @@
                                 <label class="form-label fw-bolder text-dark fs-6">Email</label>
                                 <input for="email" :value="__('email')" class="form-control form-control-lg form-control-solid" type="email" placeholder=""
                                     name="email" id="email" autocomplete="off" wire:model="email" />
+                                    @error('email')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <!--end::Input group-->
                             <!--begin::Input group-->
@@ -99,12 +110,9 @@
                                     <div class="position-relative mb-3">
                                         <input for="password" :value="__('password')" class="form-control form-control-lg form-control-solid" type="password"
                                             placeholder="" name="password" id="password" autocomplete="off"  />
-                                        <span
-                                            class="btn btn-sm btn-icon position-absolute translate-middle top-50 end-0 me-n2"
-                                            data-kt-password-meter-control="visibility">
-                                            <i class="bi bi-eye-slash fs-2"></i>
-                                            <i class="bi bi-eye fs-2 d-none"></i>
-                                        </span>
+                                            @error('password')
+                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                     </div>
                                     
                                     <!--end::Input wrapper-->

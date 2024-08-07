@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Customer;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Customer>
@@ -14,14 +15,16 @@ class CustomerFactory extends Factory
      *
      * @return array<string, mixed>
      */
-    public function definition(): array
+    protected $model = Customer::class;
+
+    public function definition()
     {
         return [
             'name' => $this->faker->name(),
             'email' => $this->faker->unique()->safeEmail(),
             'phone' => $this->faker->phoneNumber(),
             'address' => $this->faker->address(),
-            'object' => $this->faker->randomElement(['customer','enterprise']),
+            'object' => $this->faker->randomElement(['customer', 'enterprise']),
             'status' => $this->faker->boolean
         ];
     }
