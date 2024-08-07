@@ -44,21 +44,7 @@
                     <!--begin::Content-->
                     <div class="px-7 py-5">
                         <!--begin::Input group-->
-                        <div class="mb-10">
-                            <!--begin::Label-->
-                            <label class="form-label fs-5 fw-bold mb-3">Tháng:</label>
-                            <!--end::Label-->
-                            <!--begin::Input-->
-                            <select class="form-select form-select-solid fw-bolder" data-kt-select2="true" data-placeholder="Select option" data-allow-clear="true" data-kt-customer-table-filter="month" data-dropdown-parent="#kt-toolbar-filter">
-                                <option></option>
-                                <option value="aug">Tháng 8</option>
-                                <option value="sep">Tháng 9</option>
-                                <option value="oct">Tháng 10</option>
-                                <option value="nov">Tháng 11</option>
-                                <option value="dec">Tháng 12</option>
-                            </select>
-                            <!--end::Input-->
-                        </div>
+                        
                         <!--end::Input group-->
                         <!--begin::Input group-->
                         <div class="mb-10">
@@ -68,28 +54,12 @@
                             <!--begin::Options-->
                             <div class="d-flex flex-column flex-wrap fw-bold" data-kt-customer-table-filter="payment_type">
                                 <!--begin::Option-->
-                                <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                    <input class="form-check-input" type="radio" name="payment_type" value="all" checked="checked" />
-                                    <span class="form-check-label text-gray-600">Tất cả</span>
-                                </label>
-                                <!--end::Option-->
-                                <!--begin::Option-->
-                                <label class="form-check form-check-sm form-check-custom form-check-solid mb-3 me-5">
-                                    <input class="form-check-input" type="radio" name="payment_type" value="visa" />
-                                    <span class="form-check-label text-gray-600">Đã xử lý</span>
-                                </label>
-                                <!--end::Option-->
-                                <!--begin::Option-->
-                                <label class="form-check form-check-sm form-check-custom form-check-solid mb-3">
-                                    <input class="form-check-input" type="radio" name="payment_type" value="mastercard" />
-                                    <span class="form-check-label text-gray-600">Chờ xử lý</span>
-                                </label>
-                                <!--end::Option-->
-                                <!--begin::Option-->
-                                <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                    <input class="form-check-input" type="radio" name="payment_type" value="american_express" />
-                                    <span class="form-check-label text-gray-600">Đang xử lý</span>
-                                </label>
+                                <select wire:model.live="status" class="form-select form-control">
+                                    <option value="">Chọn trạng thái</option>
+                                    <option value="draft">Nháp</option>
+                                    <option value="active">Hoàn thành</option>
+                                    <!-- Thêm các trạng thái khác nếu có -->
+                                </select>
                                 <!--end::Option-->
                             </div>
                             <!--end::Options-->

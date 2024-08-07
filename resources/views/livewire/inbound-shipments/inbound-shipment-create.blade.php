@@ -66,7 +66,7 @@
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
                                                         <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Email" wire:model="supplier_email" readonly>
+                                                        placeholder="Email" wire:model="supplier_email" readonly>
                                                     </div>
                                                     <!--end::Input group-->
                                                     <!--begin::Input group-->
@@ -349,8 +349,8 @@
                                             <select name="categoryIdN" data-placeholder="Chọn loại sản phẩm..."
                                                 wire:model.change='categoryIdN'
                                                 class="form-select form-select-solid">
-                                                <option value="">Chọn loại sản phẩm...</option>
-                                                @foreach ($categories as $item)
+                                              
+                                                @foreach($categoty as $item)
                                                     <option value="{{ $item->id }}">{{ $item->name }}
                                                     </option>
                                                 @endforeach

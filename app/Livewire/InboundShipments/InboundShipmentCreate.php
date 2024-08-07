@@ -60,6 +60,7 @@ class InboundShipmentCreate extends Component
     public $subtotal;
     public $shelf_name;
     public $total;
+    public $categoty;
     public $price = [];
     public $status = 'draft';
     public $product;
@@ -272,6 +273,7 @@ public function updatingSupplierId($value)
     
     if ($supplier) {
         $this->supplier_email = $supplier->contactEmail;
+    
         
     } else {
         $this->supplier_email = '';
@@ -364,7 +366,7 @@ public function selectProduct($product, $index)
             ;
         }
         session()->flash('message', 'Đợt nhập hàng đã được lưu thành công!');
-        $this->reset(); // Reset toàn bộ input
+       // Reset toàn bộ input
         $this->alert('success', 'Đợt nhập hàng đã được lưu thành công!', [
             'position' => 'top-end',
             'timer' => 3000,
@@ -399,6 +401,7 @@ $this->h1 = $index;
     }
     public function mount()
     {
+        $this->categoty=Category::all();
         $this->categories = Category::all();
         $this->suppliers = Supplier::all();
         $this->shelves = Shelf::all();
