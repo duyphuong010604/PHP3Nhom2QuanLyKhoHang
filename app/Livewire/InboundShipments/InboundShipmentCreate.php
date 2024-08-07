@@ -272,6 +272,7 @@ public function updatingSupplierId($value)
     
     if ($supplier) {
         $this->supplier_email = $supplier->contactEmail;
+    
         
     } else {
         $this->supplier_email = '';

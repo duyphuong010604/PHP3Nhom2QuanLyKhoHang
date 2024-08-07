@@ -66,7 +66,7 @@
                                                     <!--begin::Input group-->
                                                     <div class="mb-5">
                                                         <input type="text" class="form-control form-control-solid"
-                                                            placeholder="Email" wire:model="supplier_email" readonly>
+                                                        placeholder="Email" wire:model="supplier_email" readonly>
                                                     </div>
                                                     <!--end::Input group-->
                                                     <!--begin::Input group-->
