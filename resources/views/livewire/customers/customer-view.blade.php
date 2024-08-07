@@ -38,7 +38,7 @@
                                     <img src="assets/media/avatars/150-26.jpg" alt="image" />
                                 </div>
                                 <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-bolder mb-1">{{ $customer->name }}</a>
-                                <div class="fs-5 fw-bold text-muted mb-6">{{ $customer->object }}
+                                <div class="fs-5 fw-bold text-muted mb-6">{{ ($customer->object=='customer')?'Khách hàng':'Doanh nghiệp' }}
 
                                 </div>
                                 <div class="d-flex flex-wrap flex-center">
@@ -91,38 +91,12 @@
                     </ul>
                     <div class="tab-content" id="myTabContent">
                         <div class="tab-pane fade show active" id="kt_customer_view_overview_tab" role="tabpanel">
-                            <div class="card pt-4 mb-6 mb-xl-9">
-                                <div class="card-header border-0">
-                                    <div class="card-title">
-                                        <h2>Lịch sử xuất nhập</h2>
-                                    </div>
-                                </div>
-                                <div class="card-body pt-0 pb-5">
-                                    <table class="table align-middle table-row-dashed gy-5"
-                                        id="kt_table_customers_payment">
-                                        <thead class="border-bottom border-gray-200 fs-7 fw-bolder">
-                                            <tr class="text-start text-muted text-uppercase gs-0">
-                                                <th class="min-w-100px">Mã xuất nhập</th>
-                                                <th>Trạng thái</th>
-                                                <th>Tổng tiền</th>
-                                                <th class="min-w-100px">Thời gian</th>
-                                                <th class="text-end min-w-100px pe-4">Chức năng</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody class="fs-6 fw-bold text-gray-600">
-                                            <tr>
-                                           
-                                            </tr>
 
-                                        </tbody>
-                                    </table>
-                                </div>
-                            </div>
 
                             <div class="card pt-2 mb-6 mb-xl-9">
                                 <div class="card-header border-0">
                                     <div class="card-title">
-                                        <h2>Hóa đơn</h2>
+                                        <h2>Hóa đơn xuất hàng</h2>
                                     </div>
 
                                 </div>
@@ -137,43 +111,36 @@
                                                     <tr class="text-start text-muted gs-0">
                                                         <th class="min-w-100px">Mã hóa đơn</th>
                                                         <th class="min-w-100px">Tổng tiền</th>
-                                                        <th class="min-w-100px">Trạng thái</th>
-                                                        <th class="min-w-125px">Thời gian</th>
-                                                        <th class="min-w-100px text-end pe-7">Xuất hóa đơn</th>
+                                                        <th class="min-w-100px">Tên kệ hàng</th>
+                                                        <th class="min-w-125px">Thời gian xuất</th>
+                                                        <th class="min-w-125px">Tùy chọn</th>
+
                                                     </tr>
                                                 </thead>
                                                 <tbody class="fs-6 fw-bold text-gray-600">
+                                                    @foreach ( $customer->outboundShipments as $outbound )
+
+
+
                                                     <tr>
+
                                                         <td>
-                                                            <a href="#" class="text-gray-600 text-hover-primary">D05</a>
+                                                            <a href="#" class="text-gray-600 text-hover-primary">{{$outbound->id}}</a>
                                                         </td>
-                                                        <td class="text-success">520.000</td>
+                                                        <td class="text-success">{{$outbound->totalAmount}}</td>
                                                         <td>
-                                                            <span class="badge badge-light-danger">Không thành
-                                                                công</span>
+                                                            <span class="badge badge-light-danger">{{$outbound->shelf->name}}</span>
                                                         </td>
-                                                        <td>20/07/2024</td>
+                                                        <td>{{$outbound->created_at}}</td>
                                                         <td class="text-end">
                                                             <button
-                                                                class="btn btn-sm btn-light btn-active-light-primary">Tải
-                                                                xuống</button>
+                                                                class="btn btn-sm btn-light btn-active-light-primary">Xuất hóa đơn</button>
+
                                                         </td>
                                                     </tr>
-                                                    <tr>
-                                                        <td>
-                                                            <a href="#" class="text-gray-600 text-hover-primary">D06</a>
-                                                        </td>
-                                                        <td class="text-danger">560.000</td>
-                                                        <td>
-                                                            <span class="badge badge-light-success">Thành công</span>
-                                                        </td>
-                                                        <td>19/07/2024</td>
-                                                        <td class="text-end">
-                                                            <button
-                                                                class="btn btn-sm btn-light btn-active-light-primary">Tải
-                                                                xuống</button>
-                                                        </td>
-                                                    </tr>
+
+                                                    @endforeach
+
                                                 </tbody>
                                             </table>
                                         </div>

@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Customer;
 use App\Models\InboundShipment;
 use App\Models\InboundShipmentDetails;
+use App\Models\OutboundShipment;
 use App\Models\Product;
 use App\Models\Shelf;
 use App\Models\Stock;
@@ -36,6 +37,7 @@ class DatabaseSeeder extends Seeder
         // InboundShipmentDetails::factory(10)->create();
         // Stock::factory(10)->create();
         Customer::factory(10)->create();
+        OutboundShipment::factory(10)->create();
         // $this->call([
         //     CategorySeeder::class,
         //     ProductSeeder::class
