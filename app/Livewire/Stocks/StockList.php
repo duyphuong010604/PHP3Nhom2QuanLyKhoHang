@@ -5,12 +5,16 @@ namespace App\Livewire\Stocks;
 use Livewire\Component;
 use App\Repositories\Stocks\StocksRepository;
 use App\Models\Shelf;
+use Livewire\WithPagination;
+use Livewire\Attributes\Title;
 
+#[Title('Danh sách tồn kho')]
 class StockList extends Component
 {
+    use WithPagination;
     public $q = null;
 
-    public $stocks;
+    protected $sheves;
 
     public $shelf;
 
@@ -22,34 +26,41 @@ class StockList extends Component
 
     public $productId;
 
+    public $search = null;
 
-    protected $stocksRepository;
 
-    public function mount(StocksRepository $stocksRepository)
+    public function updatedSearch()
     {
+        $this->search = trim($this->search);
+    }
+    public function loadShelf()
+    {
+        $shelves = Shelf::with([
+            'stocks',
+            'inboundShipments.inboundShipmentDetails',
+            'outboundShipments.outboundShipmentDetails'
+        ])
+            ->when($this->search, function ($query) {
+                return $query->where('name', 'like', "%" . $this->search . "%");
+            })
+            ->orderBy('id', 'asc')
+            ->paginate(4);
 
-        $this->stocksRepository = $stocksRepository;
-        $this->stocks = $this->stocksRepository->getAll();
-        $this->shelf = Shelf::select('id', 'name')->orderBy('id', 'asc')->get();
-        // dd($this->stocks);
+        $shelves->getCollection()->transform(function ($shelf) {
+            $totalStockQuantity = $shelf->stocks->sum('quantity');
+    
+            $shelf->total_quantity = $totalStockQuantity;
+            
+            return $shelf;
+        });
+
+        return $shelves;
 
     }
 
-    public function applyFilter()
+    public function boot()
     {
-        $query = Shelf::with('stocks');
-        // dd($this->shelf_id);
-        if ($this->shelf_id !== 'all') {
-            $query->where('id', $this->shelf_id);
-        }
-        // if ($this->orderBy === 'name') {
-        //     $sortOrder = 'asc';
-        //     $query->orderBy('name', $sortOrder);
-        // }
-
-        // dd($query); 
-
-        return $this->stocks = $query;
+        $this->sheves = $this->loadShelf();
     }
 
     public function render()

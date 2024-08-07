@@ -1,4 +1,4 @@
-{{-- @dd($stocks) --}}
+
 <section>
     <div class="content d-flex flex-column flex-column-fluid" id="kt_content">
         <!--begin::Toolbar-->
@@ -10,7 +10,9 @@
                     data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}"
                     class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
                     <!--begin::Title-->
-                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Danh sách {{ $stocks['shelf']->name }}</h1>
+                    <h1 class="d-flex align-items-center text-dark fw-bolder fs-3 my-1">Danh sách</h1>
+
+                    
                     <!--end::Title-->
                     <!--begin::Separator-->
                     <span class="h-20px border-gray-200 border-start mx-4"></span>
@@ -24,115 +26,6 @@
                     <!--end::Breadcrumb-->
                 </div>
                 <!--end::Page title-->
-                <!--begin::Actions-->
-                <div class="d-flex align-items-center py-1">
-                    <!--begin::Wrapper-->
-                    <div class="me-4">
-                        <!--begin::Menu-->
-                        <a href="#" class="btn btn-sm btn-flex btn-light btn-active-primary fw-bolder"
-                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
-                            <!--begin::Svg Icon | path: icons/duotune/general/gen031.svg-->
-                            <span class="svg-icon svg-icon-5 svg-icon-gray-500 me-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                                    fill="none">
-                                    <path
-                                        d="M19.0759 3H4.72777C3.95892 3 3.47768 3.83148 3.86067 4.49814L8.56967 12.6949C9.17923 13.7559 9.5 14.9582 9.5 16.1819V19.5072C9.5 20.2189 10.2223 20.7028 10.8805 20.432L13.8805 19.1977C14.2553 19.0435 14.5 18.6783 14.5 18.273V13.8372C14.5 12.8089 14.8171 11.8056 15.408 10.964L19.8943 4.57465C20.3596 3.912 19.8856 3 19.0759 3Z"
-                                        fill="black" />
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->Filter</a>
-                        <!--begin::Menu 1-->
-                        <div class="menu menu-sub menu-sub-dropdown w-250px w-md-300px" data-kt-menu="true"
-                            id="kt_menu_61484c4e0b17a">
-                            <!--begin::Header-->
-                            <div class="px-7 py-5">
-                                <div class="fs-5 text-dark fw-bolder">Filter Options</div>
-                            </div>
-                            <!--end::Header-->
-                            <!--begin::Menu separator-->
-                            <div class="separator border-gray-200"></div>
-                            <!--end::Menu separator-->
-                            <!--begin::Form-->
-                            <div class="px-7 py-5">
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Status:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Input-->
-                                    <div>
-                                        <select class="form-select form-select-solid" data-kt-select2="true"
-                                            data-placeholder="Select option" data-dropdown-parent="#kt_menu_61484c4e0b17a"
-                                            data-allow-clear="true">
-                                            <option></option>
-                                            <option value="1">Approved</option>
-                                            <option value="2">Pending</option>
-                                            <option value="2">In Process</option>
-                                            <option value="2">Rejected</option>
-                                        </select>
-                                    </div>
-                                    <!--end::Input-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Member Type:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Options-->
-                                    <div class="d-flex">
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid me-5">
-                                            <input class="form-check-input" type="checkbox" value="1" />
-                                            <span class="form-check-label">Author</span>
-                                        </label>
-                                        <!--end::Options-->
-                                        <!--begin::Options-->
-                                        <label class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="2"
-                                                checked="checked" />
-                                            <span class="form-check-label">Customer</span>
-                                        </label>
-                                        <!--end::Options-->
-                                    </div>
-                                    <!--end::Options-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Input group-->
-                                <div class="mb-10">
-                                    <!--begin::Label-->
-                                    <label class="form-label fw-bold">Notifications:</label>
-                                    <!--end::Label-->
-                                    <!--begin::Switch-->
-                                    <div class="form-check form-switch form-switch-sm form-check-custom form-check-solid">
-                                        <input class="form-check-input" type="checkbox" value="" name="notifications"
-                                            checked="checked" />
-                                        <label class="form-check-label">Enabled</label>
-                                    </div>
-                                    <!--end::Switch-->
-                                </div>
-                                <!--end::Input group-->
-                                <!--begin::Actions-->
-                                <div class="d-flex justify-content-end">
-                                    <button type="reset" class="btn btn-sm btn-light btn-active-light-primary me-2"
-                                        data-kt-menu-dismiss="true">Reset</button>
-                                    <button type="submit" class="btn btn-sm btn-primary"
-                                        data-kt-menu-dismiss="true">Apply</button>
-                                </div>
-                                <!--end::Actions-->
-                            </div>
-                            <!--end::Form-->
-                        </div>
-                        <!--end::Menu 1-->
-                        <!--end::Menu-->
-                    </div>
-                    <!--end::Wrapper-->
-                    <!--begin::Button-->
-                    <a href="#" class="btn btn-sm btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#kt_modal_create_app" id="kt_toolbar_primary_button">Create</a>
-                    <!--end::Button-->
-                </div>
-                <!--end::Actions-->
             </div>
             <!--end::Container-->
         </div>
@@ -162,7 +55,7 @@
                                 </span>
                                 <!--end::Svg Icon-->
                                 <input type="text" data-kt-subscription-table-filter="search"
-                                    class="form-control form-control-solid w-250px ps-14" placeholder="Tìm kiếm" />
+                                    class="form-control form-control-solid w-250px ps-14" placeholder="Tìm kiếm" wire:model.live='search' />
                             </div>
                             <!--end::Search-->
                         </div>
@@ -312,11 +205,9 @@
                                     </th>
                                     <th class="min-w-125px">Tên sản phẩm</th>
                                     <th class="min-w-125px">Trạng thái</th>
-                                    <th class="min-w-125px">Phân khu</th>
                                     <th class="min-w-125px">Số lượng nhập</th>
+                                    <th class="min-w-125px">Số lượng xuất</th>
                                     <th class="min-w-125px">Số lượng tồn</th>
-                                    <th class="min-w-125px">Số lượng</th>
-                                    <th class="min-w-125px">Ngày nhập kho</th>
                                     <th class="text-end min-w-70px">Thao tác</th>
                                 </tr>
                                 <!--end::Table row-->
@@ -324,7 +215,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
-                          @foreach ($stocks['transactions'] as $item) 
+                          @foreach ($this->transactions as $item) 
                           <tr>
                               <!--begin::Checkbox-->
                               <td>
@@ -335,12 +226,12 @@
                               <!--end::Checkbox-->
                               <!--begin::Customer=-->
                               <td>
-                                  <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $item['product_name'] }}</a>
+                                  <a href="#" class="text-gray-800 text-hover-primary mb-1">{{ $item['product_name']}}</a>
                               </td>
                               <!--end::Customer=-->
                               <!--begin::Status=-->
                               <td>
-                                @if ($item['quantity'] > 0)
+                                @if ($item['total_quantity'] > 0)
                                 <div class="badge badge-light-success">
                                     Có sản phẩm
                                 </div>
@@ -351,24 +242,18 @@
                                 @endif
                               </td>
                               <!--end::Status=-->
-                              <!--begin::Phân khu=-->
-                              <td>
-                                <div class="badge badge-light">{{ $item['shelf_section']  }}</div>                             
-                              </td>
-                              <!--end::Phân khu=-->
                               <!--begin::Số lượng=-->
                               <td>
-                                {{ $item['quantity'] }}
+                                {{ $item['quantity']  }}
                               </td>
                               <td>
-                                {{ $item['stock_quantity'] }}
+                                {{ $item['outbound_quantity'] }}
                               </td>
                               <td>
-                                {{ $item['stock_quantity'] + $item['quantity'] }}
+                                {{ $item['total_quantity'] }}
                               </td>
                               <!--end::Số lượng=-->
                               <!--begin::Date=-->
-                              <td>{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</td>
                               <!--end::Date=-->
                               <!--begin::Action=-->
                               <td class="text-end">
@@ -388,6 +273,10 @@
                                   <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
                                       data-kt-menu="true">
                                       <!--begin::Menu item-->
+                                      <div class="menu-item px-3">
+                                        <a href="{{ route('san-pham.show', $item['product_id']) }}"
+                                            class="menu-link px-3">Xem</a>
+                                    </div>
                                       <!--end::Menu item-->
                                       <!--begin::Menu item-->
                                       <!--end::Menu item-->
@@ -599,7 +488,7 @@
                     <!--begin::Body-->
                     <div class="card-body pt-0">
                         <!--begin::Item-->
-                        @foreach ($stocks['transactions'] as $item)
+                        @foreach ($this->transactions as $item)
                         <div class="d-flex align-items-center bg-light-success rounded p-5 mb-7">
                             <!--begin::Icon-->
                             <span class="svg-icon svg-icon-success me-5">
@@ -694,37 +583,36 @@
                     <!--end::Header-->
                     <!--begin::Body-->
                     <div class="card-body pt-0">
-                        <!--begin::Item-->
-                       @foreach ($stocks['transactions_out'] as $item)
-                       <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
-                        <!--begin::Icon-->
-                        <span class="svg-icon svg-icon-danger me-5">
-                            <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
-                            <span class="svg-icon svg-icon-1">
-                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                    viewBox="0 0 24 24" fill="none">
-                                    <path opacity="0.3"
-                                        d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
-                                        fill="black"></path>
-                                    <path
-                                        d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
-                                        fill="black"></path>
-                                </svg>
-                            </span>
-                            <!--end::Svg Icon-->
-                        </span>
-                        <!--end::Icon-->
-                        <!--begin::Title-->
-                        <div class="flex-grow-1 me-2">
-                            <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa #{{ $item['outbound_id'] }}</a>
-                            <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
-                        </div>
-                        <!--end::Title-->
-                        <!--begin::Lable-->
-                        <span class="fw-bolder text-danger py-1">{{ $item['quantity'] }} sản phẩm</span>
-                        <!--end::Lable-->
-                    </div>
-                       @endforeach
+                        @foreach ($this->transactions_out as $item)
+                        <div class="d-flex align-items-center bg-light-danger rounded p-5 mb-7">
+                         <!--begin::Icon-->
+                         <span class="svg-icon svg-icon-danger me-5">
+                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
+                             <span class="svg-icon svg-icon-1">
+                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                     viewBox="0 0 24 24" fill="none">
+                                     <path opacity="0.3"
+                                         d="M21.25 18.525L13.05 21.825C12.35 22.125 11.65 22.125 10.95 21.825L2.75 18.525C1.75 18.125 1.75 16.725 2.75 16.325L4.04999 15.825L10.25 18.325C10.85 18.525 11.45 18.625 12.05 18.625C12.65 18.625 13.25 18.525 13.85 18.325L20.05 15.825L21.35 16.325C22.35 16.725 22.35 18.125 21.25 18.525ZM13.05 16.425L21.25 13.125C22.25 12.725 22.25 11.325 21.25 10.925L13.05 7.62502C12.35 7.32502 11.65 7.32502 10.95 7.62502L2.75 10.925C1.75 11.325 1.75 12.725 2.75 13.125L10.95 16.425C11.65 16.725 12.45 16.725 13.05 16.425Z"
+                                         fill="black"></path>
+                                     <path
+                                         d="M11.05 11.025L2.84998 7.725C1.84998 7.325 1.84998 5.925 2.84998 5.525L11.05 2.225C11.75 1.925 12.45 1.925 13.15 2.225L21.35 5.525C22.35 5.925 22.35 7.325 21.35 7.725L13.05 11.025C12.45 11.325 11.65 11.325 11.05 11.025Z"
+                                         fill="black"></path>
+                                 </svg>
+                             </span>
+                             <!--end::Svg Icon-->
+                         </span>
+                         <!--end::Icon-->
+                         <!--begin::Title-->
+                         <div class="flex-grow-1 me-2">
+                             <a href="#" class="fw-bolder text-gray-800 text-hover-primary fs-6">Xuất hàng hóa #{{ $item['outbound_id'] }}</a>
+                             <span class="text-muted fw-bold d-block">{{ \Carbon\Carbon::parse($item['transaction_date'])->format('d-m-Y') }}</span>
+                         </div>
+                         <!--end::Title-->
+                         <!--begin::Lable-->
+                         <span class="fw-bolder text-danger py-1">{{ $item['quantity'] }} sản phẩm</span>
+                         <!--end::Lable-->
+                     </div>
+                        @endforeach              
                         <!--end::Item-->
                     </div>
                     <!--end::Body-->

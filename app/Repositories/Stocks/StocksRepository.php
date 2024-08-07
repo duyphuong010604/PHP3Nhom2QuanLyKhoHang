@@ -14,7 +14,7 @@ class StocksRepository
     {
         $shelves = Shelf::with([
             'stocks',
-            'inboundShipments.inboundShipmentDetails'
+            'inboundShipments.inbound_shipment_details'
         ])->get();
 
         $results = $shelves->map(function ($shelf) {
@@ -41,8 +41,8 @@ class StocksRepository
     public function getOne($id)
     {
         $shelf = Shelf::with([
-            'inboundShipments.inboundShipmentDetails.product',
-            'outboundShipments.outboundShipmentDetails.product',
+            'inboundShipments.inbound_shipment_details.product',
+            'outboundShipments.outbound_shipment_details.product',
             'stocks.product'
         ])->findOrFail($id);
 
@@ -91,5 +91,33 @@ class StocksRepository
     public function createNew(array $data)
     {
         return Stock::create($data);
+    }
+
+    public function search($query)
+    {
+        $shelves = Shelf::with([
+            'stocks',
+            'inboundShipments.inboundShipmentDetails'
+        ])
+        ->where('name', 'like', '%' . $query . '%')
+        ->orWhere('section', 'like', '%' . $query . '%')
+        ->get();
+
+        return $shelves->map(function ($shelf) {
+            $stockQuantity = $shelf->stocks->sum('quantity');
+            $inboundQuantity = $shelf->inboundShipments->flatMap(function ($shipment) {
+                return $shipment->inboundShipmentDetails;
+            })->sum('quantity');
+            $totalQuantity = $stockQuantity + $inboundQuantity;
+
+            return [
+                'shelf_id' => $shelf->id,
+                'shelf_name' => $shelf->name,
+                'shelf_section' => $shelf->section,
+                'stock_quantity' => $stockQuantity,
+                'inbound_quantity' => $inboundQuantity,
+                'total_quantity' => $totalQuantity,
+            ];
+        });
     }
 }

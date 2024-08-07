@@ -67,7 +67,7 @@ class StockCreate extends Component
     {
         $validated = $this->validate();
 
-        dd(DB::getQueryLog());
+        // dd(DB::getQueryLog());
         $stocks = Stock::create([
             'product_id' => $this->product_id,
             'shelf_id' => $this->shelf_id,
