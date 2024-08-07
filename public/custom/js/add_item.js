@@ -21,7 +21,7 @@ var KTAppInvoicesCreate = function() {
 
                 l.value = n.to(r);
                 t.value = i;
-                e.querySelector('[data-kt-element="total"]').innerText = n.to(r * i);
+                // e.querySelector('[data-kt-element="total"]').innerText = n.to(r * i);
                 a += r * i;
             });
 

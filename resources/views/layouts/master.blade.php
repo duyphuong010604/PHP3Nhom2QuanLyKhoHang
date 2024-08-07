@@ -44,7 +44,7 @@ License: For each use you must have a valid license purchased only from above li
 
     <!--end::Global Stylesheets Bundle-->
 
-    @livewireStyles
+  
 </head>
 <!--end::Head-->
 <!--begin::Body-->
@@ -66,9 +66,7 @@ License: For each use you must have a valid license purchased only from above li
                     {{-- Main --}}
                     <div class="post d-flex flex-column-fluid" id="kt_post">
                         <div class="container-xxl" id="kt_content_container">
-                            {{-- Yield DÔ ĐÂY --}}
-                            @yield('contents')
-
+                           @yield('contents')
                         </div>
                     </div>
                     {{-- End Main --}}
@@ -89,7 +87,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('assets/js/scripts.bundle.js') }}"></script>
     <!--end::Global Javascript Bundle-->
     <!--begin::Page Vendors Javascript(used by this page)-->
-    <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script>
+    {{-- <script src="{{ asset('assets/plugins/custom/fullcalendar/fullcalendar.bundle.js') }}"></script> --}}
     <!--end::Page Vendors Javascript-->
     <!--begin::Page Custom Javascript(used by this page)-->
     <script src="{{ asset('assets/js/custom/modals/new-address.js') }}"></script>
@@ -100,7 +98,7 @@ License: For each use you must have a valid license purchased only from above li
     <script src="{{ asset('custom/js/add_item.js') }}"></script>
     <!--end::Page Custom Javascript-->
     <!--end::Javascript-->
-    @livewireScripts
+    
 </body>
 <!--end::Body-->
 
