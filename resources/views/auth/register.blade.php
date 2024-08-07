@@ -37,7 +37,7 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route ('store')}}" method="POST"  class="form w-100">
+                        <form action="{{ route ('register')}}" method="POST"  class="form w-100">
                            @csrf
                             <div class="mb-10 text-center">
                                 <!--begin::Title-->

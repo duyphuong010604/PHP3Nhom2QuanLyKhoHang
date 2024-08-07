@@ -43,12 +43,12 @@
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
     <!-- Session Status -->
 
-    <form action="{{ route ('password.email')}}" method="POST"  class="form w-100">
+    <form action="{{ route ('password.store')}}" method="POST"  class="form w-100">
                         @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
-                                <h1 class="text-dark mb-3">Quên Mật Khẩu</h1>
+                                <h1 class="text-dark mb-3">Thay Đổi Mật Khẩu</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <!--end::Link-->
@@ -57,14 +57,26 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-10">
                                 <!--begin::Label-->
-                                <label class="form-label fs-6 fw-bolder text-dark">Email</label>
+                                <label class="form-label fs-6 fw-bolder text-dark">Mật Khẩu</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                                 autocomplete="off" :value="__('email')"/>
-                                 @error('email')
+                                <input class="form-control form-control-lg form-control-solid" type="password" name="password"
+                                 autocomplete="off" :value="__('password')"/>
+                                 @error('password')
                                  <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
+                                @enderror
+                                <!--end::Input-->
+                            </div>
+                            <div class="fv-row mb-10">
+                                <!--begin::Label-->
+                                <label class="form-label fs-6 fw-bolder text-dark">Nhập Mật Khẩu</label>
+                                <!--end::Label-->
+                                <!--begin::Input-->
+                                <input class="form-control form-control-lg form-control-solid" type="password" name="password"
+                                 autocomplete="off" :value="__('password')"/>
+                                 @error('password')
+                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->

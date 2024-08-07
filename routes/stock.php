@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StockController;
 
-Route::prefix('ton-kho')->name('ton-kho.')->group(function () {
+Route::prefix('ton-kho')->name('ton-kho.')->middleware('check.stock.access')->group(function () {
     Route::get('/', [StockController::class, 'index'])->name('index');
     Route::get('/tao-moi', [StockController::class, 'create'])->name('create');
     Route::post('/', [StockController::class, 'store'])->name('store');

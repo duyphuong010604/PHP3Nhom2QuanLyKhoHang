@@ -95,5 +95,3 @@
         <!--end::Authentication - Sign-in-->
     </div>
     @endsection
-
-

@@ -1,13 +1,14 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Auth;
 
-use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Auth\Events\Lockout;
+use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Str;
 use Illuminate\Validation\ValidationException;
+
 class LoginRequest extends FormRequest
 {
     /**
@@ -21,33 +22,21 @@ class LoginRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     * @return array<string, \Illuminate\Contracts\Validation\Rule|array|string>
      */
-    
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email', function ($attribute, $value, $fail) {
-            if (!str_contains($value, '@')) {
-                $fail('Địa chỉ email phải chứa ký tự "@".');
-            }
-            if (!(str_ends_with($value, '.com') || str_ends_with($value, '.vn'))) {
-                $fail('Địa chỉ email phải kết thúc bằng ".com" hoặc ".vn".');
-            }
-        }],
-            'password' => ['required', 'string', 'min:8'], // Thêm điều kiện độ dài mật khẩu tối thiểu 8 ký tự
+            'email' => ['required', 'string', 'email'],
+            'password' => ['required', 'string'],
         ];
-
     }
-    //Bắt lỗi form 
-    public function messages() {
-        return [
-            'email.required' => 'Phải nhập email chứ',
-            'email.email' => 'Địa chỉ email không hợp lệ', // Thêm thông báo lỗi cho định dạng email sai
-            'password.required' => 'Password là bắt buộc',
-            'password.min' => 'Password phải có ít nhất 8 ký tự', // Thông báo lỗi cho độ dài mật khẩu
-       ];
-     }
+
+    /**
+     * Attempt to authenticate the request's credentials.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function authenticate(): void
     {
         $this->ensureIsNotRateLimited();
@@ -62,6 +51,12 @@ class LoginRequest extends FormRequest
 
         RateLimiter::clear($this->throttleKey());
     }
+
+    /**
+     * Ensure the login request is not rate limited.
+     *
+     * @throws \Illuminate\Validation\ValidationException
+     */
     public function ensureIsNotRateLimited(): void
     {
         if (! RateLimiter::tooManyAttempts($this->throttleKey(), 5)) {
