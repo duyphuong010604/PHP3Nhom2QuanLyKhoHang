@@ -184,7 +184,7 @@ class ProductLists extends Component
             $data = [
                 'products' => Product::all()
             ];
-            dd($data);
+
 
             $options = new Options();
             $dompdf = new Dompdf($options);
