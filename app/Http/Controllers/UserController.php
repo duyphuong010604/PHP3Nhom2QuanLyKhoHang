@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Registered;
 use Closure;
 
 
@@ -40,24 +41,16 @@ class UserController extends Controller
     public function login(LoginRequest $request): RedirectResponse
     {
         // Validate the login form data
-        // $request->validate([
-        //     'email' => ['required', 'string', 'email', 'max:255'],
-        //     'password' => ['required', 'string', 'max:255'],
-        // ]);
 
-        // // Attempt to log the user in
-        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-        //     // Authentication passed, redirect to the homepage
-        //     return redirect()->intended(route('trang-chu.index'));
-        // }
+        // Attempt to log the user in
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            // Authentication passed, redirect to the homepage
+            return redirect()->intended(route('trang-chu.index'));
+        }
 
-        // // Authentication failed, return error
-        // return redirect(route('trang-chu.index', absolute: false));
-        $request->authenticate();
+        // Authentication failed, return error
+        return redirect(route('trang-chu.index', absolute: false));
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('trang-chu.index', absolute: false));
     }
 
 
@@ -80,7 +73,7 @@ class UserController extends Controller
             'fullname' => $request->fullname,
         ]);
 
-
+        event(new Registered($users));
 
         Auth::login($users);
 
