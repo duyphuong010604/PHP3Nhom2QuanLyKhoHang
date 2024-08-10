@@ -8,6 +8,10 @@ use App\Models\Customer;
 use Livewire\Component;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Title;
+
+
+#[Title('Thêm Mới Khách Hàng')]
 
 class CustomerUpdate extends Component
 {

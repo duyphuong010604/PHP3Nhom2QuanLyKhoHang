@@ -27,16 +27,25 @@ class LoginRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => ['required', 'string', 'email'],
-            'password' => ['required', 'string'],
+            'email' => ['required', 'string', 'email', function ($attribute, $value, $fail) {
+            if (!str_contains($value, '@')) {
+                $fail('Địa chỉ email phải chứa ký tự "@".');
+            }
+            if (!(str_ends_with($value, '.com') || str_ends_with($value, '.vn'))) {
+                $fail('Địa chỉ email phải kết thúc bằng ".com" hoặc ".vn".');
+            }
+        }],
+            'password' => ['required', 'string', 'min:8'], // Thêm điều kiện độ dài mật khẩu tối thiểu 8 ký tự
         ];
 
     }
     //Bắt lỗi form 
     public function messages() {
         return [
-         'email.required' => 'Phải nhập họ tên chứ',
-         'password.required' => 'Password phải lên 8 kí tự',
+            'email.required' => 'Phải nhập email chứ',
+            'email.email' => 'Địa chỉ email không hợp lệ', // Thêm thông báo lỗi cho định dạng email sai
+            'password.required' => 'Password là bắt buộc',
+            'password.min' => 'Password phải có ít nhất 8 ký tự', // Thông báo lỗi cho độ dài mật khẩu
        ];
      }
     public function authenticate(): void

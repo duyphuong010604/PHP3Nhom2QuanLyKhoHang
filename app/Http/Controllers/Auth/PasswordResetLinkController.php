@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\View\View;
+use App\Http\Requests\LoginRequest;
 
 class PasswordResetLinkController extends Controller
 {
@@ -15,7 +16,7 @@ class PasswordResetLinkController extends Controller
      */
     public function create(): View
     {
-        return view('authentications.forgot-password');
+        return view('auth.forgot-password');
     }
 
     /**
@@ -23,7 +24,7 @@ class PasswordResetLinkController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(LoginRequest $request): RedirectResponse
     {
         $request->validate([
             'email' => ['required', 'email'],
