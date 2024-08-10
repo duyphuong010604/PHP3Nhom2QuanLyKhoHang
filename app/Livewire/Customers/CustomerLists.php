@@ -6,6 +6,9 @@ use App\Models\Customer;
 use Illuminate\Support\Facades\Log;
 use Livewire\Component;
 use Livewire\WithPagination;
+use Livewire\Attributes\Title;
+
+#[Title('Danh sách khách hàng')]
 
 class CustomerLists extends Component
 {
@@ -17,6 +20,10 @@ class CustomerLists extends Component
     public $filterType = 'all';
     public $objectType = 'all';
     public $object = 'all';
+
+    public $customerId;
+
+    protected $listeners = ['deleteConfirmed' => 'delete'];
 
 
     protected $customers;
@@ -88,11 +95,12 @@ class CustomerLists extends Component
         $this->customers = $query->orderBy($this->orderBy, $this->sortBy)->paginate(5);
     }
 
+
     public function delete($customerId)
     {
         Customer::find($customerId)->delete();
         $this->resetPage();
-        //session()->flash('message', 'Đã xóa khách hàng thành công');
+        // session()->flash('message', 'Đã xóa khách hàng thành công');
     }
 
     public function render()
