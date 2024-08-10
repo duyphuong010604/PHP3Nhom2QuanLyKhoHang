@@ -243,7 +243,7 @@
                                         <td>{{ number_format($item->quantity * $product->price) }} VNĐ</td>
                                         <td class="text-end">
                                             <!--begin::Action-->
-                                            <a href="#"
+                                            <a href="{{ route('ton-kho.show', $item->id) }}"
                                                 class="btn btn-icon btn-active-light-primary w-30px h-30px"
                                                 data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">
                                                 <!--begin::Svg Icon | path: icons/duotune/general/gen019.svg-->
@@ -265,7 +265,8 @@
                                                 data-kt-menu="true">
                                                 <!--begin::Menu item-->
                                                 <div class="menu-item px-3">
-                                                    <a href="#" class="menu-link px-3">Chi tiết kệ hàng</a>
+                                                    <a href="{{ route('ton-kho.show', $item->id) }}"
+                                                        class="menu-link px-3">Chi tiết kệ hàng</a>
                                                 </div>
                                                 <!--end::Menu item-->
                                                 <!--begin::Menu item-->
