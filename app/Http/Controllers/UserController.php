@@ -39,14 +39,18 @@ class UserController extends Controller
         return view('authentications.signUp');
     }
     public function login(LoginRequest $request): RedirectResponse
-    {   
-       // Validate the login form data
-      
-        // Attempt to log the user in
-        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
-            // Authentication passed, redirect to the homepage
-            return redirect()->intended(route('trang-chu.index'));
-        }
+    {
+        // Validate the login form data
+        // $request->validate([
+        //     'email' => ['required', 'string', 'email', 'max:255'],
+        //     'password' => ['required', 'string', 'max:255'],
+        // ]);
+
+        // // Attempt to log the user in
+        // if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+        //     // Authentication passed, redirect to the homepage
+        //     return redirect()->intended(route('trang-chu.index'));
+        // }
 
         // Authentication failed, return error
         return redirect(route('trang-chu.index', absolute: false));
@@ -157,5 +161,5 @@ class UserController extends Controller
 
         return redirect()->intended('trang-chu.index'); // Redirect to the intended page or home
     }
-    
+
 }

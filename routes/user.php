@@ -1,6 +1,5 @@
 <?php
 
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ConfirmablePasswordController;
@@ -30,6 +29,7 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 
 
+<<<<<<< HEAD
 
 // });
 //     Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
@@ -49,6 +49,27 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 
 //     Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
 //     Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+=======
+
+});
+Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+
+Route::post('/forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
+Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+
+Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.store');
+Route::get('verify-email', EmailVerificationPromptController::class)->name('verification.notice');
+
+Route::get('verify-email/{id}/{hash}', VerifyEmailController::class)->name('verification.verify');
+
+Route::post('email/verification-notification', [EmailVerificationNotificationController::class, 'store'])->name('verification.send');
+
+Route::get('confirm-password', [ConfirmablePasswordController::class, 'show'])->name('password.confirm');
+
+Route::post('confirm-password', [ConfirmablePasswordController::class, 'store']);
+Route::put('password', [PasswordController::class, 'update'])->name('password.update');
+>>>>>>> origin/dev/develop
 // Route::middleware('auth.check')->group(function () {
 //     Route::prefix('tai-khoan')->name('tai-khoan.')->group(function () {
 //         // Các route yêu cầu đăng nhập

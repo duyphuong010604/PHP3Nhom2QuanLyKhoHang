@@ -6,7 +6,7 @@
     <div class="aside-logo flex-column-auto" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="{{ route('trang-chu.index') }}">
-            <img alt="Logo" src="" class="h-25px logo">
+            <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-50px logo">
         </a>
         <!--end::Logo-->
         <!--begin::Aside toggler-->
@@ -46,7 +46,8 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link active" href="{{ route('trang-chu.index') }}">
+                    <a class="menu-link {{ request()->routeIs('trang-chu.index') ? 'active' : ' ' }}"
+                        href="{{ route('trang-chu.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                             <span class="svg-icon svg-icon-2">
@@ -84,7 +85,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('nhap-hang.index') }}" class="menu-link">
+                            <a href="{{ route('nhap-hang.index') }}"
+                                class="menu-link {{ request()->routeIs('nhap-hang.index') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -93,7 +95,8 @@
                             </a>
                         </div>
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('nhap-hang.create') }}" class="menu-link">
+                            <a href="{{ route('nhap-hang.create') }}"
+                                class="menu-link {{ request()->routeIs('nhap-hang.create') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -123,7 +126,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('xuat-hang.index') }}" class="menu-link">
+                            <a href="{{ route('xuat-hang.index') }}"
+                                class="menu-link {{ request()->routeIs('xuat-hang.index') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -132,7 +136,8 @@
                             </a>
                         </div>
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('xuat-hang.create') }}" class="menu-link">
+                            <a href="{{ route('xuat-hang.create') }}"
+                                class="menu-link {{ request()->routeIs('xuat-hang.create') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -167,7 +172,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('san-pham.index') }}" class="menu-link">
+                            <a href="{{ route('san-pham.index') }}"
+                                class="menu-link {{ request()->routeIs('san-pham.index') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -176,7 +182,8 @@
                             </a>
                         </div>
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('san-pham.create') }}" class="menu-link">
+                            <a href="{{ route('san-pham.create') }}"
+                                class="menu-link {{ request()->routeIs('san-pham.create') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -209,7 +216,8 @@
                     </span>
                     <div class="menu-sub menu-sub-accordion menu-active-bg">
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('doi-tac.index') }}" class="menu-link">
+                            <a href="{{ route('doi-tac.index') }}"
+                                class="menu-link {{ request()->routeIs('doi-tac.index') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -217,7 +225,8 @@
                             </a>
                         </div>
                         <div class="menu-item menu-accordion">
-                            <a href="{{ route('doi-tac.create') }}" class="menu-link">
+                            <a href="{{ route('doi-tac.create') }}"
+                                class="menu-link {{ request()->routeIs('doi-tac.create') ? 'active' : ' ' }}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
@@ -233,7 +242,8 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link" href="{{ route('ton-kho.index') }}">
+                    <a class="menu-link {{ request()->routeIs('ton-kho.index') ? 'active' : ' ' }}"
+                        href="{{ route('ton-kho.index') }}">
                         <span class="menu-icon">
                             <!--begin::Svg Icon | path: icons/duotune/art/art002.svg-->
                             <span class="svg-icon svg-icon-2">

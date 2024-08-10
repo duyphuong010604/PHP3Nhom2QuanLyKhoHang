@@ -7,7 +7,9 @@ use Livewire\Component;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Validate;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Title;
 
+#[Title('Chi tiết sản phẩm')]
 class ProductView extends Component
 {
 

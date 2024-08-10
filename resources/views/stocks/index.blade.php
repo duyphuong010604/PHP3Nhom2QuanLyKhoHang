@@ -20,25 +20,7 @@
                     <!--begin::Breadcrumb-->
                     <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
                         <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">
-                            <a href="../../demo1/dist/index.html" class="text-muted text-hover-primary">Home</a>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-muted">Subscriptions</li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item">
-                            <span class="bullet bg-gray-200 w-5px h-2px"></span>
-                        </li>
-                        <!--end::Item-->
-                        <!--begin::Item-->
-                        <li class="breadcrumb-item text-dark">Subscription List</li>
+                        <li class="breadcrumb-item text-dark">Danh sách tồn kho</li>
                         <!--end::Item-->
                     </ul>
                     <!--end::Breadcrumb-->
@@ -220,7 +202,7 @@
                                         <div class="mb-10">
                                             <label class="form-label fs-6 fw-bold">Tháng:</label>
                                             <select class="form-select form-select-solid fw-bolder" data-kt-select2="true"
-                                                data-placeholder="Select option" data-allow-clear="true"
+                                                data-placeholder="Chọn thời gian" data-allow-clear="true"
                                                 data-kt-subscription-table-filter="month" data-hide-search="true">
                                                 <option></option>
                                                 <option value="jan">Tháng 1</option>
@@ -265,7 +247,7 @@
                                 </div>
                                 <!--end::Menu 1-->
                                 <!--end::Filter-->
-                                <!--begin::Export-->
+                                {{-- <!--begin::Export-->
                                 <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal"
                                     data-bs-target="#kt_subscriptions_export_modal">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
@@ -283,9 +265,9 @@
                                         </svg>
                                     </span>
                                     <!--end::Svg Icon-->Export</button>
-                                <!--end::Export-->
+                                <!--end::Export--> --}}
                                 <!--begin::Add subscription-->
-                                <a href="/create_stock" class="btn btn-primary">
+                                <a href="{{ route('ton-kho.create') }}" class="btn btn-primary">
                                     <!--begin::Svg Icon | path: icons/duotune/arrows/arr075.svg-->
                                     <span class="svg-icon svg-icon-2">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -330,10 +312,9 @@
                                                 value="1" />
                                         </div>
                                     </th>
-                                    <th class="min-w-125px">Tên sản phẩm</th>
+                                    <th class="min-w-125px">Kệ hàng hóa</th>
                                     <th class="min-w-125px">Trạng thái</th>
                                     <th class="min-w-125px">Phân khu</th>
-                                    <th class="min-w-125px">Loại sản phẩm</th>
                                     <th class="min-w-125px">Số lượng</th>
                                     <th class="min-w-125px">Ngày nhập kho</th>
                                     <th class="text-end min-w-70px">Thao tác</th>
@@ -343,6 +324,7 @@
                             <!--end::Table head-->
                             <!--begin::Table body-->
                             <tbody class="text-gray-600 fw-bold">
+                               
                                 <tr>
                                     <!--begin::Checkbox-->
                                     <td>
@@ -353,13 +335,17 @@
                                     <!--end::Checkbox-->
                                     <!--begin::Customer=-->
                                     <td>
-                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Iphone 15
-                                            ProMax</a>
+                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Kệ hàng A</a>
                                     </td>
                                     <!--end::Customer=-->
                                     <!--begin::Status=-->
                                     <td>
-                                        <div class="badge badge-light-success">Còn sử dụng</div>
+                                        <div class="badge badge-light-success">
+                                            @if ($item->status = 1)
+                                                Còn sử dụng
+                                            @else
+                                                Không còn sử dụng
+                                            @endif</div>
                                     </td>
                                     <!--end::Status=-->
                                     <!--begin::Phân khu=-->
@@ -367,7 +353,6 @@
                                         <div class="badge badge-light">Phân khu A</div>
                                     </td>
                                     <!--end::Phân khu=-->
-                                    <td>Iphone</td>
                                     <!--begin::Số lượng=-->
                                     <td>100</td>
                                     <!--end::Số lượng=-->
@@ -393,80 +378,12 @@
                                             data-kt-menu="true">
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/view_stock" class="menu-link px-3">Xem</a>
+                                                <a href="{{ route('ton-kho.show',1) }}" class="menu-link px-3">Xem</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
                                             <div class="menu-item px-3">
-                                                <a href="/edit_stock" class="menu-link px-3">Sửa</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" data-kt-subscriptions-table-filter="delete_row"
-                                                    class="menu-link px-3">Xóa</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                        </div>
-                                        <!--end::Menu-->
-                                    </td>
-                                    <!--end::Action=-->
-                                </tr>
-                                <tr>
-                                    <!--begin::Checkbox-->
-                                    <td>
-                                        <div class="form-check form-check-sm form-check-custom form-check-solid">
-                                            <input class="form-check-input" type="checkbox" value="1" />
-                                        </div>
-                                    </td>
-                                    <!--end::Checkbox-->
-                                    <!--begin::Customer=-->
-                                    <td>
-                                        <a href="#" class="text-gray-800 text-hover-primary mb-1">Samsung 5s</a>
-                                    </td>
-                                    <!--end::Customer=-->
-                                    <!--begin::Status=-->
-                                    <td>
-                                        <div class="badge badge-light-warning">Không sử dụng</div>
-                                    </td>
-                                    <!--end::Status=-->
-                                    <!--begin::Phân khu=-->
-                                    <td>
-                                        <div class="badge badge-light">Phân khu B</div>
-                                    </td>
-                                    <!--end::Phân khu=-->
-                                    <td>Samsung</td>
-                                    <!--begin::Số lượng=-->
-                                    <td>100</td>
-                                    <!--end::Số lượng=-->
-                                    <!--begin::Date=-->
-                                    <td>26-06-2000</td>
-                                    <!--end::Date=-->
-                                    <!--begin::Action=-->
-                                    <td class="text-end">
-                                        <a href="#" class="btn btn-light btn-active-light-primary btn-sm"
-                                            data-kt-menu-trigger="click" data-kt-menu-placement="bottom-end">Thao tác
-                                            <!--begin::Svg Icon | path: icons/duotune/arrows/arr072.svg-->
-                                            <span class="svg-icon svg-icon-5 m-0">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-                                                    viewBox="0 0 24 24" fill="none">
-                                                    <path
-                                                        d="M11.4343 12.7344L7.25 8.55005C6.83579 8.13583 6.16421 8.13584 5.75 8.55005C5.33579 8.96426 5.33579 9.63583 5.75 10.05L11.2929 15.5929C11.6834 15.9835 12.3166 15.9835 12.7071 15.5929L18.25 10.05C18.6642 9.63584 18.6642 8.96426 18.25 8.55005C17.8358 8.13584 17.1642 8.13584 16.75 8.55005L12.5657 12.7344C12.2533 13.0468 11.7467 13.0468 11.4343 12.7344Z"
-                                                        fill="black" />
-                                                </svg>
-                                            </span>
-                                            <!--end::Svg Icon--></a>
-                                        <!--begin::Menu-->
-                                        <div class="menu menu-sub menu-sub-dropdown menu-column menu-rounded menu-gray-600 menu-state-bg-light-primary fw-bold fs-7 w-125px py-4"
-                                            data-kt-menu="true">
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Xem</a>
-                                            </div>
-                                            <!--end::Menu item-->
-                                            <!--begin::Menu item-->
-                                            <div class="menu-item px-3">
-                                                <a href="#" class="menu-link px-3">Sửa</a>
+                                                <a href="{{ route('ton-kho.edit',1) }}" class="menu-link px-3">Sửa</a>
                                             </div>
                                             <!--end::Menu item-->
                                             <!--begin::Menu item-->
@@ -480,6 +397,8 @@
                                     </td>
                                     <!--end::Action=-->
                                 </tr>
+                                @endforeach
+                              
 
 
                             </tbody>

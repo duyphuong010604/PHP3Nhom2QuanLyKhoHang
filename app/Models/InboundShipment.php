@@ -9,7 +9,8 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundShipment extends Model
 {
     use HasFactory;
-    protected $fillablde = [
+    protected $table = 'inbound_shipments';
+    protected $fillable = [
         'user_id',
         'supplier_id',
         'shelf_id',
@@ -17,7 +18,6 @@ class InboundShipment extends Model
         'remarks',
         'status',
     ];
-
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
@@ -31,6 +31,11 @@ class InboundShipment extends Model
     public function shelf(): BelongsTo
     {
         return $this->belongsTo(Shelf::class);
+    }
+
+    public function inboundShipmentDetails()
+    {
+        return $this->hasMany(InboundShipmentDetails::class);
     }
 
 
