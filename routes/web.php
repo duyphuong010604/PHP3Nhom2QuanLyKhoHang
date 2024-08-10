@@ -11,7 +11,7 @@ Route::get('/', function () {
 
 
 
-Route::get('/test', function () {
+Route::get('/test11', function () {
     return view('exports.products-code-pdf', ['products' => Product::all()]);
 });
 
