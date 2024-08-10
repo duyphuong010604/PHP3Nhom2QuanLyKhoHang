@@ -15,7 +15,6 @@
                         <a href="{{ route('login')}}" class="py-9 mb-5">
 =======
                         <a href="../../demo1/dist/index.html" class="py-9 mb-5">
->>>>>>> origin/dev/develop:resources/views/authentications/signUp.blade.php
                             <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                         </a>
                         <!--end::Logo-->

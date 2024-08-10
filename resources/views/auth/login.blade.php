@@ -16,6 +16,8 @@
                             <!--begin::Logo-->
                             <a href="{{ route('login')}}" class="py-9 mb-5">
                                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
+                            <a href="#" class="py-9 mb-5">
+                                <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                             </a>
                             <!--end::Logo-->
                             <!--begin::Title-->
