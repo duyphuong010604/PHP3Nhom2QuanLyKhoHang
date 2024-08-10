@@ -1,6 +1,5 @@
 <?php
 
-<<<<<<< HEAD
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
@@ -9,18 +8,11 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\InboundShipmentController;
 use App\Http\Controllers\OutboundShipmentController;
 use App\Http\Controllers\StockController;
-=======
-use App\Models\Product;
-use Illuminate\Support\Facades\Route;
-
-
->>>>>>> origin/dev/develop
 
 Route::get('/', function () {
     return view('auth.login');
 });
 
-<<<<<<< HEAD
 Route::get('/trang-chu', function () {
     return view('dashboards.index');
 })->middleware(['auth', 'verified'])->name('trang-chu.index');
@@ -89,19 +81,3 @@ require __DIR__.'/auth.php';
 // require __DIR__ . "/outboundShipment.php";
 // require __DIR__ . "/stock.php";
 
-=======
-
-
-Route::get('/test', function () {
-    return view('exports.products-code-pdf', ['products' => Product::all()]);
-});
-
-require __DIR__ . "/dashboard.php";
-require __DIR__ . "/statistical.php";
-require __DIR__ . "/product.php";
-require __DIR__ . "/customer.php";
-require __DIR__ . "/inboundShipment.php";
-require __DIR__ . "/outboundShipment.php";
-require __DIR__ . "/stock.php";
-require __DIR__ . "/user.php";
->>>>>>> origin/dev/develop
