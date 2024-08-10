@@ -11,6 +11,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
+use Illuminate\Auth\Events\Registered;
 use Closure;
 
 
@@ -51,13 +52,9 @@ class UserController extends Controller
         //     return redirect()->intended(route('trang-chu.index'));
         // }
 
-        // // Authentication failed, return error
-        // return redirect(route('trang-chu.index', absolute: false));
-        $request->authenticate();
+        // Authentication failed, return error
+        return redirect(route('trang-chu.index', absolute: false));
 
-        $request->session()->regenerate();
-
-        return redirect()->intended(route('trang-chu.index', absolute: false));
     }
 
 
@@ -80,7 +77,7 @@ class UserController extends Controller
             'fullname' => $request->fullname,
         ]);
 
-
+        event(new Registered($users));
 
         Auth::login($users);
 

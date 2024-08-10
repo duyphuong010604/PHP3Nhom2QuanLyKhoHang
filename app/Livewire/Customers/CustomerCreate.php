@@ -7,7 +7,9 @@ use Livewire\WithFileUploads;
 use Illuminate\Contracts\View\View;
 use App\Models\Customer;
 use Jantinnerezo\LivewireAlert\LivewireAlert;
+use Livewire\Attributes\Title;
 use Livewire\Attributes\Validate;
+#[Title('Thêm Mới Khách Hàng')]
 class CustomerCreate extends Component
 {
     use LivewireAlert;
@@ -63,7 +65,7 @@ class CustomerCreate extends Component
             'address' => $this->address,
             'object' => $this->object,
         ]);
-        
+
 
         if ($customer) {
             $this->alert('success', 'Thêm khách hàng mới thành công!', [
