@@ -22,13 +22,8 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-<<<<<<< HEAD
             <a href="{{route('login')}}" class="d-lg-none">
                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-30px">
-=======
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-30px">
->>>>>>> origin/dev/develop
             </a>
         </div>
         <!--end::Mobile logo-->
