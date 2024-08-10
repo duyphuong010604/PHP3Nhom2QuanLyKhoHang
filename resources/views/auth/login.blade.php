@@ -14,7 +14,7 @@
                         <!--begin::Content-->
                         <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                             <!--begin::Logo-->
-                            <a href="#" class="py-9 mb-5">
+                            <a href="{{ route('login') }}" class="py-9 mb-5">
                                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                             </a>
                             <!--end::Logo-->
@@ -42,8 +42,8 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-500px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route('login')}}" method="POST"  class="form w-100">
-                        @csrf
+                        <form action="{{ route('login') }}" method="POST" class="form w-100">
+                            @csrf
                             <!--begin::Heading-->
                             <div class="text-center mb-10">
                                 <!--begin::Title-->
@@ -51,8 +51,7 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Tạo Mới Tài Khoản?
-                                    <a href="{{ route('register') }}"
-                                    class="link-primary fw-bolder">Tạo Tài Khoản</a>
+                                    <a href="{{ route('register') }}" class="link-primary fw-bolder">Tạo Tài Khoản</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
@@ -64,10 +63,10 @@
                                 <!--end::Label-->
                                 <!--begin::Input-->
                                 <input class="form-control form-control-lg form-control-solid" type="email" name="email"
-                                 autocomplete="off" :value="__('email')"/>
-                                 @error('email')
-                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
+                                    autocomplete="off" :value="__('email')" />
+                                @error('email')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -77,11 +76,11 @@
                                 <label class="form-label fs-6 fw-bolder text-dark">Mật Khẩu</label>
                                 <!--end::Label-->
                                 <!--begin::Input-->
-                                <input class="form-control form-control-lg form-control-solid" type="password" name="password"
-                                 autocomplete="off" :value="__('password')"/>
-                                 @error('password')
-                                 <div class="alert alert-danger mt-2">{{ $message }}</div>
-                            @enderror
+                                <input class="form-control form-control-lg form-control-solid" type="password"
+                                    name="password" autocomplete="off" :value="__('password')" />
+                                @error('password')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @enderror
                                 <!--end::Input-->
                             </div>
                             <!--end::Input group-->
@@ -93,12 +92,13 @@
                                 </button>
                                 <!--end::Submit button-->
                                 <!--begin::Separator-->
-                                <div class="text-center text-muted text-uppercase fw-bolder mb-5"><a href="{{ route('password.request') }}"
-                                class=" fw-bolder">Quên Mật Khẩu</a></div>
-                                
+                                <div class="text-center text-muted text-uppercase fw-bolder mb-5"><a
+                                        href="{{ route('password.request') }}" class=" fw-bolder">Quên Mật Khẩu</a></div>
+
                                 <!--end::Separator-->
                                 <!--begin::Google link-->
-                                <a href="{{ route('login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                <a href="{{ route('login.google') }}"
+                                    class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
                                     <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
                                         class="h-20px me-3" />Đăng Nhập với Google</a>
 

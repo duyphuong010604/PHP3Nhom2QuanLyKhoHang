@@ -11,15 +11,18 @@
                     <!--begin::Content-->
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
-                        <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                            <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
-                        </a>
-                        <!--end::Logo-->
-                        <!--begin::Title-->
-                        <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
-                        <!--end::Title-->
-                        <!--begin::Description-->
-                        <!--end::Description-->
+                        <<<<<<< HEAD:resources/views/auth/register.blade.php <a href="{{ route('login') }}" class="py-9 mb-5">
+                            =======
+                            <a href="../../demo1/dist/index.html" class="py-9 mb-5">
+                                >>>>>>> origin/dev/develop:resources/views/authentications/signUp.blade.php
+                                <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
+                            </a>
+                            <!--end::Logo-->
+                            <!--begin::Title-->
+                            <h1 class="fw-bolder fs-2qx pb-5 pb-md-10" style="color: #986923;">Quản Lý Kho Hàng</h1>
+                            <!--end::Title-->
+                            <!--begin::Description-->
+                            <!--end::Description-->
                     </div>
                     <!--end::Content-->
                     <!--begin::Illustration-->
@@ -37,31 +40,27 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route ('register')}}" method="POST"  class="form w-100">
-                           @csrf
+                        <form action="{{ route('register') }}" method="POST" class="form w-100">
+                            @csrf
                             <div class="mb-10 text-center">
                                 <!--begin::Title-->
                                 <h1 class="text-dark mb-3">Tạo một tài khoản</h1>
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Bạn đã có tài khoản?
-                                    <a href=""
-                                        class="link-primary fw-bolder">Đăng nhập tại đây</a>
+                                    <a href="" class="link-primary fw-bolder">Đăng nhập tại đây</a>
                                 </div>
                                 <!--end::Link-->
                             </div>
                             <!--end::Heading-->
                             <!--begin::Action-->
-                            
-                            <a href="{{ route('login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                        class="h-20px me-3" />Đăng Nhập với Google</a>
+
 
                             <!--end::Action-->
                             <!--begin::Separator-->
                             <div class="d-flex align-items-center mb-10">
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                                <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+                                <span class="fw-bold text-gray-400 fs-7 mx-2"></span>
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                             </div>
                             <!--end::Separator-->
@@ -70,21 +69,23 @@
                                 <!--begin::Col-->
                                 <div class="col-xl-6">
                                     <label class="form-label fw-bolder text-dark fs-6">Tài Khoản</label>
-                                    <input for="username" :value="__('username')" class="form-control form-control-lg form-control-solid" type="text"
+                                    <input for="username" :value="__('username')"
+                                        class="form-control form-control-lg form-control-solid" type="text"
                                         placeholder="" name="username" id="username" autocomplete="off" />
-                                        @error('username')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                    @error('username')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <!--end::Col-->
                                 <!--begin::Col-->
                                 <div class="col-xl-6">
                                     <label class="form-label fw-bolder text-dark fs-6">Tên</label>
-                                    <input for="fullname" :value="__('fullname')" class="form-control form-control-lg form-control-solid" type="text"
+                                    <input for="fullname" :value="__('fullname')"
+                                        class="form-control form-control-lg form-control-solid" type="text"
                                         placeholder="" name="fullname" id="fullname" autocomplete="off" />
-                                        @error('fullname')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                    @error('fullname')
+                                        <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <!--end::Col-->
                             </div>
@@ -92,10 +93,11 @@
                             <!--begin::Input group-->
                             <div class="fv-row mb-7">
                                 <label class="form-label fw-bolder text-dark fs-6">Email</label>
-                                <input for="email" :value="__('email')" class="form-control form-control-lg form-control-solid" type="email" placeholder=""
+                                <input for="email" :value="__('email')"
+                                    class="form-control form-control-lg form-control-solid" type="email" placeholder=""
                                     name="email" id="email" autocomplete="off" wire:model="email" />
-                                    @error('email')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                @error('email')
+                                    <div class="alert alert-danger mt-2">{{ $message }}</div>
                                 @enderror
                             </div>
                             <!--end::Input group-->
@@ -108,13 +110,14 @@
                                     <!--end::Label-->
                                     <!--begin::Input wrapper-->
                                     <div class="position-relative mb-3">
-                                        <input for="password" :value="__('password')" class="form-control form-control-lg form-control-solid" type="password"
-                                            placeholder="" name="password" id="password" autocomplete="off"  />
-                                            @error('password')
-                                <div class="alert alert-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                        <input for="password" :value="__('password')"
+                                            class="form-control form-control-lg form-control-solid" type="password"
+                                            placeholder="" name="password" id="password" autocomplete="off" />
+                                        @error('password')
+                                            <div class="alert alert-danger mt-2">{{ $message }}</div>
+                                        @enderror
                                     </div>
-                                    
+
                                     <!--end::Input wrapper-->
                                     <!--begin::Meter-->
                                     <div class="d-flex align-items-center mb-3" data-kt-password-meter-control="highlight">

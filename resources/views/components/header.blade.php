@@ -22,9 +22,13 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-30px">
-            </a>
+            <<<<<<< HEAD <a href="{{ route('login') }}" class="d-lg-none">
+                <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-30px">
+                =======
+                <a href="../../demo1/dist/index.html" class="d-lg-none">
+                    <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-30px">
+                    >>>>>>> origin/dev/develop
+                </a>
         </div>
         <!--end::Mobile logo-->
         <!--begin::Wrapper-->
@@ -90,26 +94,34 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('').submit();">Thông Tin Tài Khoản</a>
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông
+                                    tin tài khoản</a>
                             </div>
                             <!--end::Menu item-->
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                            @csrf
-                            <div class="menu-item px-5">
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
-                            </div>
-                            <!--end::Menu item-->
+                            <!--begin::Menu item-->
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <div class="menu-item px-5">
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                        xuất</a>
+                                </div>
+                                <!--end::Menu item-->
                         </div>
                         </form>
-                        <!--end::Menu wrapper-->
+                        <!--end::Menu item-->
                     </div>
-                    <!--end::User -->
+                    <!--end::Menu-->
+                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::Toolbar wrapper-->
+                <!--end::User -->
             </div>
-            <!--end::Topbar-->
+            <!--end::Toolbar wrapper-->
         </div>
-        <!--end::Wrapper-->
+        <!--end::Topbar-->
     </div>
-    <!--end::Container-->
+    <!--end::Wrapper-->
+</div>
+<!--end::Container-->
 </div>

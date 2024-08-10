@@ -250,7 +250,6 @@ class ProductLists extends Component
                 }
             }
 
-
             // Tạo đối tượng Writer để ghi bảng tính
             $writer = new Xlsx($spreadsheet);
             $fileName = 'products.xlsx';
