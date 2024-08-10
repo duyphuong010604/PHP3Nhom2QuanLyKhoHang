@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-
+@section('title', 'Đăng nhập tài khoản')
 @section('contents')
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-in -->
@@ -14,7 +14,11 @@
                         <!--begin::Content-->
                         <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                             <!--begin::Logo-->
+<<<<<<< HEAD:resources/views/auth/login.blade.php
                             <a href="{{ route('login')}}" class="py-9 mb-5">
+=======
+                            <a href="#" class="py-9 mb-5">
+>>>>>>> origin/dev/develop:resources/views/authentications/signIn.blade.php
                                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                             </a>
                             <!--end::Logo-->
