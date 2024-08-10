@@ -11,8 +11,8 @@
                     <!--begin::Content-->
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
-                        <a href="../../demo1/dist/index.html" class="py-9 mb-5">
-                            <img alt="Logo" src="" class="h-60px" />
+                        <a href="{{ route('login')}}" class="py-9 mb-5">
+                            <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                         </a>
                         <!--end::Logo-->
                         <!--begin::Title-->
@@ -53,15 +53,12 @@
                             <!--end::Heading-->
                             <!--begin::Action-->
                             
-                            <a href="{{ route('login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                        class="h-20px me-3" />Đăng Nhập với Google</a>
 
                             <!--end::Action-->
                             <!--begin::Separator-->
                             <div class="d-flex align-items-center mb-10">
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                                <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+                                <span class="fw-bold text-gray-400 fs-7 mx-2"></span>
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                             </div>
                             <!--end::Separator-->

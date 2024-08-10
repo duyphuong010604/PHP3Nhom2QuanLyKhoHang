@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/{id}', [CustomerController::class, 'update'])->name('update');
         Route::delete('/{id}', [CustomerController::class, 'destroy'])->name('destroy');
     });
-
+    
     // Tuyến đường sản phẩm
     Route::prefix('san-pham')->name('san-pham.')->group(function () {
         Route::get('/', [ProductController::class, 'index'])->name('index');

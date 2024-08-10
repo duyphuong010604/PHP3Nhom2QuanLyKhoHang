@@ -22,8 +22,8 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="../../demo1/dist/index.html" class="d-lg-none">
-                <img alt="Logo" src="{{ asset('assets/media/logos/logo-2.svg') }}" class="h-30px">
+            <a href="{{route('login')}}" class="d-lg-none">
+                <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-30px">
             </a>
         </div>
         <!--end::Mobile logo-->
@@ -90,9 +90,10 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('').submit();">Thông Tin Tài Khoản</a>
+                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông tin tài khoản</a>
                             </div>
                             <!--end::Menu item-->
+                            <!--begin::Menu item-->
                             <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                             @csrf
                             <div class="menu-item px-5">
@@ -101,6 +102,9 @@
                             <!--end::Menu item-->
                         </div>
                         </form>
+                            <!--end::Menu item-->
+                        </div>
+                        <!--end::Menu-->
                         <!--end::Menu wrapper-->
                     </div>
                     <!--end::User -->
