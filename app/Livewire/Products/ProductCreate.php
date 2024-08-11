@@ -31,7 +31,7 @@ class ProductCreate extends Component
     #[Validate('required', message: 'Vui lòng nhập giá nhập.')]
     #[Validate('min:100', message: 'Vui lòng nhiều hơn 100 vnđ.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng tiền tệ.')]
-    #[Validate('lt:price', message: 'Vui lòng cho giá bán thấp hơn giá nhập.')]
+    #[Validate('lt:price', message: 'Vui lòng cho giá bán cao hơn giá nhập.')]
     public $cost = '';
 
     public $description = '';
@@ -45,7 +45,7 @@ class ProductCreate extends Component
     #[Validate('required', message: 'Vui lòng nhập mã sản phẩm.')]
     #[Validate('numeric', message: 'Vui lòng nhập đúng định dạng mã sãn phẩm.')]
     #[Validate('min:100000000000', message: 'Vui lòng nhập mã theo chuẩn ENV13.')]
-    #[Validate('max:999999999999', message: 'Vui lòng nhập mã theo chuẩn ENV13.')]
+    #[Validate('max:9999999999999', message: 'Vui lòng nhập mã theo chuẩn ENV13.')]
     #[Validate('unique:products,sku', message: 'Mã sãn phẩm đã có.')]
     public $sku = '';
     public $imageUrl;
@@ -65,27 +65,9 @@ class ProductCreate extends Component
 
     }
 
-    // public function rules()
-    // {
-    //     return [
-    //         'imageUrl' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:1048',
-    //         'name' => 'required|min:3|',
-    //         'price' => 'required|min:100|numeric|gt:cost',
-    //         'cost' => 'required|min:100|numeric|lt:price',
-    //         'dimensions' => 'required|min:3|regex:/^\d+x\d+$/',
-    //         'weight' => 'required|min:3|numeric',
-    //         'category_id' => 'required',
-    //         'description' => 'nullable',
-    //         'sku' => 'required|numeric|min:1000000000|unique:products,sku|'
-    //     ];
-    // }
-
-
     public function create()
     {
         $validated = $this->validate();
-
-
         if ($this->imageUrl !== null) {
             $path = $this->imageUrl->store('images/products', 'public');
         } else {

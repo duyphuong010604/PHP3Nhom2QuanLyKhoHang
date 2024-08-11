@@ -41,8 +41,10 @@ class Statistical extends Component
     public $countOut;
     public $sumOut;
 
-
-
+    public $loinhuan;
+    public $stockPrice;
+    public $sumTotalPriceIn;
+    public $sumTotalPriceOut;
     public function boot()
     {
 
@@ -52,8 +54,6 @@ class Statistical extends Component
 
         $this->currentDateTime = date('Y-m-d H:i:s');
         $this->statisticalInbound = $this->statisticalDate(InboundShipment::query(), $this->weekNow->max_week, $this->yearNow->max_year);
-
-
 
         $this->countTable = [
             'products' => $this->dem(Product::all()),
@@ -90,11 +90,17 @@ class Statistical extends Component
             $this->sumOut[] = $value->total_amount;
         }
 
+        $this->loinhuan = $this->sumTotalAmount(OutboundShipment::query()) - $this->sumTotalAmount(InboundShipment::query());
+        $this->sumTotalPriceIn = $this->sumTotalAmount(InboundShipment::query());
+        $this->sumTotalPriceOut = $this->sumTotalAmount(OutboundShipment::query());
+        $this->stockPrice = $this->calculateTotalValue();
+
     }
 
 
     public function render()
     {
+
         $this->week = $this->week_date(InboundShipment::query());
         return view('livewire.statistical');
     }
@@ -109,6 +115,22 @@ class Statistical extends Component
     {
         $query = $table->sum('quantity');
         return $query;
+    }
+
+    public function sumTotalAmount($table)
+    {
+        $query = $table->sum('totalAmount');
+        return $query;
+    }
+
+    public function calculateTotalValue()
+    {
+        $totalValue = DB::table('stocks')
+            ->join('products', 'stocks.product_id', '=', 'products.id')
+            ->where('stocks.quantity', '>', 0)
+            ->sum(DB::raw('stocks.quantity * products.price'));
+
+        return $totalValue;
     }
 
 
@@ -157,8 +179,6 @@ class Statistical extends Component
             ->first();
         return $query;
     }
-
-
 
     public function loadDate($table)
     {

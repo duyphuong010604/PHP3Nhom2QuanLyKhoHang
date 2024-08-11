@@ -50,8 +50,19 @@
                     <div class="row gy-5 g-xl-8">
                         <div class="col-xl-12">
                             <div class="card card-xl-stretch mb-xl-8">
+                                @if (session()->has('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+
+                                @if (session()->has('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                                 <form class="form" action="#" id="kt_modal_new_address_form"
-                                    wire:submit.prevent='addStock'>
+                                    wire:submit.prevent='addStock' enctype="multipart/form-data">
                                     <!--begin::Modal header-->
                                     <div class="modal-header" id="kt_modal_new_address_header">
                                         <!--begin::Modal title-->
@@ -68,119 +79,15 @@
                                             data-kt-scroll-dependencies="#kt_modal_new_address_header"
                                             data-kt-scroll-wrappers="#kt_modal_new_address_scroll"
                                             data-kt-scroll-offset="300px">
-                                            <!--begin::Input group-->
-                                            <div class="row mb-5">
-                                                <!--begin::Col-->
-                                                <div class="col-md-6 fv-row">
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">Loại sản phẩm</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Your payment statements may very based on selected country"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Select-->
-                                                    <select name="product_id" data-placeholder="Chọn kệ hàng..."
-                                                        wire:model='product_id' class="form-select form-select-solid">
-                                                        <option value="">Chọn loại sản phẩm...</option>
-                                                        @foreach ($products as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
-                                                            </option>
-                                                        @endforeach
-
-                                                    </select>
-                                                    @error('product_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                              
-
-                                                <!--end::Col-->
-                                                <!--begin::Col-->
-                                                <div class="col-md-6 fv-row">
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">Phân khu</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Your payment statements may very based on selected country"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Select-->
-                                                    <select name="section" data-placeholder="Chọn phân khu..."
-                                                        class="form-select form-select-solid" wire:model='section'>
-                                                        <option value="">Chọn phân khu...</option>
-                                                        @foreach ($sheves as $item)
-                                                            <option value="{{ $item->section }}">{{ $item->section }}
-                                                            </option>
-                                                        @endforeach
-                                                    </select>
-                                                    @error('section')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <div class="col-md-6 fv-row">
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">Kệ hàng hóa</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Your payment statements may very based on selected country"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Select-->
-                                                    <select name="shelf_id" data-placeholder="Chọn kệ hàng..."
-                                                        wire:model='shelf_id' class="form-select form-select-solid">
-                                                        <option value="">Chọn kệ hàng...</option>
-                                                        @foreach ($sheves as $item)
-                                                            <option value="{{ $item->id }}">{{ $item->name }}
-                                                            </option>
-                                                        @endforeach
-
-                                                    </select>
-                                                    @error('shelf_id')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-
-                                                <div class="col-md-6 fv-row">
-                                                    <label class="d-flex align-items-center fs-5 fw-bold mb-2">
-                                                        <span class="required">Trạng thái</span>
-                                                        <i class="fas fa-exclamation-circle ms-2 fs-7"
-                                                            data-bs-toggle="tooltip"
-                                                            title="Your payment statements may very based on selected country"></i>
-                                                    </label>
-                                                    <!--end::Label-->
-                                                    <!--begin::Select-->
-                                                    <select name="status" data-placeholder="Chọn trạng thái..."
-                                                        class="form-select form-select-solid" wire:model='status'>
-                                                        <option value="">Chọn trạng thái...</option>
-                                                        <option value="1">Còn sử dụng</option>
-                                                        <option value="0">Không sử dụng</option>
-                                                    </select>
-                                                    @error('status')
-                                                        <span class="text-danger">{{ $message }}</span>
-                                                    @enderror
-                                                </div>
-                                                <!--end::Col-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
                                             <div class="d-flex flex-column mb-5 fv-row">
                                                 <!--begin::Label-->
-
-                                                <!--end::Select-->
-                                            </div>
-                                            <!--end::Input group-->
-                                            <!--begin::Input group-->
-                                            <div class="d-flex flex-column mb-5 fv-row">
-                                                <!--begin::Label-->
-                                                <label class="required fs-5 fw-bold mb-2">Số lượng tồn</label>
+                                                <label class="required fs-5 fw-bold mb-2">Nhập hàng</label>
                                                 <!--end::Label-->
                                                 <!--begin::Input-->
-                                                <input class="form-control form-control-solid" placeholder="Số lượng..."
-                                                    name="Số lượng" wire:model='quantity' />
+                                                <input class="form-control form-control-solid" placeholder=""
+                                                    name="file" wire:model='file' type="file" />
                                                 <!--end::Input-->
-                                                @error('quantity')
+                                                @error('file')
                                                     <span class="text-danger">{{ $message }}</span>
                                                 @enderror
                                             </div>
@@ -198,9 +105,8 @@
                                             class="btn btn-light me-3">Reset</button>
                                         <!--end::Button-->
                                         <!--begin::Button-->
-                                        <button type="submit" id="kt_modal_new_address_submit"
-                                            class="btn btn-primary">
-                                            <span class="indicator-label">Xác nhận</span>
+                                        <button type="submit" id="kt_modal_new_address_submit" class="btn btn-primary">
+                                            <span class="indicator-label">Import</span>
                                             <span class="indicator-progress">Please wait...
                                                 <span
                                                     class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
