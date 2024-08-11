@@ -179,7 +179,6 @@ class ProductLists extends Component
     public $typeExport = 'excell';
     public function export()
     {
-
         if ($this->typeExport === 'pdf') {
             $data = [
                 'products' => Product::all()
