@@ -22,7 +22,7 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            <a href="{{route('login')}}" class="d-lg-none">
+            <a href="{{ route('login') }}" class="d-lg-none">
                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-30px">
             </a>
         </div>
@@ -90,30 +90,33 @@
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
                             <div class="menu-item px-5">
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông tin tài khoản</a>
+                                <a href="#"
+                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông
+                                    tin tài khoản</a>
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                            @csrf
-                            <div class="menu-item px-5">
-                            <a href="#" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng xuất</a>
-                            </div>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                                @csrf
+                                <div class="menu-item px-5">
+                                    <a href="#"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
+                                        xuất</a>
+                                </div>
+                            </form>
                             <!--end::Menu item-->
                         </div>
-                        </form>
-                            <!--end::Menu item-->
-                        </div>
-                        <!--end::Menu-->
-                        <!--end::Menu wrapper-->
+                        <!--end::Menu item-->
                     </div>
-                    <!--end::User -->
+                    <!--end::Menu-->
+                    <!--end::Menu wrapper-->
                 </div>
-                <!--end::Toolbar wrapper-->
+                <!--end::User -->
             </div>
-            <!--end::Topbar-->
+            <!--end::Toolbar wrapper-->
         </div>
-        <!--end::Wrapper-->
+        <!--end::Topbar-->
     </div>
-    <!--end::Container-->
+    <!--end::Wrapper-->
 </div>
+<!--end::Container-->
