@@ -11,12 +11,12 @@ Route::get('/dashboard', function () {
     return view('dashboards.index');
 })->middleware(['auth', 'verified'])->name('trang-chu.index');
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
-    Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
-    Route::put('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
-});
-
+// Route::middleware('auth')->group(function () {
+//     Route::get('/profile', [UserProfileController::class, 'index'])->name('profile.index');
+//     Route::get('/profile/edit', [UserProfileController::class, 'edit'])->name('profile.edit');
+//     Route::put('/profile/update', [UserProfileController::class, 'update'])->name('profile.update');
+// });
+require __DIR__.'/profiles.php';
 require __DIR__.'/auth.php';
 require __DIR__ . "/dashboard.php";
 require __DIR__ . "/product.php";

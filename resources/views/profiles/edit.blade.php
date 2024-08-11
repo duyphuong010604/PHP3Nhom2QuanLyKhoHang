@@ -44,9 +44,8 @@
                 <!--begin::Content-->
                 <div id="kt_account_profile_details" class="collapse show">
                     <!--begin::Form-->
-                    <form method="POST" action="{{ route('profile.update') }}">
-                @csrf
-                @method('PUT')
+                    <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
                         <!--begin::Card body-->
                         <div class="card-body border-top p-9">
                             <!--begin::Input group-->
