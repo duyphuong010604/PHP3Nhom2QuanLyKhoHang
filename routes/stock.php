@@ -7,7 +7,7 @@ use App\Livewire\Stocks\StockCreate;
 use App\Livewire\Stocks\StockUpdate;
 use App\Livewire\Stocks\StockView;
 
-Route::prefix('ton-kho')->name('ton-kho.')->group(function () {
+Route::prefix('ton-kho')->name('ton-kho.')->middleware('auth')->group(function () {
     Route::get('/', StockList::class)->name('index');
     Route::get('/tao-moi', StockCreate::class)->name('create');
     Route::post('/', StockCreate::class)->name('store');

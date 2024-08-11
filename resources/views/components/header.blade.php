@@ -22,13 +22,9 @@
         <!--end::Aside mobile toggle-->
         <!--begin::Mobile logo-->
         <div class="d-flex align-items-center flex-grow-1 flex-lg-grow-0">
-            {{-- <<<<<<< HEAD <a href="{{ route('login') }}" class="d-lg-none">
+            <a href="{{ route('login') }}" class="d-lg-none">
                 <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-30px">
-                =======
-                <a href="../../demo1/dist/index.html" class="d-lg-none">
-                    <img alt="Logo" src="{{ asset('assets/media/logos/warehouse.png') }}" class="h-30px">
-                    >>>>>>> origin/dev/develop
-                </a> --}}
+            </a>
         </div>
         <!--end::Mobile logo-->
         <!--begin::Wrapper-->
@@ -100,16 +96,16 @@
                             </div>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            {{-- <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
                                 @csrf
                                 <div class="menu-item px-5">
                                     <a href="#"
                                         onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
                                         xuất</a>
-                                </div> --}}
+                                </div>
+                            </form>
                             <!--end::Menu item-->
                         </div>
-                        {{-- </form> --}}
                         <!--end::Menu item-->
                     </div>
                     <!--end::Menu-->
@@ -123,3 +119,4 @@
     </div>
     <!--end::Wrapper-->
 </div>
+<!--end::Container-->

@@ -10,12 +10,11 @@ use App\Livewire\InboundShipments\InboundShipmentUpdate;
 use App\Livewire\InboundShipments\ScanBarcode;
 
 
-Route::prefix('nhap-hang')->name('nhap-hang.')->group(function () {
+Route::prefix('nhap-hang')->name('nhap-hang.')->middleware('auth')->group(function () {
     Route::get('/', Index::class)->name('index'); 
-    Route::get('/tao-moi',InboundShipmentCreate::class)->name('create');
-   Route::get('/{id}', InboundShipmentDetail::class)->name('detail');
+    Route::get('/tao-moi', InboundShipmentCreate::class)->name('create');
+    Route::get('/{id}', InboundShipmentDetail::class)->name('detail');
     // Route::get('/{id}', [InboundShipmentController::class, 'show'])->name('show');
     // Route::get('/{id}/chinh-sua', InboundShipmentUpdate::class)->name('edit');
-    route::get('/scan',ScanBarcode::class)->name('scan');
-  
+    Route::get('/scan', ScanBarcode::class)->name('scan');
 });
