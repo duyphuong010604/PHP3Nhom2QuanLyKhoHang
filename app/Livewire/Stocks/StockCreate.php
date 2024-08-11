@@ -4,105 +4,74 @@ namespace App\Livewire\Stocks;
 
 use App\Models\Product;
 use Livewire\Component;
-use App\Repositories\Stocks\StocksRepository;
-use App\Models\Shelf;
-use App\Models\Stock;
-use Jantinnerezo\LivewireAlert\LivewireAlert;
-use Illuminate\Support\Facades\DB;
+use App\Models\InboundShipmentDetails;
+use Livewire\WithFileUploads;
+use PhpOffice\PhpSpreadsheet\IOFactory;
+use App\Models\InboundShipment;
 
 class StockCreate extends Component
 {
 
-    use LivewireAlert;
+    use WithFileUploads;
 
-    protected $stocksRepository;
+    public $file;
 
-    public $product_id = '';
+    protected $rules = [
+        'file' => 'required|mimes:xlsx,xls',
+    ];
 
-    public $shelf_id = '';
-
-    public $quantity = '';
-
-    public $section = '';
-
-    public $status = '';
-
-    public $stock;
-
-    public $products;
-
-    public $sheves;
-    public function rules()
-    {
-        return [
-            'product_id' => 'required',
-            'shelf_id' => 'required',
-            'quantity' => 'required|numeric|min:1',
-            'section' => 'required',
-            'status' => 'required'
-        ];
-    }
-    public function mount(StocksRepository $stocksRepository)
-    {
-        $this->stocksRepository = $stocksRepository;
-        $this->stock = Stock::with(['shelf', 'product'])->get();
-        $this->products = Product::all();
-        $this->sheves = Shelf::all();
-        // dd($this->stock);
-    }
-
-
-
-
-    public function render()
-    {
-       
-        return view('livewire.stocks.stock-create');
-    }
-
-
-
+    protected $messages = [
+        'file.required' => 'Vui lòng chọn một file để upload.',
+        'file.mimes' => 'File phải có định dạng .xlsx hoặc .xls.',
+    ];
 
     public function addStock()
     {
-        $validated = $this->validate();
+        $this->validate();
 
-        // dd(DB::getQueryLog());
-        $stocks = Stock::create([
-            'product_id' => $this->product_id,
-            'shelf_id' => $this->shelf_id,
-            'quantity' => $this->quantity,
-            'section' => $this->section,
-            'status' => $this->status
-        ]);
+        // Load the Excel file
+        $path = $this->file->getRealPath();
 
-        if ($stocks) {
-            $this->alert('success', 'Thêm sản phẩm mới thành công!', [
-                'position' => 'top-end',
-                'timer' => 3000,
-                'toast' => true,
-                'timerProgressBar' => true,
+        $reader = IOFactory::createReaderForFile($path);
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($path);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray();
+
+        if (count($sheetData) <= 1) {
+            session()->flash('error', 'File không có dữ liệu hoặc dữ liệu không hợp lệ.');
+            return;
+        }
+        // dd($sheetData);
+        for ($i = 1; $i < count($sheetData); $i++) {
+            $row = $sheetData[$i];
+    
+            // Tạo mới Inbound Shipment
+            $inboundShipment = InboundShipment::create([
+                'user_id' => $row[0],      
+                'supplier_id' => $row[1],  
+                'shelf_id' => $row[2],     
+                'totalAmount' => $row[3],    
+                'remarks' => $row[4],        
+                'status' => $row[5],         
             ]);
-            $this->reset([
-                "product_id",
-                "shelf_id",
-                "quantity",
-                "section",
-                "status",
+    
+            InboundShipmentDetails::create([
+                'product_id' => $row[6],          
+                'inbound_shipment_id' => $inboundShipment->id, 
+                'quantity' => $row[7],             
+                'unitPrice' => $row[8],            
+                'totalPrice' => $row[9],       
             ]);
         }
+        // dd($sheetData);
+
+        session()->flash('success', 'Dữ liệu đã được import thành công.');
     }
 
-    public function messages()
+    public function render()
     {
-        return [
-            'product_id.required' => 'Vui lòng chọn loại sản phẩm.',
-            'shelf_id.required' => 'Vui lòng chọn kệ hàng.',
-            'quantity.required' => 'Vui lòng nhập số lượng.',
-            'quantity.numeric' => 'Số lượng phải là một số.',
-            'quantity.min' => 'Số lượng phải lớn hơn 0.',
-            'section.required' => 'Vui lòng chọn phân khu.',
-            'status.required' => 'Vui lòng chọn trạng thái.'
-        ];
+        return view('livewire.stocks.stock-create');
     }
+    
+
 }
