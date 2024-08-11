@@ -89,11 +89,14 @@
                             <div class="separator my-2"></div>
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="#"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông
-                                    tin tài khoản</a>
-                            </div>
+                           <form id="logout-form" action="{{ route('profile.index') }}" method="POST">
+                                @csrf
+                                <div class="menu-item px-5">
+    <a href="{{ route('profile.index') }}" class="text-blue-500 hover:underline">
+        Thông Tin Tài Khoản
+    </a>
+</div>
+                            </form>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
                             <form id="logout-form" action="{{ route('logout') }}" method="POST">
