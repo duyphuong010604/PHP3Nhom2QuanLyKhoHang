@@ -250,7 +250,11 @@
                                 {{ $item['outbound_quantity'] }}
                               </td>
                               <td>
+                                @if ($item['total_quantity'] >= '0')
                                 {{ $item['total_quantity'] }}
+                                @else
+                                    0
+                                @endif
                               </td>
                               <!--end::Số lượng=-->
                               <!--begin::Date=-->

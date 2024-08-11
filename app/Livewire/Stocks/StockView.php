@@ -36,10 +36,14 @@ class StockView extends Component
         ])->findOrFail($id);
 
         $transactions = [];
+        $transactions_out = []; // Khởi tạo mảng này để tránh lỗi
         $productOutboundQuantities = [];
-    
+
+        // Lọc các lô hàng xuất theo ID giảm dần
+        $outboundShipments = $shelf->outboundShipments->sortByDesc('id');
+
         // Tạo một mảng để lưu trữ số lượng xuất cho mỗi sản phẩm
-        foreach ($shelf->outboundShipments as $outboundShipment) {
+        foreach ($outboundShipments as $outboundShipment) {
             foreach ($outboundShipment->outboundShipmentDetails as $detail) {
                 if (!isset($productOutboundQuantities[$detail->product_id])) {
                     $productOutboundQuantities[$detail->product_id] = 0;
@@ -47,9 +51,12 @@ class StockView extends Component
                 $productOutboundQuantities[$detail->product_id] += $detail->quantity;
             }
         }
-    
+
+        // Lọc các lô hàng nhập theo ID giảm dần
+        $inboundShipments = $shelf->inboundShipments->sortByDesc('id');
+
         // Thêm các giao dịch nhập và số lượng xuất kho
-        foreach ($shelf->inboundShipments as $inboundShipment) {
+        foreach ($inboundShipments as $inboundShipment) {
             foreach ($inboundShipment->inboundShipmentDetails as $detail) {
                 $productId = $detail->product_id;
                 $inboundQuantity = $detail->quantity;
@@ -70,6 +77,7 @@ class StockView extends Component
                 ];
             }
         }
+
         if (empty($transactions)) {
             $transactions[] = [
                 'shelf_name' => $shelf->name,
@@ -85,7 +93,8 @@ class StockView extends Component
                 'total_quantity' => 0
             ];
         }
-        foreach ($shelf->outboundShipments as $outboundShipment) {
+
+        foreach ($outboundShipments as $outboundShipment) {
             foreach ($outboundShipment->outboundShipmentDetails as $detail) {
                 $productId = $detail->product_id;
                 $outboundQuantity = $detail->quantity;
@@ -101,6 +110,7 @@ class StockView extends Component
                 ];
             }
         }
+
         if (empty($transactions_out)) {
             $transactions_out[] = [
                 'shelf_name' => $shelf->name,
@@ -112,7 +122,7 @@ class StockView extends Component
                 'transaction_date' => ''
             ];
         }
-    
+
         return [
             'transactions' => $transactions,
             'transactions_out' => $transactions_out
@@ -126,7 +136,7 @@ class StockView extends Component
         $this->transactions = $shelfData['transactions'];
         $this->transactions_out = $shelfData['transactions_out'];
     }
-  
+
 
 
     public function render()
