@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class InboundShipment extends Model
 {
     use HasFactory;
-    protected $fillablde = [
+    protected $fillable = [
         'user_id',
         'supplier_id',
         'shelf_id',
