@@ -14,31 +14,31 @@ class CategorySeeder extends Seeder
     public function run(): void
     {
         Category::create([
-            'name' => 'Electronics',
+            'name' => 'Đồ tổng hợp',
             'description' => 'Devices and gadgets such as phones, computers, and more.',
             'status' => true,
         ]);
 
         Category::create([
-            'name' => 'Furniture',
+            'name' => 'Quần áo',
             'description' => 'Various kinds of furniture for home and office.',
             'status' => true,
         ]);
 
         Category::create([
-            'name' => 'Clothing',
+            'name' => 'Giày dép',
             'description' => 'Apparel including men\'s, women\'s, and children\'s clothing.',
             'status' => true,
         ]);
 
         Category::create([
-            'name' => 'Books',
+            'name' => 'Sách',
             'description' => 'A collection of fiction, non-fiction, and educational books.',
             'status' => true,
         ]);
 
         Category::create([
-            'name' => 'Sports Equipment',
+            'name' => 'Nước đóng chai',
             'description' => 'Gear and accessories for various sports.',
             'status' => false,
         ]);

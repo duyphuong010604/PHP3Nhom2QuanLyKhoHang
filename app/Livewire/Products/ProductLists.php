@@ -15,7 +15,9 @@ use PhpOffice\PhpSpreadsheet\Spreadsheet;
 use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 use PhpOffice\PhpSpreadsheet\Cell\DataValidation;
 use Illuminate\Support\Facades\Log;
-
+use Livewire\Attributes\Validate;
+use Livewire\Features\SupportFileUploads\WithFileUploads;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 #[Title('Danh sách sản phẩm')]
 class ProductLists extends Component
@@ -134,7 +136,7 @@ class ProductLists extends Component
     {
         $this->showDeleteButton = count($this->productId) > 0;
     }
-    public $productStock = true;
+    public $productStock;
     public function updatingPage($page, $value)
     {
         log::info($value);
@@ -270,6 +272,43 @@ class ProductLists extends Component
             return response()->streamDownload(function () use ($dompdf) {
                 echo $dompdf->output();
             }, 'products-code.pdf');
+        }
+    }
+
+    #[Validate('mimes:xlsx,xls', message: 'Vui lòng nhập file đúng định dạng.')]
+    public $importFile;
+    use WithFileUploads;
+    public function import()
+    {
+        $validated = $this->validate();
+        $path = $this->importFile->getRealPath();
+
+        $reader = IOFactory::createReaderForFile($path);
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($path);
+        $sheetData = $spreadsheet->getActiveSheet()->toArray();
+
+        if (count($sheetData) <= 1) {
+            $this->showAlert('error', 'File không có dữ liệu!');
+            $this->reset('importFile');
+            return;
+        }
+        for ($i = 1; $i < count($sheetData); $i++) {
+            $row = $sheetData[$i];
+
+            $product = Product::create([
+                'category_id' => $row[0],
+                'sku' => $row[1],
+                'name' => $row[2],
+                'price' => $row[3],
+                'cost' => $row[4]
+            ]);
+
+            if ($product) {
+                $this->showAlert('success', 'Thêm mới thành công.');
+                $this->reset('importFile');
+                $this->products = $this->loadProducts();
+            }
         }
     }
 }
