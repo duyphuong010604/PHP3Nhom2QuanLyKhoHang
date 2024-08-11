@@ -180,6 +180,26 @@
                                 <!--end::Svg Icon-->
                                 Export
                             </button>
+
+                            <button type="button" class="btn btn-light-primary me-3" data-bs-toggle="modal"
+                                data-bs-target="#kt_subscriptions_import_modal">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr078.svg-->
+                                <span class="svg-icon svg-icon-2">
+                                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                                        xmlns="http://www.w3.org/2000/svg">
+                                        <rect opacity="0.3" width="12" height="2" rx="1"
+                                            transform="matrix(-1 0 0 1 15.5 11)" fill="black" />
+                                        <path
+                                            d="M13.6313 11.6927L11.8756 10.2297C11.4054 9.83785 11.3732 9.12683 11.806 8.69401C12.1957 8.3043 12.8216 8.28591 13.2336 8.65206L16.1592 11.2526C16.6067 11.6504 16.6067 12.3496 16.1592 12.7474L13.2336 15.3479C12.8216 15.7141 12.1957 15.6957 11.806 15.306C11.3732 14.8732 11.4054 14.1621 11.8756 13.7703L13.6313 12.3073C13.8232 12.1474 13.8232 11.8526 13.6313 11.6927Z"
+                                            fill="black" />
+                                        <path
+                                            d="M8 5V6C8 6.55228 8.44772 7 9 7C9.55228 7 10 6.55228 10 6C10 5.44772 10.4477 5 11 5H18C18.5523 5 19 5.44772 19 6V18C19 18.5523 18.5523 19 18 19H11C10.4477 19 10 18.5523 10 18C10 17.4477 9.55228 17 9 17C8.44772 17 8 17.4477 8 18V19C8 20.1046 8.89543 21 10 21H19C20.1046 21 21 20.1046 21 19V5C21 3.89543 20.1046 3 19 3H10C8.89543 3 8 3.89543 8 5Z"
+                                            fill="#C4C4C4" />
+                                    </svg>
+                                </span>
+                                <!--end::Svg Icon-->
+                                Import
+                            </button>
                             <!--end::Export-->
                             <!--begin::Add subscription-->
                             <a href="{{ route('san-pham.create') }}" class="btn btn-primary">
@@ -494,6 +514,73 @@
             </div>
             <!--end::Modal - New Card-->
             <!--end::Modals-->
+
+            <div wire:ignore.self class="modal fade" id="kt_subscriptions_import_modal" tabindex="-1"
+                style="display: none;" aria-hidden="true">
+                <!--begin::Modal dialog-->
+                <div class="modal-dialog modal-dialog-centered mw-650px">
+                    <!--begin::Modal content-->
+                    <div class="modal-content">
+                        <!--begin::Modal header-->
+                        <div class="modal-header">
+                            <!--begin::Modal title-->
+                            <h2 class="fw-bolder">Nhập danh sách</h2>
+                            <!--end::Modal title-->
+                            <!--begin::Close-->
+                            <div id="kt_subscriptions_export_close"
+                                class="btn btn-icon btn-sm btn-active-icon-primary">
+                                <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                                {{-- <span class="svg-icon svg-icon-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                        viewBox="0 0 24 24" fill="none">
+                                        <rect opacity="0.5" x="6" y="17.3137" width="16" height="2"
+                                            rx="1" transform="rotate(-45 6 17.3137)" fill="black"></rect>
+                                        <rect x="7.41422" y="6" width="16" height="2" rx="1"
+                                            transform="rotate(45 7.41422 6)" fill="black"></rect>
+                                    </svg>
+                                </span> --}}
+                                <!--end::Svg Icon-->
+                            </div>
+                            <!--end::Close-->
+                        </div>
+                        <!--end::Modal header-->
+                        <!--begin::Modal body-->
+                        <div class="modal-body scroll-y mx-5 mx-xl-15 my-7">
+                            <!--begin::Form-->
+                            <form id="kt_subscriptions_export_form"
+                                class="form fv-plugins-bootstrap5 fv-plugins-framework" wire:submit='import'>
+                                <div class="fv-row mb-10">
+                                    <div class="mb-3">
+                                        <label for="formFileSm" class="form-label">Nhập file</label>
+                                        <input class="form-control form-control-sm" id="formFileSm" type="file"
+                                            wire:model='importFile'>
+                                        @error('importFile')
+                                            <span class="text-danger">{{ $message }}</span>
+                                        @enderror
+                                    </div>
+                                </div>
+
+                                <div class="text-center">
+
+                                    <button type="submit" id="kt_subscriptions_export_submit"
+                                        class="btn btn-primary">
+                                        <span class="indicator-label">Nhập</span>
+                                        <span class="indicator-progress">Please wait...
+                                            <span
+                                                class="spinner-border spinner-border-sm align-middle ms-2"></span></span>
+                                    </button>
+                                </div>
+                                <!--end::Actions-->
+                                <div></div>
+                            </form>
+                            <!--end::Form-->
+                        </div>
+                        <!--end::Modal body-->
+                    </div>
+                    <!--end::Modal content-->
+                </div>
+                <!--end::Modal dialog-->
+            </div>
         </div>
         <!--end::Container-->
     </div>

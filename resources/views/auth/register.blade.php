@@ -1,5 +1,5 @@
 @extends('layouts.auth')
-@section('title', 'Đăng hý tài khoản')
+@section('title', 'Đăng ký tài khoản')
 @section('contents')
     <div class="d-flex flex-column flex-root">
         <!--begin::Authentication - Sign-up -->
@@ -11,6 +11,8 @@
                     <!--begin::Content-->
                     <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
                         <!--begin::Logo-->
+                        <a href="{{ route('login')}}" class="py-9 mb-5">
+
                         <a href="../../demo1/dist/index.html" class="py-9 mb-5">
                             <img alt="Logo" src="{{ asset('assets/media/logos/auth.png') }}" class="h-60px" />
                         </a>
@@ -37,7 +39,7 @@
                     <!--begin::Wrapper-->
                     <div class="w-lg-600px p-10 p-lg-15 mx-auto">
                         <!--begin::Form-->
-                        <form action="{{ route ('tai-khoan.store')}}" method="POST"  class="form w-100">
+                        <form action="{{ route ('register')}}" method="POST"  class="form w-100">
                            @csrf
                             <div class="mb-10 text-center">
                                 <!--begin::Title-->
@@ -45,7 +47,7 @@
                                 <!--end::Title-->
                                 <!--begin::Link-->
                                 <div class="text-gray-400 fw-bold fs-4">Bạn đã có tài khoản?
-                                    <a href=""
+                                    <a href="{{ route ('login')}}"
                                         class="link-primary fw-bolder">Đăng nhập tại đây</a>
                                 </div>
                                 <!--end::Link-->
@@ -53,15 +55,12 @@
                             <!--end::Heading-->
                             <!--begin::Action-->
                             
-                            <a href="{{ route('tai-khoan.login.google') }}" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
-                                    <img alt="Logo" src="assets/media/svg/brand-logos/google-icon.svg"
-                                        class="h-20px me-3" />Đăng Nhập với Google</a>
 
                             <!--end::Action-->
                             <!--begin::Separator-->
                             <div class="d-flex align-items-center mb-10">
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
-                                <span class="fw-bold text-gray-400 fs-7 mx-2">OR</span>
+                                <span class="fw-bold text-gray-400 fs-7 mx-2"></span>
                                 <div class="border-bottom border-gray-300 mw-50 w-100"></div>
                             </div>
                             <!--end::Separator-->

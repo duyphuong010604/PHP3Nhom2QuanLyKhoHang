@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\ValidationException;
 use Illuminate\View\View;
+use App\Http\Requests\LoginRequest;
+
 
 class ConfirmablePasswordController extends Controller
 {
@@ -16,25 +18,25 @@ class ConfirmablePasswordController extends Controller
      */
     public function show(): View
     {
-        return view('authentications.confirm-password');
+        return view('auth.confirm-password');
     }
 
     /**
      * Confirm the user's password.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(LoginRequest $request): RedirectResponse
     {
         if (! Auth::guard('web')->validate([
             'email' => $request->user()->email,
             'password' => $request->password,
         ])) {
             throw ValidationException::withMessages([
-                'password' => __('authentications.password'),
+                'password' => __('auth.password'),
             ]);
         }
 
-        $request->session()->put('authentications.password_confirmed_at', time());
+        $request->session()->put('auth.password_confirmed_at', time());
 
-        return redirect()->intended(route('dashboard', absolute: false));
+        return redirect()->intended(route('trang-chu.index', absolute: false));
     }
 }

@@ -8,7 +8,7 @@ use App\Livewire\Products\ProductUpdate;
 use App\Livewire\Products\ProductView;
 use App\Livewire\TestList;
 
-Route::prefix('san-pham')->name('san-pham.')->group(function () {
+Route::prefix('san-pham')->name('san-pham.')->middleware('auth')->group(function () {
     Route::get('/', ProductLists::class)->name('index');
     Route::get('/tao-moi', ProductCreate::class)->name('create');
     Route::post('/', ProductCreate::class)->name('store');
