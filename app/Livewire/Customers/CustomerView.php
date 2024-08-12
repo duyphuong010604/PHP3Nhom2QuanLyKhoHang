@@ -28,8 +28,8 @@ public $ttcustomer;
 
         $data = [
             'outbounds' => OutboundShipment::Where('id',$id)->orderBy('id','asc')->get(),
-            'customers' => Customer::Where('id',$idc)->orderBy('id','asc')->get() // Sử dụng mô hình và dữ liệu bạn cần xuất
-
+            'customers' => Customer::Where('id',$idc)->orderBy('id','asc')->get(), // Sử dụng mô hình và dữ liệu bạn cần xuất
+            'outboundetails' => OutboundShipmentDetails::with('product')->Where('outbound_shipment_id',$id)->orderBy('id','asc')->get()
         ];
 
 

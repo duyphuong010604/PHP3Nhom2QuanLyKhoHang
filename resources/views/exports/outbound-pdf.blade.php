@@ -23,6 +23,7 @@
             border-radius: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
             border: 10px solid #d9534f;
+            page-break-after: always;
         }
 
         .invoice-header {
@@ -77,6 +78,7 @@
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            page-break-inside: avoid;
         }
 
         .invoice-table th, .invoice-table td {
@@ -104,7 +106,7 @@
 
         .payment-details, .contact-details {
             font-size: 14px;
-            margin-bottom: 10px;
+            margin-bottom: 20px; /* Increased margin-bottom */
         }
 
         .payment-details h4, .contact-details h4 {
@@ -116,6 +118,7 @@
 
         .contact-details {
             text-align: center;
+            page-break-inside: avoid;
         }
     </style>
 </head>
@@ -147,9 +150,45 @@
         <table class="invoice-table">
             <thead>
                 <tr>
+                    <th>Tên sản phẩm</th>
+                    <th>Giá tiền</th>
+                    <th>Số lượng</th>
+                    <th>Thành tiền</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($outboundetails as $outboundetail)
+                    <tr class="odd">
+                        <td>
+                            <div class="text-gray-800 text-hover-primary mb-1">
+                            {{ $outboundetail->product->name }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="text-gray-800 text-hover-primary mb-1">
+                                {{ number_format($outboundetail->unitPrice) }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="badge badge-light-success">
+{{ $outboundetail->quantity }}
+                            </div>
+                        </td>
+                        <td>
+                            <div class="badge badge-light-primary">
+                            {{ $outboundetail->totalPrice }}
+                            </div>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+        <table class="invoice-table">
+            <thead>
+                <tr>
                     <th>Mã hóa đơn</th>
-                    <th>Tổng tiền</th>
-                    <th>Tên kệ hàng</th>
+                    <th>Thành tiền</th>
                     <th>Thời gian xuất</th>
                 </tr>
             </thead>
@@ -167,29 +206,20 @@
                             </div>
                         </td>
                         <td>
-                            <div class="badge badge-light-success">
-                                {{ $outbound->shelf->name }}
-                            </div>
-                        </td>
-                        <td>
                             <div class="badge badge-light-primary">
                                 {{ $outbound->created_at }}
                             </div>
                         </td>
                     </tr>
-                    @endforeach
-
+                @endforeach
             </tbody>
-
         </table>
-
 
         <div class="contact-details">
             <h4>Thông tin liên hệ</h4>
             <p>warehouse@gmail.com</p>
             <p>C106 Khu dân cư hoàn quân, Thành phố Cần thơ</p>
             <p>+84 0343456789</p>
-
         </div>
     </div>
 
