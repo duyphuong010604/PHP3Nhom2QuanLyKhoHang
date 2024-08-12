@@ -7,8 +7,7 @@
                 id="kt_aside_mobile_toggle">
                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs015.svg-->
                 <span class="svg-icon svg-icon-2x mt-1">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
-                        fill="none">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
                         <path d="M21 7H3C2.4 7 2 6.6 2 6V4C2 3.4 2.4 3 3 3H21C21.6 3 22 3.4 22 4V6C22 6.6 21.6 7 21 7Z"
                             fill="black"></path>
                         <path opacity="0.3"
@@ -78,8 +77,7 @@
                                             <span
                                                 class="badge badge-light-success fw-bolder fs-8 px-2 py-1 ms-2">Pro</span>
                                         </div>
-                                        <a href="#"
-                                            class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
+                                        <a href="#" class="fw-bold text-muted text-hover-primary fs-7">max@kt.com</a>
                                     </div>
                                     <!--end::Username-->
                                 </div>
@@ -89,21 +87,29 @@
                             <div class="separator my-2"></div>
                             <!--end::Menu separator-->
                             <!--begin::Menu item-->
-                            <div class="menu-item px-5">
-                                <a href="#"
-                                    onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Thông
-                                    tin tài khoản</a>
-                            </div>
+                            <form id="" action="{{ route('profile.index') }}" method="POST">
+                                @csrf
+                                <div class="menu-item px-5">
+                                    <a href="{{ route('profile.index') }}" class="text-blue-500 hover:underline">
+                                        Thông Tin Tài Khoản
+                                    </a>
+                                </div>
+                            </form>
                             <!--end::Menu item-->
                             <!--begin::Menu item-->
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                style="display: inline;">
                                 @csrf
                                 <div class="menu-item px-5">
                                     <a href="#"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">Đăng
-                                        xuất</a>
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();"
+                                        class="text-blue-500 hover:underline">
+                                        Đăng xuất
+                                    </a>
                                 </div>
                             </form>
+
+
                             <!--end::Menu item-->
                         </div>
                         <!--end::Menu item-->

@@ -11,32 +11,20 @@ use Illuminate\View\View;
 use App\Http\Requests\LoginRequest;
 
 
-class ConfirmablePasswordController extends Controller
+class ConfirmPasswordController extends Controller
 {
-    /**
-     * Show the confirm password view.
-     */
-    public function show(): View
+    public function store(Request $request)
     {
-        return view('auth.confirm-password');
-    }
+        $request->validate([
+            'password' => 'required|password',
+        ]);
 
-    /**
-     * Confirm the user's password.
-     */
-    public function store(LoginRequest $request): RedirectResponse
-    {
-        if (! Auth::guard('web')->validate([
-            'email' => $request->user()->email,
-            'password' => $request->password,
-        ])) {
-            throw ValidationException::withMessages([
-                'password' => __('auth.password'),
-            ]);
+        // Nếu xác nhận mật khẩu thành công
+        if (Auth::attempt(['email' => $request->user()->email, 'password' => $request->password])) {
+            // Đặt thông báo thành công trong session
+            return redirect()->route('some.route')->with('status', 'Cập nhật mật khẩu thành công.');
         }
 
-        $request->session()->put('auth.password_confirmed_at', time());
-
-        return redirect()->intended(route('trang-chu.index', absolute: false));
+        return back()->withErrors(['password' => 'Mật khẩu không chính xác']);
     }
 }
