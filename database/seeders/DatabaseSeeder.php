@@ -30,15 +30,15 @@ class DatabaseSeeder extends Seeder
 
                         ]
                 );
-                User::factory(10)->create();
-                Product::factory(10)->create();
-                Supplier::factory(10)->create();
-                InboundShipment::factory(10)->create();
-                InboundShipmentDetails::factory(10)->create();
-                // Stock::factory(10)->create();
-                Customer::factory(10)->create();
-                OutboundShipment::factory(10)->create();
-                OutboundShipmentDetails::factory(10)->create();
+                // User::factory(10)->create();
+                // Product::factory(10)->create();
+                // Supplier::factory(10)->create();
+                // InboundShipment::factory(10)->create();
+                // InboundShipmentDetails::factory(10)->create();
+                // // Stock::factory(10)->create();
+                // Customer::factory(10)->create();
+                // OutboundShipment::factory(10)->create();
+                // OutboundShipmentDetails::factory(10)->create();
 
         }
 }
