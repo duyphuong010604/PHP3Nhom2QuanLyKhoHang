@@ -134,7 +134,7 @@
                                                         <td>{{$outbound->created_at}}</td>
                                                         <td class="text-end">
 
-                                                        <button wire:click='export({{$outbound->id}})' class="btn btn-primary">Xuất PDF</button>
+                                                        <button wire:click='export({{$outbound->id}},{{$customer->id}})' class="btn btn-primary">Xuất PDF</button>
 
                                                         </td>
 
