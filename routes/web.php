@@ -7,7 +7,7 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
-Route::get('/trang-chu', function () {
+Route::get('/dashboard', function () {
     return view('dashboards.index');
 })->middleware(['auth', 'verified'])->name('trang-chu.index');
 
