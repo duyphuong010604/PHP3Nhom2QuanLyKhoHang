@@ -54,7 +54,7 @@
                             <!--begin::Input group-->
                             <div class="row mb-6">
                                 <!--begin::Label-->
-                                <label class="col-lg-4 col-form-label fw-bold fs-6">Họ Và Tên</label>
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">Tài Khoản</label>
                                 <!--end::Label-->
                                 <!--begin::Col-->
                                 <div class="col-lg-8 fv-row">
@@ -71,7 +71,27 @@
                         @enderror
                                 </div>
                                 <!--end::Col-->
-                            </div>      
+                            </div> 
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-bold fs-6">Họ Và Tên</label>
+                                <!--end::Label-->
+                                <!--begin::Col-->
+                                <div class="col-lg-8 fv-row">
+                                <input 
+                            id="fullname"
+                            name="fullname"
+                            type="text"
+                            class="form-control form-control-lg form-control-solid"
+                            placeholder="Nhập họ và tên"
+                            value="{{ old('username', $user->fullname) }}"
+                        />
+                        @error('fullname')
+                            <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                                </div>
+                                <!--end::Col-->
+                            </div>     
                             <!--end::Input group-->
                             <!--begin::Input group-->
                             <!--end::Input group-->

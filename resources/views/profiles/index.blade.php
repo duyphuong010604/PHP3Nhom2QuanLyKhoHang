@@ -54,6 +54,16 @@
                         <!--end::Label-->
                         <!--begin::Col-->
                         <div class="col-lg-8">
+                        <span class="fw-bolder fs-6 text-gray-800">{{ $user->fullname }}</span>
+                        </div>
+                        <!--end::Col-->
+                    </div>
+                    <div class="row mb-7">
+                        <!--begin::Label-->
+                        <label class="col-lg-4 fw-bold text-muted">Tài khoản</label>
+                        <!--end::Label-->
+                        <!--begin::Col-->
+                        <div class="col-lg-8">
                         <span class="fw-bolder fs-6 text-gray-800">{{ $user->username }}</span>
                         </div>
                         <!--end::Col-->
